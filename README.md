@@ -28,30 +28,30 @@ https://github.com/ziyuefan/EventAlertMod/blob/main/changelog.txt
 
 ![EAM Minimap Hint](https://truth.bahamut.com.tw/s01/202008/f1ee8bd0327ecd95f6d2ffea2f06d7ae.JPG)
 
-以下指令說明不分大小寫:
+## 以下指令說明不分大小寫:
 
-/eam SCDRemoveWhenCooldown
+> /eam SCDRemoveWhenCooldown
 開關型指令,技能冷卻圖示在冷卻完成後移除(true表示要移除;false表示不移除)
 
-/eam SCDNocombatStillKeep
+> /eam SCDNocombatStillKeep
 開關型指令,技能冷卻圖示在脫離戰鬥後是否仍顯示(true保持顯示;false 脫戰不顯示)
 
-/eam SCDGlowWhenUsable
+> /eam SCDGlowWhenUsable
 開關型指令,技能冷卻是否在可用時高亮(true表示可用時高亮false則否)
 這指令特別說明其使用IsUsableSpell()判斷,
 也就是如果該指令因為資源或有減益導致無法施放
 或者無法滿足其技能條件,則不會高亮
 但是距離不在此限
 
-/eam MiniMap
+> /eam MiniMap
 開關型指令,用來顯示設定齒輪顯示與否
 
-/eam UpdateInterval  n
+> /eam UpdateInterval  n
 設定更新頻率,越小越快,若有團戰無法負荷情況請加大此數值
 預設 0.1S (0.1 ~ 1秒)
 
-/eam IconAppenSpellTip
+> /eam IconAppenSpellTip
 開關形指令, 圖示是否在滑鼠移過時顯示法術說明
 
-/eam NewLineByIconCount n
+> /eam NewLineByIconCount n
 技能冷卻圖示最多 n 個就跳下一行
