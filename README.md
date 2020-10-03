@@ -1,12 +1,11 @@
-### EventAlertMod
--- WOW Addons : EventAlertMod for Shadowland PTR
+##### EventAlertMod
+---- WOW Addons : EventAlertMod for Shadowland PTR
 本版本僅在WOW 9.0 SHADOWLAND PTR測試, 8.0 BFA正服未測試過
 
 CHANGELOG.TXT
 ----------------------------
--- 2020.08.23
+--- 2020.08.23
 ----------------------------
-*
 --修復術士靈魂碎片及碎塊顯示問題
 --修復能力框架內不顯示數字
 ----------------------------
