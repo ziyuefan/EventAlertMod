@@ -1,5 +1,5 @@
-##### EventAlertMod
----- WOW Addons : EventAlertMod for Shadowland PTR
+# EventAlertMod
+-- WOW Addons : EventAlertMod for Shadowland PTR
 本版本僅在WOW 9.0 SHADOWLAND PTR測試, 8.0 BFA正服未測試過
 
 CHANGELOG.TXT
@@ -9,7 +9,7 @@ CHANGELOG.TXT
 --修復術士靈魂碎片及碎塊顯示問題
 --修復能力框架內不顯示數字
 ----------------------------
--- 2020.08.22
+--- 2020.08.22
 ----------------------------
 -- 修改非光環式地面效果的比對PATTERN使之可以在PTR比對到
     例如:116011(主動力之符文)、342130(被動力之符文)
