@@ -1,2 +1,2 @@
 # EventAlertMod
-EventAlertMod for Shadowland PTR
+WOW Addons : EventAlertMod for Shadowland PTR
