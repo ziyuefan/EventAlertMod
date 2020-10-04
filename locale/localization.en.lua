@@ -258,7 +258,7 @@ EA_XCMD_DEBUG_P1 = "Spell";
 EA_XCMD_DEBUG_P2 = "Spell-ID";
 EA_XCMD_DEBUG_P3 = "Stack";
 EA_XCMD_DEBUG_P4 = "Duration";
-EA_XCMD_SPELL_DURATION_PATTERN = "for %d+ sec"
+
 
 EA_XCMD_CMDHELP = {
 	["TITLE"] = "\124cffFFFF00EventAlertMod\124r \124cff00FF00Commands\124r(/eventalertmod or /eam):",

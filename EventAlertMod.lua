@@ -1074,37 +1074,7 @@ function EventAlert_Buffs_Update(...)
 	end	
 	
 	
-	-----------------------------------	
-	local function GetSpellEffectDuration(spellID)	
-			local spellDescription = GetSpellDescription(spellID)			
-			local spellEffectDuration
-			local MUL_MIN = 1
-			if not(spellEffectDuration) then
-				spellEffectDuration = string.match(spellDescription,EA_XCMD_SPELL_DURATION_PATTERN1)				
-			end
-			if not(spellEffectDuration) then
-				spellEffectDuration = string.match(spellDescription,EA_XCMD_SPELL_DURATION_PATTERN2)				
-			end
-			if not(spellEffectDuration) then
-				spellEffectDuration = string.match(spellDescription,EA_XCMD_SPELL_DURATION_PATTERN5)				
-			end
-			if not(spellEffectDuration) then
-				spellEffectDuration = string.match(spellDescription,EA_XCMD_SPELL_DURATION_PATTERN3)
-				MUL_MIN = 60
-			end
-			if not(spellEffectDuration) then
-				spellEffectDuration = string.match(spellDescription,EA_XCMD_SPELL_DURATION_PATTERN4)				
-				MUL_MIN = 60
-			end
-			if not(spellEffectDuration) then
-				spellEffectDuration = string.match(spellDescription,EA_XCMD_SPELL_DURATION_PATTERN6)				
-				MUL_MIN = 60
-			end
-			if spellEffectDuration then
-				spellEffectDuration = tonumber(string.match(spellEffectDuration,"%d+%p?%d*"))*MUL_MIN
-			end
-			return spellEffectDuration 
-	end		
+	
 	
 	local timestp, event, hideCaster, surGUID, surName, surFlags, surRaidFlags, dstGUID, dstName, dstFlags, dstRaidFlags, spellID, spellName = ...
 	unitCaster=""
@@ -1128,7 +1098,7 @@ function EventAlert_Buffs_Update(...)
 		if (SpellEnable) then					
 			ifAdd_buffCur, orderWtd = EAFun_CheckSpellConditionMatch(count, unitCaster, PlayerItems[spellID])	
 		end		
-		local EffectDuration = tonumber(GetSpellEffectDuration(spellID))		
+		local EffectDuration = tonumber(Lib_ZYF:GetSpellDurationByDesc(spellID))		
 		if (ifAdd_buffCur) then		
 			if (event == "SPELL_CAST_SUCCESS") and EffectDuration then 				
 				if not(EA_SPELLINFO_SELF[spellID].aura) then

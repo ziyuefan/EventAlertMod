@@ -262,14 +262,7 @@ EA_XCMD_DEBUG_P1 = "法术";
 EA_XCMD_DEBUG_P2 = "法术ID";
 EA_XCMD_DEBUG_P3 = "堆叠";
 EA_XCMD_DEBUG_P4 = "持续秒数";
---EA_XCMD_SPELL_DURATION_PATTERN1 = "在%d+%p?%d*秒"
-EA_XCMD_SPELL_DURATION_PATTERN1 = "for %d+%p?%d*秒"
-EA_XCMD_SPELL_DURATION_PATTERN2 = "持续%d+%p?%d*秒"
---EA_XCMD_SPELL_DURATION_PATTERN3 = "在%d+%p?%d*分"
-EA_XCMD_SPELL_DURATION_PATTERN3 = "for %d+%p?%d*分"
-EA_XCMD_SPELL_DURATION_PATTERN4 = "持续%d+%p?%d*分"
-EA_XCMD_SPELL_DURATION_PATTERN5 = "%d+%p?%d*秒内"
-EA_XCMD_SPELL_DURATION_PATTERN6 = "%d+%p?%d*分内"
+
 
 EA_XCMD_CMDHELP = {
 	["TITLE"] = "\124cffFFFF00EventAlertMod\124r \124cff00FF00指令\124r说明(/eventalertmod or /eam):",

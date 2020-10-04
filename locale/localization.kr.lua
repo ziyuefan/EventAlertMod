@@ -260,7 +260,6 @@ EA_XCMD_DEBUG_P1 = "주문";
 EA_XCMD_DEBUG_P2 = "주문-ID";
 EA_XCMD_DEBUG_P3 = "중첩";
 EA_XCMD_DEBUG_P4 = "지속시간";
-EA_XCMD_SPELL_DURATION_PATTERN = "지속%d+시"
 
 EA_XCMD_CMDHELP = {
 	["TITLE"] = "\124cffFFFF00EventAlertMod\124r \124cff00FF00명령어\124r(/eventalertmod 또는 /eam):",
