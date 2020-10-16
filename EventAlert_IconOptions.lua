@@ -258,13 +258,13 @@ function EventAlert_Icon_Options_Frame_AdjustTimerFontSize()
 	if (EA_Config.ChangeTimer == true) then	--璝璸陪ボ琜ず
 		-- 璝ㄏノ计翴计
 		if (EA_Config.UseFloatSec > 0) then
-			EA_Config.TimerFontSize = (EA_Config.IconSize ) * 0.4		--琜ず计ゑㄒ(Τ计翴)
+			EA_Config.TimerFontSize = (EA_Config.IconSize ) * 0.50		--琜ず计ゑㄒ(Τ计翴)
 		else
-			EA_Config.TimerFontSize = (EA_Config.IconSize ) * 0.35		--琜ず计ゑㄒ(礚计翴)
+			EA_Config.TimerFontSize = (EA_Config.IconSize ) * 0.45		--琜ず计ゑㄒ(礚计翴)
 		end
 		EA_Config.StackFontSize = (EA_Config.IconSize ) * 0.35			--帮舼璸计ゑㄒ
 	else	--璝璸陪ボ琜
-		EA_Config.TimerFontSize = (EA_Config.IconSize ) * 0.60			--琜计ゑㄒ
+		EA_Config.TimerFontSize = (EA_Config.IconSize ) * 0.65			--琜计ゑㄒ
 		EA_Config.StackFontSize = (EA_Config.IconSize ) * 0.45			--帮舼璸计ゑㄒ
 	end
 	

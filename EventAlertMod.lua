@@ -2829,8 +2829,8 @@ function EAFun_SetCountdownStackText(eaf, EA_timeLeft, EA_count, SC_RedSecText)
 		if (EA_timeLeft < SC_RedSecText + 1) then
 			
 			if (not eaf.redsectext) then				
-				--eaf.spellTimer:SetFont(EA_FONTS, 1*(EA_Config.TimerFontSize+5), "OUTLINE");
-				eaf.spellTimer:SetFont(EA_FONTS, (EA_Config.TimerFontSize*1.1), "OUTLINE")
+				eaf.spellTimer:SetFont(EA_FONTS, 1*(EA_Config.TimerFontSize + 5), "OUTLINE");
+				--eaf.spellTimer:SetFont(EA_FONTS, (EA_Config.TimerFontSize*1.5), "OUTLINE")
 				eaf.spellTimer:SetTextColor(1, 0, 0)
 				eaf.redsectext = true
 				eaf.whitesectext = false
@@ -2982,10 +2982,12 @@ function EventAlert_UpdateFocus()
 				
 				--eaf1:SetScript("OnUpdate",EventAlert_UndateFocus)
 			else
-				FrameGlowShowOrHide(eaf1, false)
-				EA_SpecFrame_Self = false;
-				eaf1:SetScript("OnUpdate",nil)
-				eaf1:Hide()
+				if eaf1 then
+					FrameGlowShowOrHide(eaf1, false)
+					EA_SpecFrame_Self = false;
+					eaf1:SetScript("OnUpdate",nil)
+					eaf1:Hide()
+				end
 			end				
 				
 			if (eaf2 ~= nil) and (EA_Config.SpecPowerCheck.FocusPet) and (iPetPower > 0) then
@@ -3021,10 +3023,12 @@ function EventAlert_UpdateFocus()
 				end);
 				--eaf2:SetScript("OnUpdate",EventAlert_UndateFocus)
 			else
-				EA_SpecFrame_Self = false
-				FrameGlowShowOrHide(eaf2, false)
-				eaf2:SetScript("OnUpdate",nil)				
-				eaf2:Hide()
+				if eaf2 then
+					EA_SpecFrame_Self = false
+					FrameGlowShowOrHide(eaf2, false)
+					eaf2:SetScript("OnUpdate",nil)				
+					eaf2:Hide()
+				end
 			end			
 			
 			--EventAlert_PositionFrames();
@@ -3151,15 +3155,15 @@ end
 -- Speciall Frame: UpdateSinglePower(holy power, runic power, soul shards), for watching the power of player
 function EventAlert_UpdateSinglePower(iPowerType)
 	
-	local _,playerClass = UnitClass("player")
-	local iUnitPower = UnitPower("player", iPowerType);	
+	local unit = "player"
+	local _,playerClass = UnitClass(unit)
+	local iUnitPower = UnitPower(unit, iPowerType);	
 	--local iUnitPowerPet = UnitPower("pet", iPowerType);	
 	local iPowerName = "";
 	local iFrameIndex = 1000000 + iPowerType * 10;	
 	
-	if EA_playerClass == EA_CLASS_DK then EventAlert_UpdateRunes() end
+	if EA_playerClass == EA_CLASS_DK then EventAlert_UpdateRunes() end	
 	
-	local iGrowPower = EA_SPELL_POWER_ENERGY;	
 	if (iPowerType == EA_SPELL_POWER_RUNIC_POWER) then iPowerName = EA_XSPECINFO_RUNICPOWER end;
 	if (iPowerType == EA_SPELL_POWER_SOUL_SHARDS) then iPowerName = EA_XSPECINFO_SOULSHARDS end;
 	if (iPowerType == EA_SPELL_POWER_HOLY_POWER) then iPowerName = EA_XSPECINFO_HOLYPOWER end;	
@@ -3229,7 +3233,7 @@ function EventAlert_UpdateSinglePower(iPowerType)
 					--if GetSpecialization() == 3 then 	--若是毀滅術
 						--iUnitPower = WarlockPowerBar_UnitPower("player")						
 					--end
-					iUnitPower=UnitPower("player",EA_SPELL_POWER_SOUL_SHARDS,true)/10
+					iUnitPower=UnitPower(unit, EA_SPELL_POWER_SOUL_SHARDS,true)/10
 				end
 				
 				eaf.spellTimer:ClearAllPoints();
@@ -3247,86 +3251,77 @@ function EventAlert_UpdateSinglePower(iPowerType)
 				if (iPowerType == EA_SPELL_POWER_RAGE) then
 					--若為戰士
 					if (playerClass == EA_CLASS_WARRIOR) then						
-						--若專精為狂怒表示有暴怒技能
-						if (GetSpecialization() == 2) then
-							--若天賦點了大屠殺表示暴怒消耗由85降為70							
-							local talentID, name, texture, selected, available, spellid, tier, column = GetTalentInfo(5, 3, 1)							
-							if selected then								
-								FrameGlowShowOrHide(eaf, (iUnitPower >= 70 ))
-							else								
-								FrameGlowShowOrHide(eaf, (iUnitPower >= 85 ))
-							end
+						--若專精為狂怒表示有暴怒技能,80需求值高亮
+						if (GetSpecialization() == 2) then														
+							FrameGlowShowOrHide(eaf, (iUnitPower >= 80 ))							
 						end
-						--若為武器專精
+						--若為武器專精則以斬殺最高需求值40高亮
 						if (GetSpecialization() == 1) then
-							FrameGlowShowOrHide(eaf, (iUnitPower >=UnitPowerMax("player",EA_SPELL_POWER_RAGE)))
+							--FrameGlowShowOrHide(eaf, (iUnitPower >= UnitPowerMax(unit, EA_SPELL_POWER_RAGE)))
+							FrameGlowShowOrHide(eaf, (iUnitPower >= 40))
 						end
-						--若為防護專精
+						--若為防護專精則以無視苦痛需求值40高亮
 						if (GetSpecialization() == 3) then
-							FrameGlowShowOrHide(eaf, (iUnitPower >=UnitPowerMax("player",EA_SPELL_POWER_RAGE)))					
+							--FrameGlowShowOrHide(eaf, (iUnitPower >=UnitPowerMax(unit, EA_SPELL_POWER_RAGE)))					
+							FrameGlowShowOrHide(eaf, (iUnitPower >= 40 ))					
 						end						
 					else
-						FrameGlowShowOrHide(eaf, (iUnitPower >=UnitPowerMax("player",EA_SPELL_POWER_RAGE)))
+						FrameGlowShowOrHide(eaf, (iUnitPower >=UnitPowerMax(unit, EA_SPELL_POWER_RAGE)))
 					end
 				end
 				
 				
 				-- 聖騎聖能達到上限高亮
 				if (iPowerType == EA_SPELL_POWER_HOLY_POWER) then
-					FrameGlowShowOrHide(eaf, (iUnitPower >=UnitPowerMax("player",EA_SPELL_POWER_HOLY_POWER)))					
-				end
-				-- 暗牧瘋狂值達到上限高亮
-				if (iPowerType == EA_SPELL_POWER_INSANITY) then									
-					--若點了殘遺虛無，則狂亂值滿65就高亮
-					local talentID, name, texture, selected, available, spellid, tier, column = GetTalentInfo(7, 1, 1)
-					if selected then 
-						FrameGlowShowOrHide(eaf,(iUnitPower >= 65 )) 					
-					else
-						FrameGlowShowOrHide(eaf,(iUnitPower >= UnitPowerMax("player",EA_SPELL_POWER_INSANITY)))
-					end	
+					FrameGlowShowOrHide(eaf, (iUnitPower >= UnitPowerMax(unit, EA_SPELL_POWER_HOLY_POWER)))					
 				end
 				
-				--武僧真氣滿4即高亮
-				if (iPowerType == EA_SPELL_POWER_CHI) then
-					--FrameGlowShowOrHide(eaf,(iUnitPower >=UnitPowerMax("player",EA_SPELL_POWER_CHI)))				
-					FrameGlowShowOrHide(eaf,(iUnitPower >= 4))				
+				-- 暗牧瘋狂值達到瘟疫50需求值高亮
+				if (iPowerType == EA_SPELL_POWER_INSANITY) then														
+					--FrameGlowShowOrHide(eaf,(iUnitPower >= UnitPowerMax(unit,EA_SPELL_POWER_INSANITY)))
+					FrameGlowShowOrHide(eaf,(iUnitPower >= 50))					
+				end
+				
+				--武僧真氣滿上限高亮				
+				if (iPowerType == EA_SPELL_POWER_CHI) then					
+					FrameGlowShowOrHide(eaf,(iUnitPower >= UnitPowerMax(unit, EA_SPELL_POWER_CHI)))				
+					--FrameGlowShowOrHide(eaf,(iUnitPower >= 4))				
 				end
 				
 				--死騎符能達到上限高亮
 				if (iPowerType == EA_SPELL_POWER_RUNIC_POWER) then					
-					FrameGlowShowOrHide(eaf,(iUnitPower >=UnitPowerMax("player",EA_SPELL_POWER_RUNIC_POWER)))				
+					FrameGlowShowOrHide(eaf,(iUnitPower >= UnitPowerMax(unit, EA_SPELL_POWER_RUNIC_POWER)))				
 				end
 				
 				--術士靈魂碎片達到上限高亮
 				if (iPowerType == EA_SPELL_POWER_SOUL_SHARDS) then						
-					FrameGlowShowOrHide(eaf,(iUnitPower >= UnitPowerMax("player",EA_SPELL_POWER_SOUL_SHARDS)))
+					FrameGlowShowOrHide(eaf,(iUnitPower >= UnitPowerMax(unit, EA_SPELL_POWER_SOUL_SHARDS)))
 				end
 
 				--秘法充能達到上限高亮
 				if (iPowerType == EA_SPELL_POWER_ARCANE_CHARGES) then					
-					FrameGlowShowOrHide(eaf,(iUnitPower >=UnitPowerMax("player",EA_SPELL_POWER_ARCANE_CHARGES)))				
+					FrameGlowShowOrHide(eaf,(iUnitPower >= UnitPowerMax(unit, EA_SPELL_POWER_ARCANE_CHARGES)))				
 				end
 				
-				--星能達到星湧術需求就高亮
+				--星能達到星隕術需求就高亮
 				if (iPowerType == EA_SPELL_POWER_LUNAR_POWER) then
-					FrameGlowShowOrHide(eaf,(iUnitPower >= 40))
-					--FrameGlowShowOrHide(eaf,(iUnitPower >=UnitPowerMax("player",EA_SPELL_POWER_LUNAR_POWER)))				
+					FrameGlowShowOrHide(eaf,(iUnitPower >= 50))
+					--FrameGlowShowOrHide(eaf,(iUnitPower >=UnitPowerMax(unit, EA_SPELL_POWER_LUNAR_POWER)))				
 				end
 				
 				--增強薩、元素薩元能達到上限高亮
 				if (iPowerType == EA_SPELL_POWER_MAELSTROM) then
-
-					FrameGlowShowOrHide(eaf,(iUnitPower >=UnitPowerMax("player",EA_SPELL_POWER_MAELSTROM)))				
+					FrameGlowShowOrHide(eaf,(iUnitPower >= UnitPowerMax(unit, EA_SPELL_POWER_MAELSTROM)))				
 				end
 				
 				--惡魔獵人魔怒達到上限高亮
 				if (iPowerType == EA_SPELL_POWER_FURY) then						
-					FrameGlowShowOrHide(eaf,(iUnitPower >= UnitPowerMax("player",EA_SPELL_POWER_FURY)))
+					FrameGlowShowOrHide(eaf,(iUnitPower >= UnitPowerMax(unit, EA_SPELL_POWER_FURY)))
 				end
 				
 				--惡魔獵人魔痛達到上限高亮
-				if (iPowerType == EA_SPELL_POWER_FURY) then						
-					FrameGlowShowOrHide(eaf,(iUnitPower >= UnitPowerMax("player",EA_SPELL_POWER_PAIN)))
+				if (iPowerType == EA_SPELL_POWER_PAIN) then						
+					FrameGlowShowOrHide(eaf,(iUnitPower >= UnitPowerMax(unit, EA_SPELL_POWER_PAIN)))
 				end
 				
 			else
@@ -4342,7 +4337,7 @@ function EventAlert_PlayerSpecPower_Update()
 			EA_SpecPower.Energy.has = false
 		end
 		--7.0只有風僧有真氣
-		if (id == 269) then EA_SpecPower.LightForce.has = true end
+		if (id == 269) then EA_SpecPower.Chi.has = true end
 	end
 
 	--若玩家為死騎，則表示有符文及符能
@@ -4799,7 +4794,8 @@ EA_SpecPower = {
 									has,
 									frameindex = {1000110},
 									},
-				LightForce		= 	{
+				
+				Chi				= 	{
 									powerId=EA_SPELL_POWER_CHI,
 									powerType = "CHI",
 									func=EventAlert_UpdateSinglePower,

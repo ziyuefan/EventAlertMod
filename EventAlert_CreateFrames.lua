@@ -341,7 +341,7 @@ function CreateFrames_SpecialFrames_Show(index)
 	elseif index == EA_SpecPower.HolyPower.frameindex[1] then
 		-- 聖騎士的聖能圖案
 		Lib_ZYF:SetBackdrop(eaf,{bgFile = "Interface/Icons/Spell_Holy_PowerwordBarrier"})
-	elseif index == EA_SpecPower.LightForce.frameindex[1] then
+	elseif index == EA_SpecPower.Chi.frameindex[1] then
 		-- 武僧真氣的圖案
 		Lib_ZYF:SetBackdrop(eaf,{bgFile = "Interface/Icons/Ability_Monk_HealthSphere"})
 	elseif index == EA_SpecPower.Insanity.frameindex[1] then
