@@ -4,7 +4,7 @@
     
 CHANGELOG:     
 ---    
-https://github.com/ziyuefan/EventAlertMod/blob/main/changelog.txt
+https://github.com/ziyuefan/EventAlertMod/blob/2020.10.18/changelog.txt
 
 ![EAM Main](https://truth.bahamut.com.tw/s01/202008/1982fcd16ac80aaddfeb299f57a71e94.JPG)
 
