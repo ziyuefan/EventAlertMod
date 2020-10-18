@@ -1,6 +1,9 @@
 if LibDebug then LibDebug() end
 --EA_Config2 改為初始預設值
 EA_Config2 = 	{
+
+		--是否顯示符文列
+		ShowRunesBar = true,
 		
 		--脫離戰鬥後是否保持技能冷卻框架		
 		SCD_NocombatStillKeep	=  true,		

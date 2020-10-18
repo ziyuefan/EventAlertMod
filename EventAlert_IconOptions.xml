@@ -419,7 +419,7 @@
 					</OnLoad>
 					<OnClick>
 						
-						EA_Config.SpecPowerCheck.ComboPoint = self:GetChecked()						
+						EA_Config.SpecPowerCheck.ComboPoints = self:GetChecked()						
 						EventAlert_SpecialFrame_Update();
 					</OnClick>
 					<OnEnter>

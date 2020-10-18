@@ -268,8 +268,8 @@ function CreateFrames_SpecialFrames_Show(index)
 		
 		if (index == EA_SpecPower.LifeBloom.frameindex[1]) then
 			EventAlert_UpdateLifeBloom("player");		
-		elseif (index == EA_SpecPower.ComboPoint.frameindex[1]) then
-			EventAlert_UpdateComboPoint()		
+		--elseif (index == EA_SpecPower.ComboPoint.frameindex[1]) then
+			--EventAlert_UpdateComboPoint()		
 		elseif (iPowerType == EA_SpecPower.Runes.powerId) then
 			
 			EventAlert_UpdateRunes()
@@ -309,6 +309,7 @@ function CreateFrames_SpecialFrames_Show(index)
 	eaf:SetWidth(EA_Config.IconSize);
 	eaf:SetHeight(EA_Config.IconSize);	
 	
+	
 	if index == EA_SpecPower.Rage.frameindex[1] then
 		-- 戰士/熊D怒氣的圖案
 		Lib_ZYF:SetBackdrop(eaf,{bgFile = "Interface/Icons/Ability_Warrior_Rampage"})		
@@ -317,8 +318,8 @@ function CreateFrames_SpecialFrames_Show(index)
 		-- 獵人集中值的圖案
 		Lib_ZYF:SetBackdrop(eaf,{bgFile = "Interface/Icons/Ability_Marksmanship"})
 	elseif index == EA_SpecPower.Focus.frameindex[2] then
-		-- 寵物集中值的圖案				
-		--eaf:SetBackdrop({bgFile = "Interface/Icons/Ability_Marksmanship"});
+		-- 寵物集中值的圖案						
+		--Lib_ZYF:SetBackdrop(eaf, {bgFile = "Interface/Icons/Ability_Marksmanship"})
 		local specIcon = GetSpellTexture(982)
 		eaf.texture:SetTexture(specIcon)
 	elseif index == EA_SpecPower.Energy.frameindex[1] then
@@ -329,6 +330,9 @@ function CreateFrames_SpecialFrames_Show(index)
 	elseif index == EA_SpecPower.RunicPower.frameindex[1] then
 		-- 死亡騎士符文能量的圖案
 		Lib_ZYF:SetBackdrop(eaf,{bgFile = "Interface/Icons/Spell_Arcane_Rune"})
+	elseif index == EA_SpecPower.Runes.frameindex[0] then
+		-- 死亡騎士符文的圖案
+		Lib_ZYF:SetBackdrop(eaf,{bgFile=iconTextures[GetSpecialization()]})
 	elseif index == EA_SpecPower.SoulShards.frameindex[1] then
 		-- 術士靈魂碎片的圖案
 		Lib_ZYF:SetBackdrop(eaf,{bgFile = "Interface/Icons/Inv_Misc_Gem_Amethyst_02"})
@@ -341,7 +345,7 @@ function CreateFrames_SpecialFrames_Show(index)
 	elseif index == EA_SpecPower.HolyPower.frameindex[1] then
 		-- 聖騎士的聖能圖案
 		Lib_ZYF:SetBackdrop(eaf,{bgFile = "Interface/Icons/Spell_Holy_PowerwordBarrier"})
-	elseif index == EA_SpecPower.LightForce.frameindex[1] then
+	elseif index == EA_SpecPower.Chi.frameindex[1] then
 		-- 武僧真氣的圖案
 		Lib_ZYF:SetBackdrop(eaf,{bgFile = "Interface/Icons/Ability_Monk_HealthSphere"})
 	elseif index == EA_SpecPower.Insanity.frameindex[1] then
@@ -350,22 +354,22 @@ function CreateFrames_SpecialFrames_Show(index)
 		--local specIcon = select(3,GetSpellInfo(77486))
 		local specIcon = 1386550
 		eaf.texture:SetTexture(specIcon)
-	elseif index == EA_SpecPower.BurningEmbers.frameindex[1] then
+	--elseif index == EA_SpecPower.BurningEmbers.frameindex[1] then
 		-- 術士燃火餘燼的圖案
-		Lib_ZYF:SetBackdrop(eaf,{bgFile = "Interface/Icons/Inv_Misc_Embers"})
-	elseif index == EA_SpecPower.DemonicFury.frameindex[1] then
+		--Lib_ZYF:SetBackdrop(eaf,{bgFile = "Interface/Icons/Inv_Misc_Embers"})
+	--elseif index == EA_SpecPower.DemonicFury.frameindex[1] then
 		-- 術士惡魔之怒的圖案
-		Lib_ZYF:SetBackdrop(eaf,{bgFile = "Interface/Icons/Spell_Fire_FelFlameRing"})
+		--Lib_ZYF:SetBackdrop(eaf,{bgFile = "Interface/Icons/Spell_Fire_FelFlameRing"})
 	elseif index == EA_SpecPower.LifeBloom.frameindex[1] then
 		-- 補D生命之花的圖案
 		Lib_ZYF:SetBackdrop(eaf,{bgFile = "Interface/Icons/INV_Misc_Herb_FelBlossom"})
-	elseif index == EA_SpecPower.ComboPoint.frameindex[1] then
+	elseif index == EA_SpecPower.ComboPoints.frameindex[1] then
 		-- 盜賊/貓D連擊點的圖案
 		Lib_ZYF:SetBackdrop(eaf,{bgFile = "Interface/Icons/Ability_WhirlWind"})
 	elseif index == EA_SpecPower.ArcaneCharges.frameindex[1] then		
 		-- 秘法充能圖案
 		--eaf:SetBackdrop({bgFile = "Interface/Icons/Arcane_Charges"});			
-		local specIcon = GetSpellTexture(30451)
+		local specIcon = GetSpellTexture(36032)
 		eaf.texture:SetTexture(specIcon)
 	elseif index == EA_SpecPower.Maelstrom.frameindex[1] then		
 		-- 薩滿元能圖案		

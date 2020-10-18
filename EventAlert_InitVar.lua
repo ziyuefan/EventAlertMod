@@ -2,7 +2,7 @@ if LibDebug then LibDebug() end
 EA_Config = {
 			SpecPowerCheck = {
 				FocusPet,
-				ComboPoint,
+				ComboPoints,
 				Mana,
 				Rage, 
 				Focus,
@@ -110,13 +110,14 @@ fLock_EventAlert_Buffs_Update = false
 EA_COMBO_POINTS = 0;
 EA_playerClass  = nil;
 EA_SpecID = nil;
-EA_RUNE_TYPE=1;
+EA_RUNE_TYPE = 1;
 localizedPlayerClass,EA_playerClass = UnitClass("player")
 -----------------------------------------------------------------
 		RUNETYPE_BLOOD = 1;
-		RUNETYPE_UNHOLY = 2;
-		RUNETYPE_FROST = 3;
-		RUNETYPE_DEATH = 4; 
+		RUNETYPE_FROST = 2;
+		RUNETYPE_UNHOLY = 3;
+		RUNETYPE_DEATH = 4;		
+		
 		MAX_RUNES = 6;
  
  

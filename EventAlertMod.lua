@@ -158,10 +158,10 @@ function EventAlert_OnLoad(self)
 	-- Init Main Array
 	--EventAlert_InitArray()			
 
-	Lib_ZYF:SetOnUpdate(0.09,EventAlert_PositionFrames)
-	Lib_ZYF:SetOnUpdate(0.09,EventAlert_TarPositionFrames)
-	Lib_ZYF:SetOnUpdate(0.09,EventAlert_ScdPositionFrames)
-	Lib_ZYF:SetOnUpdate(0.09,EventAlert_SpecialFrame_Update)
+	Lib_ZYF:SetOnUpdate(0.1, EventAlert_PositionFrames)
+	Lib_ZYF:SetOnUpdate(0.1, EventAlert_TarPositionFrames)
+	Lib_ZYF:SetOnUpdate(0.1, EventAlert_ScdPositionFrames)
+	Lib_ZYF:SetOnUpdate(0.1, EventAlert_SpecialFrame_Update)
 	
 	--Next Event : ADDON_LOADED
 end
@@ -440,8 +440,8 @@ function EventAlert_TARGET_CHANGED(self, event, ...)
 	if UnitName("player") ~= UnitName("target") then
 		
 		EventAlert_TarBuffs_Update();
-		if (EA_Config.SpecPowerCheck.ComboPoint and EA_SpecPower.ComboPoint.has) then
-			EventAlert_UpdateComboPoint();
+		if (EA_Config.SpecPowerCheck.ComboPoints and EA_SpecPower.ComboPoints.has) then
+			EventAlert_UpdateComboPoints();
 		end;
 		EventAlert_CheckExecution();
 	end
@@ -585,8 +585,8 @@ end
 
 --------------------------------------------------------------------]]
 function EventAlert_UNIT_COMBO_POINTS(self, event, ...)
-	if (EA_Config.SpecPowerCheck.ComboPoint and EA_SpecPower.ComboPoint.has) then
-		EventAlert_UpdateComboPoint();
+	if (EA_Config.SpecPowerCheck.ComboPoints and EA_SpecPower.ComboPoints.has) then
+		EventAlert_UpdateComboPoints();
 	end
 end
 
@@ -2386,6 +2386,7 @@ function EventAlert_SlashHandler(msg)
 				f:Hide()
 			end
 		end
+		
 	elseif (cmdtype == "iconappendspelltip") then
 		local msg = " Spell Tooltip on alert icon"
 		if EA_Config.ICON_APPEND_SPELL_TIP == false  then	
@@ -2413,6 +2414,7 @@ function EventAlert_SlashHandler(msg)
 			EA_Config.SCD_RemoveWhenCooldown = true
 			print("EA_Config.SCD_RemoveWhenCooldown = true")
 		end
+		
 	elseif (cmdtype == "scdnocombatstillkeep") then
 		print("Keep or hide icon when exit combat status.")
 		if EA_Config.SCD_NocombatStillKeep == true then			
@@ -2422,6 +2424,7 @@ function EventAlert_SlashHandler(msg)
 			EA_Config.SCD_NocombatStillKeep = true
 			print("EA_Config.SCD_NocombatStillKeep = true")
 		end
+		
 	elseif (cmdtype == "scdglowwhenusable") then
 		print("Glow CD icon when the spell can use.(not only cooldown) ")
 		if EA_Config.SCD_GlowWhenUsable == true then			
@@ -2431,6 +2434,7 @@ function EventAlert_SlashHandler(msg)
 			EA_Config.SCD_GlowWhenUsable = true
 			print("EA_Config.SCD_GlowWhenUsable = true")
 		end
+		
 	elseif (cmdtype == "newlinebyiconcount") then
 		print("Assign counts of icons for change new line")
 		local para_count = tonumber(para1)
@@ -2440,6 +2444,7 @@ function EventAlert_SlashHandler(msg)
 		else
 			print("Not assign count of icon for change line")
 		end
+		
 	elseif (cmdtype == "showeaconfig") then
 		local print = print
 		local pairs = pairs
@@ -2454,10 +2459,9 @@ function EventAlert_SlashHandler(msg)
 				print(k," = ",v)
 			end
 		end
+		
 	elseif (cmdtype == "showeaposition") then
-		local print = print
-		local pairs = pairs
-		local type  = type
+		
 		print("EA_Position:")
 		for k,v in pairs(EA_Position) do
 			if type(v)=="table" then
@@ -2467,6 +2471,22 @@ function EventAlert_SlashHandler(msg)
 			else
 				print(k," = ",v)
 			end
+		end
+		
+	elseif (cmdtype == "showrunesbar") then		
+		
+		print("Show DK's Runs bar")
+		if EA_Config.ShowRunesBar == true then			
+			EA_Config.ShowRunesBar = false
+			print("EA_Config.ShowRunesBar = false")	
+			local eaf
+			for i = 1, MAX_RUNES do				
+				eaf = _G["EAFrameSpec_"..EA_SpecPower.Runes.frameindex[i]]
+				if eaf:IsShown()  then eaf:Hide() end
+			end
+		else
+			EA_Config.ShowRunesBar = true
+			print("EA_Config.ShowRunesBar = true")
 		end
 
 	--elseif (cmdtype == "var") then			
@@ -2829,8 +2849,8 @@ function EAFun_SetCountdownStackText(eaf, EA_timeLeft, EA_count, SC_RedSecText)
 		if (EA_timeLeft < SC_RedSecText + 1) then
 			
 			if (not eaf.redsectext) then				
-				--eaf.spellTimer:SetFont(EA_FONTS, 1*(EA_Config.TimerFontSize+5), "OUTLINE");
-				eaf.spellTimer:SetFont(EA_FONTS, (EA_Config.TimerFontSize*1.1), "OUTLINE")
+				eaf.spellTimer:SetFont(EA_FONTS, 1*(EA_Config.TimerFontSize + 5), "OUTLINE");
+				--eaf.spellTimer:SetFont(EA_FONTS, (EA_Config.TimerFontSize*1.5), "OUTLINE")
 				eaf.spellTimer:SetTextColor(1, 0, 0)
 				eaf.redsectext = true
 				eaf.whitesectext = false
@@ -2871,23 +2891,11 @@ function EAFun_SetCountdownStackText(eaf, EA_timeLeft, EA_count, SC_RedSecText)
 end
 -----------------------------------------------------------------
 -- Speciall Frame: UpdateComboPoint, for watching the combopoint of player
-function EventAlert_UpdateComboPoint()	
-	--[[
-	local result,target = SecureCmdOptionParse("[@mouseover,harm][@focus,harm][@target,harm]harm")
-	if  result == "harm" then
-
-		EA_COMBO_POINTS = GetComboPoints("player", target);
-		
-	else
-		if EA_COMBO_POINTS > 0 then
-			EA_COMBO_POINTS = EA_COMBO_POINTS - 1
-		else
-			EA_COMBO_POINTS = 0
-		end
-	end
-	]]--
-	EA_COMBO_POINTS = UnitPower("player",EA_SPELL_POWER_COMBO_POINT)
-	local iComboPoint=EA_COMBO_POINTS
+function EventAlert_UpdateComboPoints()	
+	
+	--EA_COMBO_POINTS = UnitPower("player",EA_SPELL_POWER_COMBO_POINT)
+	EA_COMBO_POINTS = UnitPower("player",Enum.PowerType.ComboPoints)
+	local iComboPoint = EA_COMBO_POINTS
 
 	if (EA_Config.ShowFrame == true) then
 		EA_Main_Frame:ClearAllPoints();
@@ -2918,7 +2926,7 @@ function EventAlert_UpdateComboPoint()
 				eaf:Show();
 				
 				-- for 7.0 依據盜賊天賦決定連擊點高亮值
-				local ComboPointMax = UnitPowerMax("player",EA_SPELL_POWER_COMBO_POINT)				
+				local ComboPointMax = UnitPowerMax("player",Enum.PowerType.ComboPoints)				
 				local GlowComboPoint = 5 
 				if ComboPointMax == 6 then		--7.0盜賊天賦:精明戰略
 					GlowComboPoint = 6
@@ -2938,8 +2946,9 @@ function EventAlert_UpdateComboPoint()
 	end
 end
 function EventAlert_UpdateFocus()
-	local iUnitPower = UnitPower("player", EA_SPELL_POWER_FOCUS);
-	local iPetPower = UnitPower("pet", EA_SPELL_POWER_FOCUS);
+	local iPowerType = Enum.PowerType.Focus
+	local iUnitPower = UnitPower("player", iPowerType);
+	local iPetPower = UnitPower("pet", iPowerType);
 	if (EA_Config.ShowFrame == true) then
 		EA_Main_Frame:ClearAllPoints();
 		EA_Main_Frame:SetPoint(EA_Position.Anchor, UIParent, EA_Position.relativePoint, EA_Position.xLoc, EA_Position.yLoc);
@@ -2947,13 +2956,13 @@ function EventAlert_UpdateFocus()
 		local xOffset = 100 + EA_Position.xOffset;
 		local yOffset = 0 + EA_Position.yOffset;
 		local SfontName, SfontSize = "", 0;
-		local eaf1 = _G["EAFrameSpec_1000020"];
-		local eaf2 = _G["EAFrameSpec_1000021"];
-
-		
-			EA_SpecFrame_Self = true;				
-			if (eaf1 ~= nil) and (EA_Config.SpecPowerCheck.Focus) and (iUnitPower > 0)then
-				eaf1:ClearAllPoints();
+		local eaf1 = _G["EAFrameSpec_1000020"]
+		local eaf2 = _G["EAFrameSpec_1000021"]
+				
+			EA_SpecFrame_Self = true
+									
+			if (eaf1 ~= nil) and (EA_Config.SpecPowerCheck.Focus) and (iUnitPower > 0) then
+				eaf1:ClearAllPoints()
 				eaf1:SetPoint(EA_Position.Anchor, prevFrame, EA_Position.Anchor, -1 * xOffset, -1 * yOffset)
 				if (EA_Config.ShowName == true) then
 					eaf1.spellName:SetText(EA_XSPECINFO_FOCUS);
@@ -2969,66 +2978,46 @@ function EventAlert_UpdateFocus()
 					eaf1.spellTimer:SetPoint("TOP", 0, EA_Config.TimerFontSize*1.1);					
 				end
 				eaf1.spellTimer:SetFont(EA_FONTS, EA_Config.TimerFontSize, "OUTLINE");
-				eaf1.spellTimer:SetText(iUnitPower);
-				
-				
-				eaf1:SetScript("OnUpdate", function(self,elapsedTime)
-					EventAlert_TimeSinceUpdate_Focus = EventAlert_TimeSinceUpdate_Focus + elapsedTime
-					if EventAlert_TimeSinceUpdate_Focus > EventAlert_UpdateInterval then
-						EventAlert_UpdateFocus()
-						EventAlert_TimeSinceUpdate_Focus = 0
-					end
-				end)
-				
-				--eaf1:SetScript("OnUpdate",EventAlert_UndateFocus)
+				eaf1.spellTimer:SetText(iUnitPower)		
+				eaf1:Show()
 			else
-				FrameGlowShowOrHide(eaf1, false)
-				EA_SpecFrame_Self = false;
-				eaf1:SetScript("OnUpdate",nil)
-				eaf1:Hide()
-			end				
-				
+				if eaf1 then
+					FrameGlowShowOrHide(eaf1, false)
+					EA_SpecFrame_Self = false					
+					eaf1:Hide()
+				end
+			end		
+			
+			
 			if (eaf2 ~= nil) and (EA_Config.SpecPowerCheck.FocusPet) and (iPetPower > 0) then
-				eaf2:ClearAllPoints();				
-				eaf2:SetPoint(EA_Position.Anchor, prevFrame, EA_Position.Anchor, -2 * xOffset, -2 * yOffset);
-				if (EA_Config.ShowName == true) then					
+				
+				eaf2:ClearAllPoints()
+				eaf2:SetPoint(EA_Position.Anchor, prevFrame, EA_Position.Anchor, -2 * xOffset, -1 * yOffset)
+				if (EA_Config.ShowName == true) then
 					eaf2.spellName:SetText(EA_XSPECINFO_FOCUS_PET);
 					SfontName, SfontSize = eaf2.spellName:GetFont();
-					eaf2.spellName:SetFont(SfontName, EA_Config.SNameFontSize);					
-				else					
-					eaf2.spellName:SetText("");
+					eaf2.spellName:SetFont(SfontName, EA_Config.SNameFontSize)
+				else
+					eaf2.spellName:SetText("")
 				end
-					
-				eaf2.spellTimer:ClearAllPoints();
+				eaf2.spellTimer:ClearAllPoints()
 				if (EA_Config.ChangeTimer == true) then
 					eaf2.spellTimer:SetPoint("CENTER", 0, 0);
-				else					
-					eaf2.spellTimer:SetPoint("TOP", 0, EA_Config.TimerFontSize*1.1);
-				end					
-				eaf2.spellTimer:SetFont(EA_FONTS, EA_Config.TimerFontSize, "OUTLINE");
-				eaf2.spellTimer:SetText(iPetPower);
-				eaf2:Show()		
-				--寵物集中大於設定值高亮
-				if EA_Config.HUNTER_GlowPetFocus > 0 then
-					FrameGlowShowOrHide(eaf2, (iPetPower >= EA_Config.HUNTER_GlowPetFocus))										
+				else
+					eaf2.spellTimer:SetPoint("TOP", 0, EA_Config.TimerFontSize*1.1);					
 				end
-				eaf2:SetScript("OnUpdate", function(self,elapsedTime)
-					EventAlert_TimeSinceUpdate_PetFocus = EventAlert_TimeSinceUpdate_PetFocus + elapsedTime
-					if EventAlert_TimeSinceUpdate_PetFocus > EventAlert_UpdateInterval then
-						EventAlert_UpdateFocus()
-						EventAlert_TimeSinceUpdate_PetFocus = 0
-					end				
-				end);
-				--eaf2:SetScript("OnUpdate",EventAlert_UndateFocus)
+				eaf2.spellTimer:SetFont(EA_FONTS, EA_Config.TimerFontSize, "OUTLINE");
+				eaf2.spellTimer:SetText(iPetPower)	
+				eaf2:Show()				
 			else
-				EA_SpecFrame_Self = false
-				FrameGlowShowOrHide(eaf2, false)
-				eaf2:SetScript("OnUpdate",nil)				
-				eaf2:Hide()
-			end			
+				if eaf2 then
+					FrameGlowShowOrHide(eaf2, false)
+					EA_SpecFrame_Self = false					
+					eaf2:Hide()
+				end
+			end							
 			
-			--EventAlert_PositionFrames();
-		
+					
 	end
 end
 -- Speciall Frame: Update Runes
@@ -3037,6 +3026,10 @@ function EventAlert_UpdateRunes()
 	if (EA_playerClass ~= EA_CLASS_DK) then return end
 	if not(EA_Config.SpecPowerCheck.Runes) then return end
 	if not(EA_SpecPower.Runes.has) then return end
+	
+	EventAlert_UpdateSinglePower(Enum.PowerType.Runes)
+	
+	if EA_Config.ShowRunesBar == false then return end
 	
 	if (EA_Config.ShowFrame == true) then
 		EA_Main_Frame:ClearAllPoints();
@@ -3053,16 +3046,17 @@ function EventAlert_UpdateRunes()
 		local TimerFontSize = EA_Config.TimerFontSize
 		local GetRuneCooldown = GetRuneCooldown
 		local GetTime = GetTime
-		for i=1,MAX_RUNES do
+		for i = 1, MAX_RUNES do
+		while true do 
 			eaf[i]=_G["EAFrameSpec_"..RunesFrame[i]]
 			if not(eaf[i]) then
 				CreateFrames_SpecialFrames_Show(RunesFrame[i])
 				eaf[i]=_G["EAFrameSpec_"..RunesFrame[i]]
 			end
 			if eaf[i] then
-				eaf[i]:SetWidth(IconSize * 0.8)
-				eaf[i]:SetHeight(IconSize * 0.8)
-				if (eaf[i]:IsShown()==false) then					
+				eaf[i]:SetWidth(IconSize * 0.7)
+				eaf[i]:SetHeight(IconSize * 0.7)
+				if (eaf[i]:IsShown() == false)  then							
 					eaf[i]:Show()
 				end			
 				
@@ -3077,7 +3071,9 @@ function EventAlert_UpdateRunes()
 				
 				eaf[i]:SetPoint(EA_Position.Anchor, prevFrame, EA_Position.Anchor, IconSize+(i-2) * xOffset*0.6, IconSize+(i-2) * yOffset*0.6)
 				
-				Lib_ZYF:SetBackdrop(eaf[i],{bgFile=iconTextures[iRuneType]})
+				if eaf[i].Backdrop == nil then 
+					Lib_ZYF:SetBackdrop(eaf[i],{bgFile=iconTextures[iRuneType]})
+				end
 				
 				
 				if (EA_Config.ShowName==true) then					
@@ -3104,6 +3100,7 @@ function EventAlert_UpdateRunes()
 				local EA_timeLeft
 				
 				if not(EA_start) then return end
+				--if not(EA_start) then break end
 				
 				if (runeReady) then
 					EA_timeLeft = 0
@@ -3119,7 +3116,7 @@ function EventAlert_UpdateRunes()
 				else
 					EAFun_SetCountdownStackText(eaf[i],0,0,-1)
 				end			
-				
+				--[[
 				if not(eaf[i]:HasScript("OnUpdate")) then 
 					eaf[i]:SetScript("OnUpdate", function(self,elapsedTime)
 					EventAlert_TimeSinceUpdate_Runes = EventAlert_TimeSinceUpdate_Runes + elapsedTime
@@ -3130,8 +3127,9 @@ function EventAlert_UpdateRunes()
 					end);
 					--eaf[i]:SetScript("OnUpdate",EventAlert_UpdateRunes)
 				end	
+				]]--
 				
-				if (eaf[i]:IsShown()==false) then
+				if eaf[i] and (eaf[i]:IsShown()==false) then
 					eaf[i]:Show()
 				end
 				--EventAlert_PositionFrames()
@@ -3144,39 +3142,28 @@ function EventAlert_UpdateRunes()
 			else
 				eaf[i]:Show()
 			end
+		break
 		end
-	end
+		end
+	end	
+	
 end
 -----------------------------------------------------------------
 -- Speciall Frame: UpdateSinglePower(holy power, runic power, soul shards), for watching the power of player
 function EventAlert_UpdateSinglePower(iPowerType)
 	
-	local _,playerClass = UnitClass("player")
-	local iUnitPower = UnitPower("player", iPowerType);	
+	local unit = "player"
+	local _, playerClass = UnitClass(unit)
+	local iUnitPower = UnitPower(unit, iPowerType);	
 	--local iUnitPowerPet = UnitPower("pet", iPowerType);	
 	local iPowerName = "";
 	local iFrameIndex = 1000000 + iPowerType * 10;	
 	
-	if EA_playerClass == EA_CLASS_DK then EventAlert_UpdateRunes() end
-	
-	local iGrowPower = EA_SPELL_POWER_ENERGY;	
-	if (iPowerType == EA_SPELL_POWER_RUNIC_POWER) then iPowerName = EA_XSPECINFO_RUNICPOWER end;
-	if (iPowerType == EA_SPELL_POWER_SOUL_SHARDS) then iPowerName = EA_XSPECINFO_SOULSHARDS end;
-	if (iPowerType == EA_SPELL_POWER_HOLY_POWER) then iPowerName = EA_XSPECINFO_HOLYPOWER end;	
-	if (iPowerType == EA_SPELL_POWER_INSANITY) then iPowerName = EA_XSPECINFO_INSANITY end;
-	if (iPowerType == EA_SPELL_POWER_RAGE) then iPowerName = EA_XSPECINFO_RAGE end;
-	if (iPowerType == EA_SPELL_POWER_FOCUS) then iPowerName = EA_XSPECINFO_FOCUS end;
-	if (iPowerType == EA_SPELL_POWER_PET_FOCUS) then iPowerName = EA_XSPECINFO_PET_FOCUS end;
-	if (iPowerType == EA_SPELL_POWER_ENERGY) then iPowerName = EA_XSPECINFO_ENERGY end;	
-	if (iPowerType == EA_SPELL_POWER_CHI) then iPowerName = EA_XSPECINFO_CHI end;	
-	if (iPowerType == EA_SPELL_POWER_BURNING_EMBERS) then iPowerName = EA_XSPECINFO_BURNINGEMBERS end;
-	if (iPowerType == EA_SPELL_POWER_DEMONIC_FURY) then iPowerName = EA_XSPECINFO_DEMONICFURY end;	
-	if (iPowerType == EA_SPELL_POWER_LUNAR_POWER) then iPowerName = EA_XSPECINFO_LUNARPOWER end;		
-	if (iPowerType == EA_SPELL_POWER_ARCANE_CHARGES) then iPowerName = EA_XSPECINFO_ARCANECHARGES end;		
-	if (iPowerType == EA_SPELL_POWER_MAELSTROM) then iPowerName = EA_XSPECINFO_MAELSTROM end;		
-	if (iPowerType == EA_SPELL_POWER_FURY) then iPowerName = EA_XSPECINFO_FURY end;		
-	if (iPowerType == EA_SPELL_POWER_PAIN) then iPowerName = EA_XSPECINFO_PAIN end;		
-	
+	for i,v in ipairs(EA_XGRPALERT_POWERTYPES) do
+		if iPowerType == v.value then
+			iPowerName = v.text
+		end
+	end
 
 	if (EA_Config.ShowFrame == true) then
 		EA_Main_Frame:ClearAllPoints();
@@ -3186,15 +3173,33 @@ function EventAlert_UpdateSinglePower(iPowerType)
 		local xOffset = 100 + EA_Position.xOffset
 		local yOffset = 0 + EA_Position.yOffset;
 		local SfontName, SfontSize = "", 0;
-		local eaf = _G["EAFrameSpec_"..iFrameIndex];
-
+		local eaf = _G["EAFrameSpec_"..iFrameIndex];	
+		
+		
 		if (eaf ~= nil) then
+		
+			--術士靈魂碎片數量處理
+			if (iPowerType == Enum.PowerType.SoulShards) then						
+				iUnitPower=UnitPower(unit, Enum.PowerType.SoulShards, true)/10
+			end
+				
+			--DK符文數量處理
+			if (iPowerType == Enum.PowerType.Runes) then
+				
+				iUnitPower = 0 
+				for i = 1, MAX_RUNES do
+					local start, duration, runeReady = GetRuneCooldown(i)					
+					if runeReady then iUnitPower = iUnitPower + 1 end
+				end
+				
+			end
+			
 			if (iUnitPower > 0) then
 				EA_SpecFrame_Self = true;
 				--eaf:ClearAllPoints()
 				
 				--能量框架位置設定
-				if (iPowerType==EA_SPELL_POWER_ENERGY) then		
+				if (iPowerType == Enum.PowerType.Energy) then		
 					if (EA_playerClass == EA_CLASS_ROGUE) then
 						eaf:SetPoint(EA_Position.Anchor, prevFrame, EA_Position.Anchor, -2 * xOffset, -2 * yOffset)																						
 					else
@@ -3204,7 +3209,7 @@ function EventAlert_UpdateSinglePower(iPowerType)
 					eaf:SetPoint(EA_Position.Anchor, prevFrame, EA_Position.Anchor, -1   * xOffset, -1 * yOffset)
 					
 					if (EA_SpecPower.Energy.has and EA_Config.SpecPowerCheck.Energy) then
-						iFrameIndex2 = 1000000 + EA_SPELL_POWER_ENERGY * 10
+						iFrameIndex2 = 1000000 + 10 * Enum.PowerType.Energy 
 						eaf2 = _G["EAFrameSpec_"..iFrameIndex2]
 						eaf2:SetPoint(EA_Position.Anchor, prevFrame, EA_Position.Anchor, -2 * xOffset, -2 * yOffset)
 					end
@@ -3212,7 +3217,7 @@ function EventAlert_UpdateSinglePower(iPowerType)
 				end
 				
 				--星能框架位置設定
-				if (iPowerType == EA_SPELL_POWER_LUNAR_POWER) then
+				if (iPowerType == Enum.PowerType.LunarPower) then
 					eaf:SetPoint(EA_Position.Anchor, prevFrame, EA_Position.Anchor, -3 * xOffset, -3 * yOffset)																						
 				end
 				
@@ -3224,12 +3229,17 @@ function EventAlert_UpdateSinglePower(iPowerType)
 					eaf.spellName:SetText("");
 				end
 				
-				--術士靈魂碎片處理
-				if (iPowerType == EA_SPELL_POWER_SOUL_SHARDS) then	
-					--if GetSpecialization() == 3 then 	--若是毀滅術
-						--iUnitPower = WarlockPowerBar_UnitPower("player")						
-					--end
-					iUnitPower=UnitPower("player",EA_SPELL_POWER_SOUL_SHARDS,true)/10
+				--符文框架位置設定
+				if (iPowerType == Enum.PowerType.Runes ) then
+					eaf:SetPoint(EA_Position.Anchor, prevFrame, EA_Position.Anchor, -2 * xOffset, -2 * yOffset)																						
+				end		
+				
+				if (EA_Config.ShowName == true) then
+					eaf.spellName:SetText(iPowerName);
+					SfontName, SfontSize = eaf.spellName:GetFont();
+					eaf.spellName:SetFont(SfontName, EA_Config.SNameFontSize);
+				else
+					eaf.spellName:SetText("");
 				end
 				
 				eaf.spellTimer:ClearAllPoints();
@@ -3244,89 +3254,85 @@ function EventAlert_UpdateSinglePower(iPowerType)
 				eaf:Show()
 				
 				-- 怒氣達到上限高亮				
-				if (iPowerType == EA_SPELL_POWER_RAGE) then
+				if (iPowerType == Enum.PowerType.Rage) then
 					--若為戰士
 					if (playerClass == EA_CLASS_WARRIOR) then						
-						--若專精為狂怒表示有暴怒技能
-						if (GetSpecialization() == 2) then
-							--若天賦點了大屠殺表示暴怒消耗由85降為70							
-							local talentID, name, texture, selected, available, spellid, tier, column = GetTalentInfo(5, 3, 1)							
-							if selected then								
-								FrameGlowShowOrHide(eaf, (iUnitPower >= 70 ))
-							else								
-								FrameGlowShowOrHide(eaf, (iUnitPower >= 85 ))
-							end
+						--若專精為狂怒表示有暴怒技能,80需求值高亮
+						if (GetSpecialization() == 2) then														
+							FrameGlowShowOrHide(eaf, (iUnitPower >= 80 ))							
 						end
-						--若為武器專精
+						--若為武器專精則以斬殺最高需求值40高亮
 						if (GetSpecialization() == 1) then
-							FrameGlowShowOrHide(eaf, (iUnitPower >=UnitPowerMax("player",EA_SPELL_POWER_RAGE)))
+							--FrameGlowShowOrHide(eaf, (iUnitPower >= UnitPowerMax(unit, Enum.PowerType.Rage)))
+							FrameGlowShowOrHide(eaf, (iUnitPower >= 40))
 						end
-						--若為防護專精
+						--若為防護專精則以無視苦痛需求值40高亮
 						if (GetSpecialization() == 3) then
-							FrameGlowShowOrHide(eaf, (iUnitPower >=UnitPowerMax("player",EA_SPELL_POWER_RAGE)))					
+							--FrameGlowShowOrHide(eaf, (iUnitPower >=UnitPowerMax(unit, Enum.PowerType.Rage)))					
+							FrameGlowShowOrHide(eaf, (iUnitPower >= 40 ))					
 						end						
 					else
-						FrameGlowShowOrHide(eaf, (iUnitPower >=UnitPowerMax("player",EA_SPELL_POWER_RAGE)))
+						FrameGlowShowOrHide(eaf, (iUnitPower >=UnitPowerMax(unit, Enum.PowerType.Rage)))
 					end
 				end
 				
 				
 				-- 聖騎聖能達到上限高亮
-				if (iPowerType == EA_SPELL_POWER_HOLY_POWER) then
-					FrameGlowShowOrHide(eaf, (iUnitPower >=UnitPowerMax("player",EA_SPELL_POWER_HOLY_POWER)))					
-				end
-				-- 暗牧瘋狂值達到上限高亮
-				if (iPowerType == EA_SPELL_POWER_INSANITY) then									
-					--若點了殘遺虛無，則狂亂值滿65就高亮
-					local talentID, name, texture, selected, available, spellid, tier, column = GetTalentInfo(7, 1, 1)
-					if selected then 
-						FrameGlowShowOrHide(eaf,(iUnitPower >= 65 )) 					
-					else
-						FrameGlowShowOrHide(eaf,(iUnitPower >= UnitPowerMax("player",EA_SPELL_POWER_INSANITY)))
-					end	
+				if (iPowerType == Enum.PowerType.HolyPower) then
+					FrameGlowShowOrHide(eaf, (iUnitPower >= UnitPowerMax(unit, Enum.PowerType.HolyPower)))					
 				end
 				
-				--武僧真氣滿4即高亮
-				if (iPowerType == EA_SPELL_POWER_CHI) then
-					--FrameGlowShowOrHide(eaf,(iUnitPower >=UnitPowerMax("player",EA_SPELL_POWER_CHI)))				
-					FrameGlowShowOrHide(eaf,(iUnitPower >= 4))				
+				-- 暗牧瘋狂值達到瘟疫50需求值高亮
+				if (iPowerType == Enum.PowerType.Insanity) then														
+					--FrameGlowShowOrHide(eaf,(iUnitPower >= UnitPowerMax(unit,Enum.PowerType.Insanity)))
+					FrameGlowShowOrHide(eaf,(iUnitPower >= 50))					
+				end
+				
+				--武僧真氣滿上限高亮				
+				if (iPowerType == Enum.PowerType.Chi) then					
+					FrameGlowShowOrHide(eaf,(iUnitPower >= UnitPowerMax(unit, Enum.PowerType.Chi)))				
+					--FrameGlowShowOrHide(eaf,(iUnitPower >= 4))				
 				end
 				
 				--死騎符能達到上限高亮
-				if (iPowerType == EA_SPELL_POWER_RUNIC_POWER) then					
-					FrameGlowShowOrHide(eaf,(iUnitPower >=UnitPowerMax("player",EA_SPELL_POWER_RUNIC_POWER)))				
+				if (iPowerType == Enum.PowerType.RunicPower) then					
+					FrameGlowShowOrHide(eaf,(iUnitPower >= UnitPowerMax(unit, Enum.PowerType.RunicPower)))				
+				end
+				
+				--死騎符文達到上限高亮
+				if (iPowerType == Enum.PowerType.Runes) then					
+					FrameGlowShowOrHide(eaf,(iUnitPower >= MAX_RUNES))				
 				end
 				
 				--術士靈魂碎片達到上限高亮
-				if (iPowerType == EA_SPELL_POWER_SOUL_SHARDS) then						
-					FrameGlowShowOrHide(eaf,(iUnitPower >= UnitPowerMax("player",EA_SPELL_POWER_SOUL_SHARDS)))
+				if (iPowerType == Enum.PowerType.SoulShards) then						
+					FrameGlowShowOrHide(eaf,(iUnitPower >= UnitPowerMax(unit, Enum.PowerType.SoulShards)))
 				end
 
 				--秘法充能達到上限高亮
-				if (iPowerType == EA_SPELL_POWER_ARCANE_CHARGES) then					
-					FrameGlowShowOrHide(eaf,(iUnitPower >=UnitPowerMax("player",EA_SPELL_POWER_ARCANE_CHARGES)))				
+				if (iPowerType == Enum.PowerType.ArcaneCharges) then					
+					FrameGlowShowOrHide(eaf,(iUnitPower >= UnitPowerMax(unit, Enum.PowerType.ArcaneCharges)))				
 				end
 				
-				--星能達到星湧術需求就高亮
-				if (iPowerType == EA_SPELL_POWER_LUNAR_POWER) then
-					FrameGlowShowOrHide(eaf,(iUnitPower >= 40))
-					--FrameGlowShowOrHide(eaf,(iUnitPower >=UnitPowerMax("player",EA_SPELL_POWER_LUNAR_POWER)))				
+				--星能達到星隕術需求就高亮
+				if (iPowerType == Enum.PowerType.LunarPower) then
+					FrameGlowShowOrHide(eaf,(iUnitPower >= 50))
+					--FrameGlowShowOrHide(eaf,(iUnitPower >=UnitPowerMax(unit, Enum.PowerType.LunarPower)))				
 				end
 				
 				--增強薩、元素薩元能達到上限高亮
-				if (iPowerType == EA_SPELL_POWER_MAELSTROM) then
-
-					FrameGlowShowOrHide(eaf,(iUnitPower >=UnitPowerMax("player",EA_SPELL_POWER_MAELSTROM)))				
+				if (iPowerType == Enum.PowerType.Maelstrom) then
+					FrameGlowShowOrHide(eaf,(iUnitPower >= UnitPowerMax(unit, Enum.PowerType.Maelstrom)))				
 				end
 				
 				--惡魔獵人魔怒達到上限高亮
-				if (iPowerType == EA_SPELL_POWER_FURY) then						
-					FrameGlowShowOrHide(eaf,(iUnitPower >= UnitPowerMax("player",EA_SPELL_POWER_FURY)))
+				if (iPowerType == Enum.PowerType.Fury) then						
+					FrameGlowShowOrHide(eaf,(iUnitPower >= UnitPowerMax(unit, Enum.PowerType.Fury)))
 				end
 				
 				--惡魔獵人魔痛達到上限高亮
-				if (iPowerType == EA_SPELL_POWER_FURY) then						
-					FrameGlowShowOrHide(eaf,(iUnitPower >= UnitPowerMax("player",EA_SPELL_POWER_PAIN)))
+				if (iPowerType == Enum.PowerType.Pain) then						
+					FrameGlowShowOrHide(eaf,(iUnitPower >= UnitPowerMax(unit, Enum.PowerType.Pain)))
 				end
 				
 			else
@@ -4342,7 +4348,7 @@ function EventAlert_PlayerSpecPower_Update()
 			EA_SpecPower.Energy.has = false
 		end
 		--7.0只有風僧有真氣
-		if (id == 269) then EA_SpecPower.LightForce.has = true end
+		if (id == 269) then EA_SpecPower.Chi.has = true end
 	end
 
 	--若玩家為死騎，則表示有符文及符能
@@ -4367,10 +4373,10 @@ function EventAlert_PlayerSpecPower_Update()
 	if (pClass == EA_CLASS_PALADIN) then EA_SpecPower.HolyPower.has = true 	end
 	
 	--若玩家為盜賊表示擁有連擊點數
-	if (pClass == EA_CLASS_ROGUE) then 	EA_SpecPower.ComboPoint.has = true end
+	if (pClass == EA_CLASS_ROGUE) then 	EA_SpecPower.ComboPoints.has = true end
 	
 	--若玩家為德魯伊表示擁有連擊點數
-	if (pClass == EA_CLASS_DRUID) then	EA_SpecPower.ComboPoint.has = true end
+	if (pClass == EA_CLASS_DRUID) then	EA_SpecPower.ComboPoints.has = true end
 	
 	--若玩家為恢復德魯伊表示有生命之花
 	if (id == 105) then EA_SpecPower.LifeBloom.has = true end
@@ -4713,146 +4719,141 @@ EA_EventList_COMBAT_LOG_EVENT_UNFILTERED = {
 }
 -----------------------------------------------------------------
 EA_SpecPower = {
-				ComboPoint		=   {
-									powerId,
-									powerType = "COMBO_POINTS",
-									func=EventAlert_UpdateComboPoint,
-									has,
-									frameindex = {1000000},
-									},		
+				
 				Mana 			= 	{
-									powerId,
-									powerType = "",
+									powerId = Enum.PowerType.Mana,
+									powerType = "Mana",
 									func,									
 									has,
-									frameindex={},
+									frameindex = {1000000 + 10 * Enum.PowerType.Mana},
 									},
 				Rage 			= 	{										    
-									powerId=EA_SPELL_POWER_RAGE,
+									powerId = Enum.PowerType.Rage,
 									powerType = "RAGE",
-									func=EventAlert_UpdateSinglePower,									
+									func = EventAlert_UpdateSinglePower,									
 									has,
-									frameindex = {1000010},
+									frameindex = {1000000 + 10 * Enum.PowerType.Rage},
 									},
 				Focus 			= 	{
-									powerId=EA_SPELL_POWER_FOCUS,
+									powerId = Enum.PowerType.Focus,
 									powerType = "FOCUS",
 									--func=EventAlert_UpdateSinglePower,									
-									func=EventAlert_UpdateFocus,
+									func = EventAlert_UpdateFocus,
 									has,
-									frameindex = {1000020,1000021},
+									frameindex = {
+										1000000 + 10 * Enum.PowerType.Focus, 
+										1000000 + 10 * Enum.PowerType.Focus + 1,
+										},
 									},
 				Energy	 		= 	{
-									powerId=EA_SPELL_POWER_ENERGY,
+									powerId = Enum.PowerType.Energy,
 									powerType = "ENERGY",
-									func=EventAlert_UpdateSinglePower,
+									func = EventAlert_UpdateSinglePower,
 									has,
-									frameindex = {1000030},
+									frameindex = {1000000 + 10 * Enum.PowerType.Energy},
 									},
-				Runes 			= 	{
-									powerId=EA_SPELL_POWER_RUNES,
-									powerType = "RUNES",
-									func=EventAlert_UpdateRunes,									
+				ComboPoints		=   {
+									powerId = Enum.PowerType.ComboPoints,
+									powerType = "COMBO_POINTS",
+									func = EventAlert_UpdateComboPoints,
 									has,
-									frameindex={1000051,1000052,1000053,1000054,1000055,1000056},
-									
+									frameindex = {1000000 + 10 * Enum.PowerType.ComboPoints},
+									--frameindex = {1000000},
+									},		
+				Runes 			= 	{
+									powerId = Enum.PowerType.Runes,
+									powerType = "RUNES",
+									func = EventAlert_UpdateRunes,									
+									--func = EventAlert_UpdateSinglePower,
+									has,
+									frameindex={
+												[0] = 1000000 + 10 * Enum.PowerType.Runes + 0,
+												[1] = 1000000 + 10 * Enum.PowerType.Runes + 1,
+												[2] = 1000000 + 10 * Enum.PowerType.Runes + 2,
+												[3] = 1000000 + 10 * Enum.PowerType.Runes + 3,
+												[4] = 1000000 + 10 * Enum.PowerType.Runes + 4,
+												[5] = 1000000 + 10 * Enum.PowerType.Runes + 5,
+												[6] = 1000000 + 10 * Enum.PowerType.Runes + 6,												
+												},									
 									},
 				RunicPower		= 	{
-									powerId=EA_SPELL_POWER_RUNIC_POWER,
+									powerId = Enum.PowerType.RunicPower,
 									powerType = "RUNIC_POWER",
-									func=EventAlert_UpdateSinglePower,									
+									func = EventAlert_UpdateSinglePower,									
 									has,
-									frameindex = {1000060},
+									frameindex = {1000000 + 10 * Enum.PowerType.RunicPower},
 									},
 				SoulShards		= 	{
-									powerId=EA_SPELL_POWER_SOUL_SHARDS,
+									powerId = Enum.PowerType.SoulShards,
 									powerType = "SOUL_SHARDS",
-									func=EventAlert_UpdateSinglePower,									
+									func = EventAlert_UpdateSinglePower,									
 									has,
-									frameindex = {1000070},
+									frameindex = {1000000 + 10 * Enum.PowerType.SoulShards},
 									},
 				LunarPower			= 	{
-									powerId=EA_SPELL_POWER_LUNAR_POWER,									
+									powerId = Enum.PowerType.LunarPower,									
 									powerType = "LUNAR_POWER",
-									func=EventAlert_UpdateSinglePower,									
+									func = EventAlert_UpdateSinglePower,									
 									has,
-									frameindex = {1000080},
+									frameindex = {1000000 + 10 * Enum.PowerType.LunarPower},
 									},
 				HolyPower		= 	{
-									powerId=EA_SPELL_POWER_HOLY_POWER,
+									powerId = Enum.PowerType.HolyPower,
 									powerType = "HOLY_POWER",
-									func=EventAlert_UpdateSinglePower,									
+									func = EventAlert_UpdateSinglePower,									
 									has,
-									frameindex = {1000090},
+									frameindex = {1000000 + 10 * Enum.PowerType.HolyPower},
 									},
-				DarkForce		= 	{
-									powerId,
-									powerType = "",
-									func,									
-									has,
-									frameindex={},
-									},
+				
 				Maelstrom		= 	{
-									powerId=EA_SPELL_POWER_MAELSTROM,
+									powerId = Enum.PowerType.Maelstrom,
 									powerType = "MAELSTROM",
-									func=EventAlert_UpdateSinglePower,									
+									func = EventAlert_UpdateSinglePower,									
 									has,
-									frameindex = {1000110},
+									frameindex = {1000000 + 10 * Enum.PowerType.Maelstrom},
 									},
-				LightForce		= 	{
-									powerId=EA_SPELL_POWER_CHI,
+				
+				Chi				= 	{
+									powerId = Enum.PowerType.Chi,
 									powerType = "CHI",
-									func=EventAlert_UpdateSinglePower,
+									func = EventAlert_UpdateSinglePower,
 									has,
-									frameindex = {1000120},
+									frameindex = {1000000 + 10 * Enum.PowerType.Chi},
 									},
 				Insanity		= 	{
-									powerId = EA_SPELL_POWER_INSANITY,									
+									powerId = Enum.PowerType.Insanity,									
 									powerType = "INSANITY",
-									func=EventAlert_UpdateSinglePower,									
+									func = EventAlert_UpdateSinglePower,									
 									has,
-									frameindex = {1000130},
+									frameindex = {1000000 + 10 * Enum.PowerType.Insanity},
 									},
-				BurningEmbers		= 	{
-									powerId=EA_SPELL_POWER_BURNING_EMBERS,
-									powerType = "BURNING_EMBERS",
-									func=EventAlert_UpdateSinglePower,									
-									has,
-									frameindex = {1000140},
-									},
-				DemonicFury		= 	{
-									powerId=EA_SPELL_POWER_DEMONIC_FURY,
-									powerType = "DEMONIC_FURY",
-									func=EventAlert_UpdateSinglePower,									
-									has,
-									frameindex = {1000150},
-									},
+				
 				ArcaneCharges		= 	{
-									powerId=EA_SPELL_POWER_ARCANE_CHARGES,
+									powerId = Enum.PowerType.ArcaneCharges,
 									powerType = "ARCANE_CHARGES",
-									func=EventAlert_UpdateSinglePower,									
+									func = EventAlert_UpdateSinglePower,									
 									has,
-									frameindex = {1000160},
+									frameindex = {1000000 + 10 * Enum.PowerType.ArcaneCharges},
 									},			
 				Fury			= 	{
-									powerId=EA_SPELL_POWER_FURY,
+									powerId = Enum.PowerType.Fury,
 									powerType = "FURY",
-									func=EventAlert_UpdateSinglePower,									
+									func = EventAlert_UpdateSinglePower,									
 									has,
-									frameindex = {1000170},
+									frameindex = {1000000 + 10 * Enum.PowerType.Fury},
 									},
 				Pain			= 	{
-									powerId=EA_SPELL_POWER_PAIN,
+									powerId = Enum.PowerType.Pain,
 									powerType = "PAIN",
 									func=EventAlert_UpdateSinglePower,									
 									has,
-									frameindex = {1000180},
+									frameindex = {1000000 + 10 * Enum.PowerType.Pain},
 									},		
 									
 				LifeBloom		= 	{
 									powerId,
 									powerType = "",
-									func=EventAlert_UpdateLifeBloom,									
+									func = EventAlert_UpdateLifeBloom,									
 									has,
 									frameindex = {33763},
 									},

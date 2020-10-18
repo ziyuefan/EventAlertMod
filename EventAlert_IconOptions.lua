@@ -27,7 +27,7 @@ function EventAlert_Icon_Options_Frame_Init()
 	EA_Icon_Options_Frame_SpecFlag_Runes:SetChecked(EA_Config.SpecPowerCheck.Runes);
 	EA_Icon_Options_Frame_SpecFlag_SoulShards:SetChecked(EA_Config.SpecPowerCheck.SoulShards);
 	EA_Icon_Options_Frame_SpecFlag_LunarPower:SetChecked(EA_Config.SpecPowerCheck.LunarPower);
-	EA_Icon_Options_Frame_SpecFlag_ComboPoint:SetChecked(EA_Config.SpecPowerCheck.ComboPoint);
+	EA_Icon_Options_Frame_SpecFlag_ComboPoint:SetChecked(EA_Config.SpecPowerCheck.ComboPoints);
 	EA_Icon_Options_Frame_SpecFlag_LifeBloom:SetChecked(EA_Config.SpecPowerCheck.LifeBloom);
 	EA_Icon_Options_Frame_SpecFlag_Chi:SetChecked(EA_Config.SpecPowerCheck.Chi);
 	EA_Icon_Options_Frame_SpecFlag_Energy:SetChecked(EA_Config.SpecPowerCheck.Energy);
@@ -183,7 +183,7 @@ function EventAlert_Icon_Options_Frame_PaintAlertFrame()
 			--EventAlert_Icon_Options_Frame_SetAlertFrameText(EAFrameSpec_10050, "", false);  -- Death Knight Runes
 		end
 	elseif (EA_playerClass == EA_CLASS_DRUID) then
-		if (EA_Config.SpecPowerCheck.ComboPoint) then
+		if (EA_Config.SpecPowerCheck.ComboPoints) then
 			EventAlert_Icon_Options_Frame_SetAlertFrameText(EAFrameSpec_10000, "", false);  -- Druid Combo Point
 		end
 		if (EA_Config.SpecPowerCheck.Energy) then
@@ -200,7 +200,7 @@ function EventAlert_Icon_Options_Frame_PaintAlertFrame()
 			EventAlert_Icon_Options_Frame_SetAlertFrameText(EAFrameSpec_33763, "", false);  -- Druid LifeBloom
 		end
 	elseif (EA_playerClass == EA_CLASS_ROGUE) then
-		if (EA_Config.SpecPowerCheck.ComboPoint) then
+		if (EA_Config.SpecPowerCheck.ComboPoints) then
 			EventAlert_Icon_Options_Frame_SetAlertFrameText(EAFrameSpec_10000, "", false);  -- Rogue Combo Point
 		end
 		if (EA_Config.SpecPowerCheck.Energy) then
@@ -258,13 +258,13 @@ function EventAlert_Icon_Options_Frame_AdjustTimerFontSize()
 	if (EA_Config.ChangeTimer == true) then	--璝璸陪ボ琜ず
 		-- 璝ㄏノ计翴计
 		if (EA_Config.UseFloatSec > 0) then
-			EA_Config.TimerFontSize = (EA_Config.IconSize ) * 0.4		--琜ず计ゑㄒ(Τ计翴)
+			EA_Config.TimerFontSize = (EA_Config.IconSize ) * 0.50		--琜ず计ゑㄒ(Τ计翴)
 		else
-			EA_Config.TimerFontSize = (EA_Config.IconSize ) * 0.35		--琜ず计ゑㄒ(礚计翴)
+			EA_Config.TimerFontSize = (EA_Config.IconSize ) * 0.45		--琜ず计ゑㄒ(礚计翴)
 		end
 		EA_Config.StackFontSize = (EA_Config.IconSize ) * 0.35			--帮舼璸计ゑㄒ
 	else	--璝璸陪ボ琜
-		EA_Config.TimerFontSize = (EA_Config.IconSize ) * 0.60			--琜计ゑㄒ
+		EA_Config.TimerFontSize = (EA_Config.IconSize ) * 0.65			--琜计ゑㄒ
 		EA_Config.StackFontSize = (EA_Config.IconSize ) * 0.45			--帮舼璸计ゑㄒ
 	end
 	
