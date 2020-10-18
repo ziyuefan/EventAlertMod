@@ -55,3 +55,6 @@ https://github.com/ziyuefan/EventAlertMod/blob/2020.10.18/changelog.txt
 
 > /eam NewLineByIconCount n
 技能冷卻圖示最多 n 個就跳下一行
+
+> /eam ShowRunesBar
+開關型指令,用來決定是否顯示死騎符文列(2020/10/18新增)
