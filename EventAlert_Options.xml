@@ -42,7 +42,7 @@
 				self:ClearFocus();
 			</OnEscapePressed>
 		</Scripts>
-		<FontString inherits="ChatFontNormal" />
+		<FontString inherits="GameFontNormal" />
 	</EditBox>
 
 	<EditBox name="EA_SpellEditTextTemplate" letters="6" multiLine="false" numeric="false" ignoreArrows="false" autoFocus="false" virtual="true" >
@@ -86,10 +86,10 @@
 				self:ClearFocus();
 			</OnEscapePressed>
 		</Scripts>
-		<FontString inherits="ChatFontNormal" />
+		<FontString inherits="GameFontNormal" />
 	</EditBox>
 	<!-- Options Setting Frames -->
-	<Frame name="EA_Options_Frame" hidden="true" parent="UIParent" toplevel="true" movable="true" frameStrata="HIGH" enableMouse="true" enableKeyboard="true">
+	<Frame name="EA_Options_Frame" hidden="true" parent="UIParent" toplevel="true" movable="true" frameStrata="MEDIUM" enableMouse="true" enableKeyboard="true">
 		<Size>
 			<AbsDimension x="300" y="600" />
 		</Size>
@@ -696,7 +696,7 @@
 						self:ClearFocus();
 					</OnEscapePressed>
 				</Scripts>
-				<FontString inherits="ChatFontNormal" />
+				<FontString inherits="GameFontNormal" />
 			</EditBox>
 			<CheckButton name="$parent_Self" inherits="OptionsCheckButtonTemplate">
 				<Anchors>
@@ -790,7 +790,7 @@
 						self:ClearFocus();
 					</OnEscapePressed>
 				</Scripts>
-				<FontString inherits="ChatFontNormal" />
+				<FontString inherits="GameFontNormal" />
 			</EditBox>
 			<CheckButton name="$parent_RedSecText" inherits="OptionsCheckButtonTemplate">
 				<Anchors>
@@ -861,7 +861,7 @@
 						self:ClearFocus();
 					</OnEscapePressed>
 				</Scripts>
-				<FontString inherits="ChatFontNormal" />
+				<FontString inherits="GameFontNormal" />
 			</EditBox>
 			<CheckButton name="$parent_OrderWtd" inherits="OptionsCheckButtonTemplate">
 				<Anchors>
@@ -932,7 +932,7 @@
 						self:ClearFocus();
 					</OnEscapePressed>
 				</Scripts>
-				<FontString inherits="ChatFontNormal" />
+				<FontString inherits="GameFontNormal" />
 			</EditBox>
 
 			<Button name="$parent_Cancel" inherits="OptionsButtonTemplate" text="Cancel">

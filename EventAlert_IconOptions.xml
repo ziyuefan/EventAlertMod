@@ -76,10 +76,10 @@
 				<Scripts>
 					<OnLoad>
 						_G[self:GetName().."Text"]:SetText(EA_XICON_ICONSIZE.."(60)");
-						_G[self:GetName().."High"]:SetText(EA_XICON_LARGE.."(90)");
-						_G[self:GetName().."Low"]:SetText(EA_XICON_SMALL.."(30)");
-						self:SetMinMaxValues(30.0,90.0);
-						self:SetValueStep(5.0);
+						_G[self:GetName().."High"]:SetText(EA_XICON_LARGE.."(100)");
+						_G[self:GetName().."Low"]:SetText(EA_XICON_SMALL.."(20)");
+						self:SetMinMaxValues(20.0,100.0);
+						self:SetValueStep(1.0);
 					</OnLoad>
 					<OnValueChanged>
 						EA_Config.IconSize = floor(self:GetValue())
@@ -419,7 +419,7 @@
 					</OnLoad>
 					<OnClick>
 						
-						EA_Config.SpecPowerCheck.ComboPoint = self:GetChecked()						
+						EA_Config.SpecPowerCheck.ComboPoints = self:GetChecked()						
 						EventAlert_SpecialFrame_Update();
 					</OnClick>
 					<OnEnter>

@@ -147,12 +147,12 @@ function CreateFrames_CreateAnchorFrame(AnchorFrameName, typeIndex)
 		
 
 		eaaf.spellName = eaaf:CreateFontString(AnchorFrameName.."_Name","OVERLAY");
-		eaaf.spellName:SetFontObject(ChatFontNormal);
+		eaaf.spellName:SetFontObject(EA_FONT_OBJECT);
 		eaaf.spellName:SetPoint("BOTTOM", 0, -15);
 
 		--eaaf.spellTimer = eaaf:CreateFontString(AnchorFrameName.."_Timer","OVERLAY");
-		eaaf.spellTimer = eaaf:CreateFontString(AnchorFrameName.."_Timer","HIGHT");
-		eaaf.spellTimer:SetFontObject(ChatFontNormal);
+		eaaf.spellTimer = eaaf:CreateFontString(AnchorFrameName.."_Timer","OVERLAY");
+		eaaf.spellTimer:SetFontObject(EA_FONT_OBJECT);
 		eaaf.spellTimer:SetPoint("TOP", 0, 15);
 
 		eaaf:SetMovable(true);
@@ -180,7 +180,9 @@ function CreateFrames_CreateSpellFrame(index, typeIndex)
 		
 		eaf = CreateFrame("FRAME", sFramePrefix..index, EA_Main_Frame);
 		CooldownFramePrefix = "Cooldown_"
-		eaf.cooldown = CreateFrame("Cooldown", sFramePrefix..CooldownFramePrefix..index, eaf, "CooldownFrameTemplate");
+		eaf.cooldown = CreateFrame("Cooldown", sFramePrefix..CooldownFramePrefix..index, UIParent, "CooldownFrameTemplate");
+		eaf.cooldown:ClearAllPoints()
+		eaf.cooldown:SetAllPoints(eaf)
 		if (typeIndex == 3) and (EA_Position.SCD_UseCooldown) then			
 			eaf.useCooldown = true
 		else			
@@ -195,9 +197,9 @@ function CreateFrames_CreateSpellFrame(index, typeIndex)
 			eaf.useCooldown = false;
 		end
 		]]--
-		eaf.spellName = eaf:CreateFontString(sFramePrefix..index.."_Name","HIGH");
-		eaf.spellTimer = eaf:CreateFontString(sFramePrefix..index.."_Timer","HIGH");
-		eaf.spellStack = eaf:CreateFontString(sFramePrefix..index.."_Stack","HIGH");
+		eaf.spellName = eaf:CreateFontString(sFramePrefix..index.."_Name","OVERLAY");
+		eaf.spellTimer = eaf:CreateFontString(sFramePrefix..index.."_Timer","OVERLAY");
+		eaf.spellStack = eaf:CreateFontString(sFramePrefix..index.."_Stack","OVERLAY");
 	end
 	eaf.noCooldownCount = true;
 
@@ -206,19 +208,18 @@ function CreateFrames_CreateSpellFrame(index, typeIndex)
 	end
 
 	eaf:ClearAllPoints();
-	eaf:SetFrameStrata("HIGH");
+	eaf:SetFrameStrata("MEDIUM");
 	eaf.redsectext = false;
 	eaf.whitesectext = false;
 	eaf.overgrow = false;
 
-	eaf.spellName:SetFontObject(ChatFontNormal);
-	eaf.spellName:SetPoint("TOP", eaf, "BOTTOM", 0, -0.1 * EA_Config.IconSize);
-	--eaf.spellName:SetPoint("BOTTOM", 0, -15);
+	eaf.spellName:SetFontObject(EA_FONT_OBJECT);
+	eaf.spellName:SetPoint("TOP", eaf, "BOTTOM", 0, -0.1 * EA_Config.IconSize);	
 
-	eaf.spellTimer:SetFontObject(ChatFontNormal);
-	eaf.spellTimer:SetPoint("TOP", 0, EA_Config.TimerFontSize*1.1);
+	eaf.spellTimer:SetFontObject(EA_FONT_OBJECT)
+	eaf.spellTimer:SetPoint("TOP", 0, EA_Config.TimerFontSize*1.1)
 
-	eaf.spellStack:SetFontObject(ChatFontNormal);
+	eaf.spellStack:SetFontObject(EA_FONT_OBJECT);
 	eaf.spellStack:SetPoint("BOTTOMRIGHT", 0, 15);
 	
 	local spellId = tonumber(index)	
@@ -268,8 +269,8 @@ function CreateFrames_SpecialFrames_Show(index)
 		
 		if (index == EA_SpecPower.LifeBloom.frameindex[1]) then
 			EventAlert_UpdateLifeBloom("player");		
-		elseif (index == EA_SpecPower.ComboPoint.frameindex[1]) then
-			EventAlert_UpdateComboPoint()		
+		--elseif (index == EA_SpecPower.ComboPoint.frameindex[1]) then
+			--EventAlert_UpdateComboPoint()		
 		elseif (iPowerType == EA_SpecPower.Runes.powerId) then
 			
 			EventAlert_UpdateRunes()
@@ -282,9 +283,9 @@ function CreateFrames_SpecialFrames_Show(index)
 	
 	-- 尚未建立特殊能力框架，以下是第一次執行
 	eaf = CreateFrame("FRAME", sFramePrefix..index, EA_Main_Frame);
-	eaf.spellName = eaf:CreateFontString(sFramePrefix..index.."_Name","HIGH");
-	eaf.spellTimer = eaf:CreateFontString(sFramePrefix..index.."_Timer","HIGH");
-	eaf.spellStack = eaf:CreateFontString(sFramePrefix..index.."_Stack","HIGH");
+	eaf.spellName = eaf:CreateFontString(sFramePrefix..index.."_Name","OVERLAY");
+	eaf.spellTimer = eaf:CreateFontString(sFramePrefix..index.."_Timer","OVERLAY");
+	eaf.spellStack = eaf:CreateFontString(sFramePrefix..index.."_Stack","OVERLAY");
 	
 	if not(eaf.texture) then 
 		eaf.texture = eaf:CreateTexture() 
@@ -296,18 +297,19 @@ function CreateFrames_SpecialFrames_Show(index)
 	end
 
 	eaf:ClearAllPoints();
-	eaf:SetFrameStrata("HIGH");
-	eaf.spellName:SetFontObject(ChatFontNormal);
+	eaf:SetFrameStrata("MEDIUM");
+	eaf.spellName:SetFontObject(EA_FONT_OBJECT);
 	eaf.spellName:SetPoint("TOP", eaf, "BOTTOM", 0, -EA_Config.IconSize * 0.1);
 
-	eaf.spellTimer:SetFontObject(ChatFontNormal);
+	eaf.spellTimer:SetFontObject(EA_FONT_OBJECT);
 	eaf.spellTimer:SetPoint("CENTER", eaf, "CENTER", 0, EA_Config.TimerFontSize * 0.8);
 
-	eaf.spellStack:SetFontObject(ChatFontNormal);
+	eaf.spellStack:SetFontObject(EA_FONT_OBJECT);
 	eaf.spellStack:SetPoint("BOTTOMRIGHT", eaf, "BOTTOMRIGHT", 0, EA_Config.IconSize * 0.1);
 
 	eaf:SetWidth(EA_Config.IconSize);
 	eaf:SetHeight(EA_Config.IconSize);	
+	
 	
 	if index == EA_SpecPower.Rage.frameindex[1] then
 		-- 戰士/熊D怒氣的圖案
@@ -317,8 +319,8 @@ function CreateFrames_SpecialFrames_Show(index)
 		-- 獵人集中值的圖案
 		Lib_ZYF:SetBackdrop(eaf,{bgFile = "Interface/Icons/Ability_Marksmanship"})
 	elseif index == EA_SpecPower.Focus.frameindex[2] then
-		-- 寵物集中值的圖案				
-		--eaf:SetBackdrop({bgFile = "Interface/Icons/Ability_Marksmanship"});
+		-- 寵物集中值的圖案						
+		--Lib_ZYF:SetBackdrop(eaf, {bgFile = "Interface/Icons/Ability_Marksmanship"})
 		local specIcon = GetSpellTexture(982)
 		eaf.texture:SetTexture(specIcon)
 	elseif index == EA_SpecPower.Energy.frameindex[1] then
@@ -329,6 +331,9 @@ function CreateFrames_SpecialFrames_Show(index)
 	elseif index == EA_SpecPower.RunicPower.frameindex[1] then
 		-- 死亡騎士符文能量的圖案
 		Lib_ZYF:SetBackdrop(eaf,{bgFile = "Interface/Icons/Spell_Arcane_Rune"})
+	elseif index == EA_SpecPower.Runes.frameindex[0] then
+		-- 死亡騎士符文的圖案
+		Lib_ZYF:SetBackdrop(eaf,{bgFile=iconTextures[GetSpecialization()]})
 	elseif index == EA_SpecPower.SoulShards.frameindex[1] then
 		-- 術士靈魂碎片的圖案
 		Lib_ZYF:SetBackdrop(eaf,{bgFile = "Interface/Icons/Inv_Misc_Gem_Amethyst_02"})
@@ -341,7 +346,7 @@ function CreateFrames_SpecialFrames_Show(index)
 	elseif index == EA_SpecPower.HolyPower.frameindex[1] then
 		-- 聖騎士的聖能圖案
 		Lib_ZYF:SetBackdrop(eaf,{bgFile = "Interface/Icons/Spell_Holy_PowerwordBarrier"})
-	elseif index == EA_SpecPower.LightForce.frameindex[1] then
+	elseif index == EA_SpecPower.Chi.frameindex[1] then
 		-- 武僧真氣的圖案
 		Lib_ZYF:SetBackdrop(eaf,{bgFile = "Interface/Icons/Ability_Monk_HealthSphere"})
 	elseif index == EA_SpecPower.Insanity.frameindex[1] then
@@ -350,22 +355,22 @@ function CreateFrames_SpecialFrames_Show(index)
 		--local specIcon = select(3,GetSpellInfo(77486))
 		local specIcon = 1386550
 		eaf.texture:SetTexture(specIcon)
-	elseif index == EA_SpecPower.BurningEmbers.frameindex[1] then
+	--elseif index == EA_SpecPower.BurningEmbers.frameindex[1] then
 		-- 術士燃火餘燼的圖案
-		Lib_ZYF:SetBackdrop(eaf,{bgFile = "Interface/Icons/Inv_Misc_Embers"})
-	elseif index == EA_SpecPower.DemonicFury.frameindex[1] then
+		--Lib_ZYF:SetBackdrop(eaf,{bgFile = "Interface/Icons/Inv_Misc_Embers"})
+	--elseif index == EA_SpecPower.DemonicFury.frameindex[1] then
 		-- 術士惡魔之怒的圖案
-		Lib_ZYF:SetBackdrop(eaf,{bgFile = "Interface/Icons/Spell_Fire_FelFlameRing"})
+		--Lib_ZYF:SetBackdrop(eaf,{bgFile = "Interface/Icons/Spell_Fire_FelFlameRing"})
 	elseif index == EA_SpecPower.LifeBloom.frameindex[1] then
 		-- 補D生命之花的圖案
 		Lib_ZYF:SetBackdrop(eaf,{bgFile = "Interface/Icons/INV_Misc_Herb_FelBlossom"})
-	elseif index == EA_SpecPower.ComboPoint.frameindex[1] then
+	elseif index == EA_SpecPower.ComboPoints.frameindex[1] then
 		-- 盜賊/貓D連擊點的圖案
 		Lib_ZYF:SetBackdrop(eaf,{bgFile = "Interface/Icons/Ability_WhirlWind"})
 	elseif index == EA_SpecPower.ArcaneCharges.frameindex[1] then		
 		-- 秘法充能圖案
 		--eaf:SetBackdrop({bgFile = "Interface/Icons/Arcane_Charges"});			
-		local specIcon = GetSpellTexture(30451)
+		local specIcon = GetSpellTexture(36032)
 		eaf.texture:SetTexture(specIcon)
 	elseif index == EA_SpecPower.Maelstrom.frameindex[1] then		
 		-- 薩滿元能圖案		
@@ -532,7 +537,7 @@ end
 --  if (SpellEditBox == nil) then
 --      SpellEditBox = CreateFrame("EditBox", FrameNamePrefix..SpellID, ParentFrameObj);
 --      SpellEditBox:SetPoint("TOPLEFT", LocOffsetX, LocOffsetY);
---      SpellEditBox:SetFontObject(ChatFontNormal);
+--      SpellEditBox:SetFontObject(EA_FONT_OBJECT);
 --      SpellEditBox:SetWidth(EditWidth);
 --      SpellEditBox:SetHeight(25);
 --      SpellEditBox:SetMaxLetters(0);
@@ -824,22 +829,21 @@ local function CreateFrames_CfgBtn_ShowGroupFramePos(self)
 		eaf = CreateFrame("Frame", FrameNamePrefix..iGroupID, UIParent);
 		eaf:SetMovable(true);
 		eaf:EnableMouse(true);
-		eaf.spellName = eaf:CreateFontString(FrameNamePrefix..iGroupID.."_Name","HIGH");
-		eaf.spellTimer = eaf:CreateFontString(FrameNamePrefix..iGroupID.."_Timer","HIGH");
-		eaf.spellStack = eaf:CreateFontString(FrameNamePrefix..iGroupID.."_Stack","HIGH");
+		eaf.spellName = eaf:CreateFontString(FrameNamePrefix..iGroupID.."_Name","OVERLAY");
+		eaf.spellTimer = eaf:CreateFontString(FrameNamePrefix..iGroupID.."_Timer","OVERLAY");
+		eaf.spellStack = eaf:CreateFontString(FrameNamePrefix..iGroupID.."_Stack","OVERLAY");
 		eaf:SetScript("OnMouseDown", CreateFrames_CfgBtn_GroupFrame_OnMouseDown);
 		eaf:SetScript("OnMouseUp", CreateFrames_CfgBtn_GroupFrame_OnMouseUp);
 		eaf:ClearAllPoints();
-		eaf:SetFrameStrata("DIALOG");
-		-- eaf:SetFrameStrata("LOW");
+		eaf:SetFrameStrata("DIALOG");		
 	
-		eaf.spellName:SetFontObject(ChatFontNormal);
+		eaf.spellName:SetFontObject(EA_FONT_OBJECT);
 		eaf.spellName:SetPoint("BOTTOM", 0, -15);
 	
-		eaf.spellTimer:SetFontObject(ChatFontNormal);
+		eaf.spellTimer:SetFontObject(EA_FONT_OBJECT);
 		eaf.spellTimer:SetPoint("TOP", 0, EA_Config.TimerFontSize*1.1);
 	
-		eaf.spellStack:SetFontObject(ChatFontNormal);
+		eaf.spellStack:SetFontObject(EA_FONT_OBJECT);
 		eaf.spellStack:SetPoint("BOTTOMRIGHT", 0, 15);
 		
 		eaf.texture = eaf:CreateTexture()
@@ -899,7 +903,7 @@ end
 --
 --  local SpellFontStr = _G[FrameNamePrefix..SpellID];
 --  if (SpellFontStr == nil) then
---      SpellFontStr = ParentFrameObj:CreateFontString(FrameNamePrefix..SpellID, "ARTWORK", "GameFontNormal");
+--      SpellFontStr = ParentFrameObj:CreateFontString(FrameNamePrefix..SpellID, "ARTWORK", EA_FONT_OBJECT:GetName());
 --      SpellFontStr:SetPoint("TOPRIGHT", LocOffsetX, LocOffsetY);
 --      SpellFontStr:SetWidth(60);
 --      SpellFontStr:SetHeight(25);
@@ -1108,23 +1112,21 @@ function CreateFrames_CreateGroupCheckFrame(iGroupIndex)
 	local eaf = _G[FrameNamePrefix..iGroupIndex];
 	if (eaf == nil) then
 		eaf = CreateFrame("Frame", FrameNamePrefix..iGroupIndex, UIParent);
-		eaf.spellName = eaf:CreateFontString(FrameNamePrefix..iGroupIndex.."_Name","HIGH");
-		eaf.spellTimer = eaf:CreateFontString(FrameNamePrefix..iGroupIndex.."_Timer","HIGH");
-		eaf.spellStack = eaf:CreateFontString(FrameNamePrefix..iGroupIndex.."_Stack","HIGH");
+		eaf.spellName = eaf:CreateFontString(FrameNamePrefix..iGroupIndex.."_Name","OVERLAY");
+		eaf.spellTimer = eaf:CreateFontString(FrameNamePrefix..iGroupIndex.."_Timer","OVERLAY");
+		eaf.spellStack = eaf:CreateFontString(FrameNamePrefix..iGroupIndex.."_Stack","OVERLAY");
 	end
 	-- eaf.noCooldownCount = true;
-	-- eaf:SetFrameStrata("DIALOG");
 	eaf:ClearAllPoints();
-	eaf:SetFrameStrata("HIGH");
-	-- eaf:SetFrameStrata("LOW");
+	eaf:SetFrameStrata("MEDIUM");	
 
-	eaf.spellName:SetFontObject(ChatFontNormal);
+	eaf.spellName:SetFontObject(EA_FONT_OBJECT);
 	eaf.spellName:SetPoint("BOTTOM", 0, -15);
 
-	eaf.spellTimer:SetFontObject(ChatFontNormal);
+	eaf.spellTimer:SetFontObject(EA_FONT_OBJECT);
 	eaf.spellTimer:SetPoint("TOP", 0, EA_Config.TimerFontSize*1.1);
 
-	eaf.spellStack:SetFontObject(ChatFontNormal);
+	eaf.spellStack:SetFontObject(EA_FONT_OBJECT);
 	eaf.spellStack:SetPoint("BOTTOMRIGHT", 0, 15);
 	
 	if eaf.GC == nil then eaf.GC = { } end;

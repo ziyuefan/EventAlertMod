@@ -13,7 +13,7 @@ end
 function EAFun_SetButtonState(button, state)
 	if state == 1 then
 		button:SetButtonState("PUSHED", true);
-	else
+	else		
 		button:SetButtonState("NORMAL", false);
 	end
 end
@@ -52,7 +52,7 @@ function EventAlert_Options_Init()
 	Lib_ZYF:SetBackdropColor(EA_GroupEventSetting_Frame,1,1,1,1)
 	Lib_ZYF:SetBackdropBorderColor(EA_GroupEventSetting_Frame,1,1,1,1)
 	
-	EA_Options_Frame_Header_Text:SetFontObject(GameFontNormal);
+	EA_Options_Frame_Header_Text:SetFontObject(EA_FONT_OBJECT);
 	EA_Options_Frame_Header_Text:SetText("EventAlertMod Options");
 	EA_Options_Frame_VerUrlText:SetText(EA_XOPT_VERURLTEXT);
 
@@ -1046,7 +1046,7 @@ function EAFun_GroupEvent_AddNewSpellBtn_Click(self)
 	
 	local SpellText1 = _G[sSpellFramePrefix.."_SpellText1"];
 	if (SpellText1 == nil) then
-		SpellText1 = SpellFrame:CreateFontString(sSpellFramePrefix.."_SpellText1", "ARTWORK", "GameFontNormal");
+		SpellText1 = SpellFrame:CreateFontString(sSpellFramePrefix.."_SpellText1", "ARTWORK", EA_FONT_OBJECT:GetName());
 	end
 	SpellText1:SetPoint("TOPLEFT", CloseBtn, "TOPRIGHT", 0, -2);
 	SpellText1:SetText("["..iSpellIndex.."]"..EX_XCLSALERT_SPELL);
@@ -1069,14 +1069,14 @@ function EAFun_GroupEvent_AddNewSpellBtn_Click(self)
 
 	local SpellText2 = _G[sSpellFramePrefix.."_SpellText2"];
 	if (SpellText2 == nil) then
-		SpellText2 = SpellFrame:CreateFontString(sSpellFramePrefix.."_SpellText2", "ARTWORK", "GameFontNormal");
+		SpellText2 = SpellFrame:CreateFontString(sSpellFramePrefix.."_SpellText2", "ARTWORK", EA_FONT_OBJECT:GetName());
 	end
 	SpellText2:SetPoint("TOPLEFT", SpellTextBox, "TOPRIGHT", 10, -5);
 	SpellText2:SetText(EA_XGRPALERT_SPELLNAME);
 
 	local SpellName = _G[sSpellFramePrefix.."_SpellName"];
 	if (SpellName == nil) then
-		SpellName = SpellFrame:CreateFontString(sSpellFramePrefix.."_SpellName", "ARTWORK", "GameFontNormal");
+		SpellName = SpellFrame:CreateFontString(sSpellFramePrefix.."_SpellName", "ARTWORK", EA_FONT_OBJECT:GetName());
 	end
 	SpellName:SetPoint("TOPLEFT", SpellText2, "TOPRIGHT", 0, 0);
 	SpellName:SetText("");
@@ -1099,7 +1099,7 @@ function EAFun_GroupEvent_AddNewSpellBtn_Click(self)
 
 	local SpellText3 = _G[sSpellFramePrefix.."_SpellText3"];
 	if (SpellText3 == nil) then
-		SpellText3 = SpellFrame:CreateFontString(sSpellFramePrefix.."_SpellText3", "ARTWORK", "GameFontNormal");
+		SpellText3 = SpellFrame:CreateFontString(sSpellFramePrefix.."_SpellText3", "ARTWORK", EA_FONT_OBJECT:GetName());
 	end
 	SpellText3:SetPoint("TOPRIGHT", SpellIcon, "TOPLEFT", -5, -4);
 	SpellText3:SetText(EA_XGRPALERT_SPELLICON);
@@ -1204,7 +1204,7 @@ function EAFun_GroupEvent_AddNewCheckBtn_Click(self)
 	
 	local CheckTitle = _G[sCheckFramePrefix.."_CheckTitle"];
 	if (CheckTitle == nil) then
-		CheckTitle = CheckFrame:CreateFontString(sCheckFramePrefix.."_CheckTitle", "ARTWORK", "GameFontNormal");
+		CheckTitle = CheckFrame:CreateFontString(sCheckFramePrefix.."_CheckTitle", "ARTWORK", EA_FONT_OBJECT:GetName());
 	end
 	CheckTitle:SetPoint("TOPLEFT", CloseBtn, "TOPRIGHT", 0, -2);
 	CheckTitle:SetText("["..iCheckIndex.."]"..EA_XGRPALERT_TITLECHECK);
@@ -1304,7 +1304,7 @@ function EAFun_GroupEvent_AddNewSubCheckBtn_Click(self)
 	
 	local SubCheckTitle = _G[sSubCheckFramePrefix.."_SubCheckTitle"];
 	if (SubCheckTitle == nil) then
-		SubCheckTitle = SubCheckFrame:CreateFontString(sSubCheckFramePrefix.."_SubCheckTitle", "ARTWORK", "GameFontNormal");
+		SubCheckTitle = SubCheckFrame:CreateFontString(sSubCheckFramePrefix.."_SubCheckTitle", "ARTWORK", EA_FONT_OBJECT:GetName());
 	end
 	SubCheckTitle:SetPoint("TOPLEFT", CloseBtn, "TOPRIGHT", 0, -2);
 	SubCheckTitle:SetText("["..iSubCheckIndex.."]"..EA_XGRPALERT_TITLESUBCHECK);
@@ -1327,7 +1327,7 @@ function EAFun_GroupEvent_AddNewSubCheckBtn_Click(self)
 
 	local SubCheckText1 = _G[sSubCheckFramePrefix.."_SubCheckText1"];
 	if (SubCheckText1 == nil) then
-		SubCheckText1 = SubCheckFrame:CreateFontString(sSubCheckFramePrefix.."_SubCheckText1", "ARTWORK", "GameFontNormal");
+		SubCheckText1 = SubCheckFrame:CreateFontString(sSubCheckFramePrefix.."_SubCheckText1", "ARTWORK", EA_FONT_OBJECT:GetName());
 	end
 	SubCheckText1:SetPoint("TOPLEFT", SubCheckOpDropdown, "TOPRIGHT", 0, -5);
 	SubCheckText1:SetText(EA_XGRPALERT_EVENTTYPE);
@@ -1350,7 +1350,7 @@ function EAFun_GroupEvent_AddNewSubCheckBtn_Click(self)
 
 	local SubCheckText2 = _G[sSubCheckFramePrefix.."_SubCheckText2"];
 	if (SubCheckText2 == nil) then
-		SubCheckText2 = SubCheckFrame:CreateFontString(sSubCheckFramePrefix.."_SubCheckText2", "ARTWORK", "GameFontNormal");
+		SubCheckText2 = SubCheckFrame:CreateFontString(sSubCheckFramePrefix.."_SubCheckText2", "ARTWORK", EA_FONT_OBJECT:GetName());
 	end
 	SubCheckText2:SetPoint("TOPLEFT", SubCheckTitle, "BOTTOMLEFT", 0, -10);
 	SubCheckText2:SetText(EA_XGRPALERT_UNITTYPE);
@@ -1373,7 +1373,7 @@ function EAFun_GroupEvent_AddNewSubCheckBtn_Click(self)
 
 	local SubCheckText3 = _G[sSubCheckFramePrefix.."_SubCheckText3"];
 	if (SubCheckText3 == nil) then
-		SubCheckText3 = SubCheckFrame:CreateFontString(sSubCheckFramePrefix.."_SubCheckText3", "ARTWORK", "GameFontNormal");
+		SubCheckText3 = SubCheckFrame:CreateFontString(sSubCheckFramePrefix.."_SubCheckText3", "ARTWORK", EA_FONT_OBJECT:GetName());
 	end
 	SubCheckText3:SetPoint("TOPLEFT", SubCheckUnitTypeDowndown, "TOPRIGHT", 0, -5);
 	SubCheckText3:SetText(EA_XGRPALERT_CHECKCD);
@@ -1437,7 +1437,7 @@ function EAFun_GroupEvent_ChangeEventType_Click(EventType, ExtraInfo)
 				-- print ("Create UNIT_POWER EventItems");
 				local SubEventPowerText1 = _G[sSubCheckFramePrefix.."_SubEventPowerText1"];
 				if (SubEventPowerText1 == nil) then
-					SubEventPowerText1 = SubEventFrame:CreateFontString(sSubCheckFramePrefix.."_SubEventPowerText1", "ARTWORK", "GameFontNormal");
+					SubEventPowerText1 = SubEventFrame:CreateFontString(sSubCheckFramePrefix.."_SubEventPowerText1", "ARTWORK", EA_FONT_OBJECT:GetName());
 				end
 				SubEventPowerText1:SetPoint("TOPLEFT", SubEventFrame, "TOPLEFT", 0, -58);
 				SubEventPowerText1:SetText(EA_XGRPALERT_POWERTYPE);
@@ -1517,7 +1517,7 @@ function EAFun_GroupEvent_ChangeEventType_Click(EventType, ExtraInfo)
 				-- print ("Create UNIT_HEALTH EventItems");
 				local SubEventHealthText1 = _G[sSubCheckFramePrefix.."_SubEventHealthText1"];
 				if (SubEventHealthText1 == nil) then
-					SubEventHealthText1 = SubEventFrame:CreateFontString(sSubCheckFramePrefix.."_SubEventHealthText1", "ARTWORK", "GameFontNormal");
+					SubEventHealthText1 = SubEventFrame:CreateFontString(sSubCheckFramePrefix.."_SubEventHealthText1", "ARTWORK", EA_FONT_OBJECT:GetName());
 				end
 				SubEventHealthText1:SetPoint("TOPLEFT", SubEventFrame, "TOPLEFT", 0, -58);
 				SubEventHealthText1:SetText(EA_XGRPALERT_HEALTH);
@@ -1581,7 +1581,7 @@ function EAFun_GroupEvent_ChangeEventType_Click(EventType, ExtraInfo)
 				-- print ("Create UNIT_AURA EventItems");
 				local SubEventAuraText1 = _G[sSubCheckFramePrefix.."_SubEventAuraText1"];
 				if (SubEventAuraText1 == nil) then
-					SubEventAuraText1 = SubEventFrame:CreateFontString(sSubCheckFramePrefix.."_SubEventAuraText1", "ARTWORK", "GameFontNormal");
+					SubEventAuraText1 = SubEventFrame:CreateFontString(sSubCheckFramePrefix.."_SubEventAuraText1", "ARTWORK", EA_FONT_OBJECT:GetName());
 				end
 				SubEventAuraText1:SetPoint("TOPLEFT", SubEventFrame, "TOPLEFT", 0, -58);
 				SubEventAuraText1:SetText(EA_XGRPALERT_CHECKAURA);
@@ -1645,7 +1645,7 @@ function EAFun_GroupEvent_ChangeEventType_Click(EventType, ExtraInfo)
 				-- print ("Create UNIT_COMBO_POINTS EventItems");
 				local SubEventComboText1 = _G[sSubCheckFramePrefix.."_SubEventComboText1"];
 				if (SubEventComboText1 == nil) then
-					SubEventComboText1 = SubEventFrame:CreateFontString(sSubCheckFramePrefix.."_SubEventComboText1", "ARTWORK", "GameFontNormal");
+					SubEventComboText1 = SubEventFrame:CreateFontString(sSubCheckFramePrefix.."_SubEventComboText1", "ARTWORK", EA_FONT_OBJECT:GetName());
 				end
 				SubEventComboText1:SetPoint("TOPLEFT", SubEventFrame, "TOPLEFT", 0, -58);
 				SubEventComboText1:SetText(EA_XGRPALERT_COMBOPOINT);
@@ -1728,7 +1728,7 @@ function EAFun_GroupEvent_ChangeAuraCheck_Click(AuraCheck, ExtraInfo)
 		-- print ("Create ContiuneUNIT_AURA EventItems");
 		local SubEventAuraText2 = _G[sSubCheckFramePrefix.."_SubEventAuraText2"];
 		if (SubEventAuraText2 == nil) then
-			SubEventAuraText2 = SubAuraCheckFrame:CreateFontString(sSubCheckFramePrefix.."_SubEventAuraText2", "ARTWORK", "GameFontNormal");
+			SubEventAuraText2 = SubAuraCheckFrame:CreateFontString(sSubCheckFramePrefix.."_SubEventAuraText2", "ARTWORK", EA_FONT_OBJECT:GetName());
 		end
 		SubEventAuraText2:SetPoint("TOPLEFT", SubAuraCheckFrame, "TOPLEFT", 10, -3);
 		SubEventAuraText2:SetText(EA_XGRPALERT_AURATIME);
@@ -1769,7 +1769,7 @@ function EAFun_GroupEvent_ChangeAuraCheck_Click(AuraCheck, ExtraInfo)
 
 		local SubEventAuraText3 = _G[sSubCheckFramePrefix.."_SubEventAuraText3"];
 		if (SubEventAuraText3 == nil) then
-			SubEventAuraText3 = SubAuraCheckFrame:CreateFontString(sSubCheckFramePrefix.."_SubEventAuraText3", "ARTWORK", "GameFontNormal");
+			SubEventAuraText3 = SubAuraCheckFrame:CreateFontString(sSubCheckFramePrefix.."_SubEventAuraText3", "ARTWORK", EA_FONT_OBJECT:GetName());
 		end
 		SubEventAuraText3:SetPoint("TOPLEFT", SubCheckAuraTimeTextBox, "TOPRIGHT", 10, -3);
 		SubEventAuraText3:SetText(EA_XGRPALERT_AURASTACK);

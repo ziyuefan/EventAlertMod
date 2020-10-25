@@ -1,6 +1,9 @@
 if LibDebug then LibDebug() end
 --EA_Config2 改為初始預設值
 EA_Config2 = 	{
+
+		--是否顯示符文列
+		ShowRunesBar = true,
 		
 		--脫離戰鬥後是否保持技能冷卻框架		
 		SCD_NocombatStillKeep	=  true,		
@@ -10,6 +13,9 @@ EA_Config2 = 	{
 		
 		--單一技能冷卻完成即移除(true:要移除/false:不移除)
 		SCD_RemoveWhenCooldown	= true,		
+		
+		--冷卻中是否顯示框架(true:顯示 / false:不顯示)
+		SCD_ShowWhenWaitCooldown = true,
 		
 		--剩餘多少秒開始使用小數點一位顯示(使用0則完全不會有小數點)
 		UseFloatSec				= 1,

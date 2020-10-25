@@ -2,7 +2,7 @@ if LibDebug then LibDebug() end
 EA_Config = {
 			SpecPowerCheck = {
 				FocusPet,
-				ComboPoint,
+				ComboPoints,
 				Mana,
 				Rage, 
 				Focus,
@@ -47,9 +47,33 @@ EA_Config = {
 
 
 -----------------------------------------------------------------
---EA_FONTS = "Fonts\\FRIZQT__.TTF"
---EA_FONTS = "Fonts\\NotoSansTC-Medium.otf"
-EA_FONTS = "Fonts\\bHEI00M.TTF"
+--STANDARD_TEXT_FONT表示針對該語系所指向的系統預設字型
+EA_FONTS = STANDARD_TEXT_FONT
+--EA_FONT_OBJECT = GameFontNormal
+--EA_FONT_OBJECT = GameFontNormalSmall
+--EA_FONT_OBJECT = GameFontNormalLarge
+EA_FONT_OBJECT = GameFontHighlight
+--EA_FONT_OBJECT = GameFontHighlightSmall
+--EA_FONT_OBJECT = GameFontHighlightSmallOutline
+--EA_FONT_OBJECT = GameFontHighlightLarge
+--EA_FONT_OBJECT = GameFontDisable
+--EA_FONT_OBJECT = GameFontDisableSmall
+--EA_FONT_OBJECT = GameFontDisableLarge
+--EA_FONT_OBJECT = GameFontGreen
+--EA_FONT_OBJECT = GameFontGreenSmall
+--EA_FONT_OBJECT = GameFontGreenLarge
+--EA_FONT_OBJECT = GameFontRed
+--EA_FONT_OBJECT = GameFontRedSmall
+--EA_FONT_OBJECT = GameFontRedLarge
+--EA_FONT_OBJECT = GameFontWhite
+--EA_FONT_OBJECT = GameFontDarkGraySmall
+--EA_FONT_OBJECT = NumberFontNormalYellow
+--EA_FONT_OBJECT = NumberFontNormalSmallGray
+--EA_FONT_OBJECT = QuestFontNormalSmall
+--EA_FONT_OBJECT = DialogButtonHighlightText
+--EA_FONT_OBJECT = ErrorFont
+--EA_FONT_OBJECT = TextStatusBarText
+--EA_FONT_OBJECT = CombatLogFont
 EA_Position = 	{
 				Anchor,
 				relativePoint,
@@ -110,13 +134,14 @@ fLock_EventAlert_Buffs_Update = false
 EA_COMBO_POINTS = 0;
 EA_playerClass  = nil;
 EA_SpecID = nil;
-EA_RUNE_TYPE=1;
+EA_RUNE_TYPE = 1;
 localizedPlayerClass,EA_playerClass = UnitClass("player")
 -----------------------------------------------------------------
 		RUNETYPE_BLOOD = 1;
-		RUNETYPE_UNHOLY = 2;
-		RUNETYPE_FROST = 3;
-		RUNETYPE_DEATH = 4; 
+		RUNETYPE_FROST = 2;
+		RUNETYPE_UNHOLY = 3;
+		RUNETYPE_DEATH = 4;		
+		
 		MAX_RUNES = 6;
  
  

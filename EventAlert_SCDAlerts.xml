@@ -1,5 +1,5 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
-<Frame name="EA_SCD_Events_Frame" toplevel="true" frameStrata="HIGH" movable="true" enableMouse="true" hidden="true" parent="EA_Options_Frame" enableKeyboard="true">
+<Frame name="EA_SCD_Events_Frame" toplevel="true" frameStrata="MEDIUM" movable="true" enableMouse="true" hidden="true" parent="EA_Options_Frame" enableKeyboard="true">
 
 		<Size>
 			<AbsDimension x="325" y="470"/>
@@ -171,7 +171,7 @@
 						</Offset>
 					</Anchor>
 				</Anchors>
-				<FontString inherits="ChatFontNormal" />
+				<FontString inherits="GameFontNormal" />
 			</EditBox> -->
 
 			<ScrollFrame name="$parent_SpellScrollFrame" inherits="UIPanelScrollFrameTemplate">
@@ -247,7 +247,7 @@
 						self:ClearFocus();
 					</OnEscapePressed>
 				</Scripts>
-				<FontString inherits="ChatFontNormal" />
+				<FontString inherits="GameFontNormal" />
 			</EditBox>
 			<Button name="$parent_AddSpell" inherits="OptionsButtonTemplate" text="">
 				<Anchors>
@@ -294,7 +294,7 @@
 		<Scripts>
 			<OnLoad>
 				EA_SCD_Events_Frame_SpellText:SetText(EX_XCLSALERT_SPELL);
-				EA_SCD_Events_Frame_SpellEditBox:SetFontObject(ChatFontNormal);
+				EA_SCD_Events_Frame_SpellEditBox:SetFontObject(EA_FONT_OBJECT);
 				EA_SCD_Events_Frame_SpellEditBox:SetText("");
 			</OnLoad>
 		</Scripts>

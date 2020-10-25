@@ -1,5 +1,5 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
-<Frame name="EA_Group_Events_Frame" toplevel="true" frameStrata="HIGH" movable="true" enableMouse="true" hidden="true" parent="EA_Options_Frame" enableKeyboard="true">
+<Frame name="EA_Group_Events_Frame" toplevel="true" frameStrata="MEDIUM" movable="true" enableMouse="true" hidden="true" parent="EA_Options_Frame" enableKeyboard="true">
 
 		<Size>
 			<AbsDimension x="325" y="470"/>
@@ -149,7 +149,7 @@
 						</Offset>
 					</Anchor>
 				</Anchors>
-				<FontString inherits="ChatFontNormal" />
+				<FontString inherits="GameFontNormal" />
 			</EditBox> -->
 
 			<ScrollFrame name="$parent_SpellScrollFrame" inherits="UIPanelScrollFrameTemplate">
@@ -225,7 +225,7 @@
 						self:ClearFocus();
 					</OnEscapePressed>
 				</Scripts>
-				<FontString inherits="ChatFontNormal" />
+				<FontString inherits="GameFontNormal" />
 			</EditBox>
 			<Button name="$parent_AddSpell" inherits="OptionsButtonTemplate" text="">
 				<Anchors>
