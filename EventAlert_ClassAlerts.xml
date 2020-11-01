@@ -1,6 +1,6 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
 	<!-- Main Class Events Frame -->
-	<Frame name="EA_Class_Events_Frame" toplevel="true" frameStrata="HIGH" movable="true" enableMouse="true" hidden="true" parent="EA_Options_Frame" enableKeyboard="true">
+	<Frame name="EA_Class_Events_Frame" toplevel="true" frameStrata="MEDIUM" movable="true" enableMouse="true" hidden="true" parent="EA_Options_Frame" enableKeyboard="true">
 
 		<Size>
 			<AbsDimension x="325" y="470"/>
@@ -93,10 +93,10 @@
 				</Size>
 				<Scripts>
 					<OnLoad>
-						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_SELALL);
+						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_SELALL)
 					</OnLoad>
 					<OnClick>
-						CreateFrames_EventsFrame_SelAll(1, true);
+						CreateFrames_EventsFrame_SelAll(1, true)
 					</OnClick>
 				</Scripts>
 			</Button>
@@ -113,10 +113,10 @@
 				</Size>
 				<Scripts>
 					<OnLoad>
-						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_CLRALL);
+						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_CLRALL)
 					</OnLoad>
 					<OnClick>
-						CreateFrames_EventsFrame_SelAll(1, false);
+						CreateFrames_EventsFrame_SelAll(1, false)
 					</OnClick>
 				</Scripts>
 			</Button>
@@ -133,10 +133,10 @@
 				</Size>
 				<Scripts>
 					<OnLoad>
-						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_LOADDEFAULT);
+						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_LOADDEFAULT)
 					</OnLoad>
 					<OnClick>
-						CreateFrames_EventsFrame_LoadDefault(1);
+						CreateFrames_EventsFrame_LoadDefault(1)
 					</OnClick>
 				</Scripts>
 			</Button>
@@ -153,10 +153,10 @@
 				</Size>
 				<Scripts>
 					<OnLoad>
-						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_REMOVEALL);
+						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_REMOVEALL)
 					</OnLoad>
 					<OnClick>
-						CreateFrames_EventsFrame_RemoveAllSpells(1);
+						CreateFrames_EventsFrame_RemoveAllSpells(1)
 					</OnClick>
 				</Scripts>
 			</Button>
@@ -195,7 +195,7 @@
 						</Offset>
 					</Anchor>
 				</Anchors>
-				<FontString inherits="ChatFontNormal" />
+				<FontString inherits="GameFontNormal" />
 			</EditBox>
 			<EditBox name="$parent_SpellEditBox" letters="6" multiLine="false" numeric="true" ignoreArrows="false" autoFocus="false">
 				<Size>
@@ -240,13 +240,13 @@
 				</Layers>
 				<Scripts>
 					<OnEnterPressed>
-						CreateFrames_EventsFrame_AddSpell(1);
+						CreateFrames_EventsFrame_AddSpell(1)
 					</OnEnterPressed>
 					<OnEscapePressed>
-						self:ClearFocus();
+						self:ClearFocus()
 					</OnEscapePressed>
 				</Scripts>
-				<FontString inherits="ChatFontNormal" />
+				<FontString inherits="GameFontNormal" />
 			</EditBox>
 			<Button name="$parent_AddSpell" inherits="OptionsButtonTemplate" text="">
 				<Anchors>
@@ -261,10 +261,10 @@
 				</Size>
 				<Scripts>
 					<OnLoad>
-						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_ADDSPELL);
+						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_ADDSPELL)
 					</OnLoad>
 					<OnClick>
-						CreateFrames_EventsFrame_AddSpell(1);
+						CreateFrames_EventsFrame_AddSpell(1)
 					</OnClick>
 				</Scripts>
 			</Button>
@@ -281,10 +281,10 @@
 				</Size>
 				<Scripts>
 					<OnLoad>
-						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_DELSPELL);
+						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_DELSPELL)
 					</OnLoad>
 					<OnClick>
-						CreateFrames_EventsFrame_DelSpell(1);
+						CreateFrames_EventsFrame_DelSpell(1)
 					</OnClick>
 				</Scripts>
 			</Button>
@@ -292,21 +292,21 @@
 
 		<Scripts>
 			<OnLoad>
-				EA_Class_Events_Frame_HelpText1:SetText(EX_XCLSALERT_HELP1);
-				EA_Class_Events_Frame_HelpText2:SetText(EX_XCLSALERT_HELP2);
-				EA_Class_Events_Frame_HelpText3:SetText(EX_XCLSALERT_HELP3);
-				EA_Class_Events_Frame_EditBox:SetFontObject(ChatFontNormal);
-				EA_Class_Events_Frame_EditBox:SetText(EX_XCLSALERT_SPELLURL);
-				EA_Class_Events_Frame_SpellText:SetText(EX_XCLSALERT_SPELL);
-				EA_Class_Events_Frame_SpellEditBox:SetFontObject(ChatFontNormal);
-				EA_Class_Events_Frame_SpellEditBox:SetText("");
+				EA_Class_Events_Frame_HelpText1:SetText(EX_XCLSALERT_HELP1)
+				EA_Class_Events_Frame_HelpText2:SetText(EX_XCLSALERT_HELP2)
+				EA_Class_Events_Frame_HelpText3:SetText(EX_XCLSALERT_HELP3)
+				EA_Class_Events_Frame_EditBox:SetFontObject(EA_FONT_OBJECT)
+				EA_Class_Events_Frame_EditBox:SetText(EX_XCLSALERT_SPELLURL)
+				EA_Class_Events_Frame_SpellText:SetText(EX_XCLSALERT_SPELL)
+				EA_Class_Events_Frame_SpellEditBox:SetFontObject(EA_FONT_OBJECT)
+				EA_Class_Events_Frame_SpellEditBox:SetText("")
 			</OnLoad>
 		</Scripts>
 	</Frame>
 
 
 	<!-- Alternative Class Events Frame -->
-	<Frame name="EA_ClassAlt_Events_Frame" toplevel="true" frameStrata="HIGH" movable="true" enableMouse="true" hidden="true" parent="EA_Class_Events_Frame" enableKeyboard="true">
+	<Frame name="EA_ClassAlt_Events_Frame" toplevel="true" frameStrata="MEDIUM" movable="true" enableMouse="true" hidden="true" parent="EA_Class_Events_Frame" enableKeyboard="true">
 
 		<Size>
 			<AbsDimension x="325" y="500"/>
@@ -397,10 +397,10 @@
 				</Size>
 				<Scripts>
 					<OnLoad>
-						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_SELALL);
+						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_SELALL)
 					</OnLoad>
 					<OnClick>
-						CreateFrames_EventsFrame_SelAll(2, true);
+						CreateFrames_EventsFrame_SelAll(2, true)
 					</OnClick>
 				</Scripts>
 			</Button>
@@ -417,10 +417,10 @@
 				</Size>
 				<Scripts>
 					<OnLoad>
-						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_CLRALL);
+						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_CLRALL)
 					</OnLoad>
 					<OnClick>
-						CreateFrames_EventsFrame_SelAll(2, false);
+						CreateFrames_EventsFrame_SelAll(2, false)
 					</OnClick>
 				</Scripts>
 			</Button>
@@ -437,10 +437,10 @@
 				</Size>
 				<Scripts>
 					<OnLoad>
-						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_LOADDEFAULT);
+						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_LOADDEFAULT)
 					</OnLoad>
 					<OnClick>
-						CreateFrames_EventsFrame_LoadDefault(2);
+						CreateFrames_EventsFrame_LoadDefault(2)
 					</OnClick>
 				</Scripts>
 			</Button>
@@ -457,10 +457,10 @@
 				</Size>
 				<Scripts>
 					<OnLoad>
-						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_REMOVEALL);
+						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_REMOVEALL)
 					</OnLoad>
 					<OnClick>
-						CreateFrames_EventsFrame_RemoveAllSpells(2);
+						CreateFrames_EventsFrame_RemoveAllSpells(2)
 					</OnClick>
 				</Scripts>
 			</Button>
@@ -531,13 +531,13 @@
 				</Layers>
 				<Scripts>
 					<OnEnterPressed>
-						CreateFrames_EventsFrame_AddSpell(2);
+						CreateFrames_EventsFrame_AddSpell(2)
 					</OnEnterPressed>
 					<OnEscapePressed>
-						self:ClearFocus();
+						self:ClearFocus()
 					</OnEscapePressed>
 				</Scripts>
-				<FontString inherits="ChatFontNormal" />
+				<FontString inherits="GameFontNormal" />
 			</EditBox>
 			<Button name="$parent_AddSpell" inherits="OptionsButtonTemplate" text="">
 				<Anchors>
@@ -552,10 +552,10 @@
 				</Size>
 				<Scripts>
 					<OnLoad>
-						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_ADDSPELL);
+						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_ADDSPELL)
 					</OnLoad>
 					<OnClick>
-						CreateFrames_EventsFrame_AddSpell(2);
+						CreateFrames_EventsFrame_AddSpell(2)
 					</OnClick>
 				</Scripts>
 			</Button>
@@ -572,10 +572,10 @@
 				</Size>
 				<Scripts>
 					<OnLoad>
-						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_DELSPELL);
+						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_DELSPELL)
 					</OnLoad>
 					<OnClick>
-						CreateFrames_EventsFrame_DelSpell(2);
+						CreateFrames_EventsFrame_DelSpell(2)
 					</OnClick>
 				</Scripts>
 			</Button>
@@ -583,12 +583,12 @@
 
 		<Scripts>
 			<OnLoad>
-				EA_ClassAlt_Events_Frame_HelpText1:SetText(EX_XCLSALERT_HELP4);
-				EA_ClassAlt_Events_Frame_HelpText2:SetText(EX_XCLSALERT_HELP5);
-				EA_ClassAlt_Events_Frame_HelpText3:SetText(EX_XCLSALERT_HELP6);
-				EA_ClassAlt_Events_Frame_SpellText:SetText(EX_XCLSALERT_SPELL);
-				EA_ClassAlt_Events_Frame_SpellEditBox:SetFontObject(ChatFontNormal);
-				EA_ClassAlt_Events_Frame_SpellEditBox:SetText("");
+				EA_ClassAlt_Events_Frame_HelpText1:SetText(EX_XCLSALERT_HELP4)
+				EA_ClassAlt_Events_Frame_HelpText2:SetText(EX_XCLSALERT_HELP5)
+				EA_ClassAlt_Events_Frame_HelpText3:SetText(EX_XCLSALERT_HELP6)
+				EA_ClassAlt_Events_Frame_SpellText:SetText(EX_XCLSALERT_SPELL)
+				EA_ClassAlt_Events_Frame_SpellEditBox:SetFontObject(EA_FONT_OBJECT)
+				EA_ClassAlt_Events_Frame_SpellEditBox:SetText("")
 			</OnLoad>
 		</Scripts>
 	</Frame>
