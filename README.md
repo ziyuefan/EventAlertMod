@@ -4,7 +4,7 @@
     
 CHANGELOG:     
 ---    
-https://github.com/ziyuefan/EventAlertMod/blob/SL-2020.10.26/changelog.txt
+https://github.com/ziyuefan/EventAlertMod/blob/SL-2020.11.17/changelog.txt
 
 ![EAM Main](https://truth.bahamut.com.tw/s01/202008/1982fcd16ac80aaddfeb299f57a71e94.JPG)
 
@@ -55,3 +55,13 @@ https://github.com/ziyuefan/EventAlertMod/blob/SL-2020.10.26/changelog.txt
 
 > /eam NewLineByIconCount n
 技能冷卻圖示最多 n 個就跳下一行
+
+> /eam ShowRunesBar
+開關型指令,用來決定是否顯示死騎符文列(2020/10/18新增)
+
+> /eam BaseFontSize n
+由於字體大小不再跟隨圖示大小縮放,
+所以另提供指令更改基礎字體大小,
+計時、堆疊、名稱皆與此基礎字體大
+小做等比例縮放
+
