@@ -252,6 +252,9 @@ end
 
 -- function CreateFrames_CreateSpecialFrame(index)
 function CreateFrames_SpecialFrames_Show(index)
+	
+	if EA_flagAllHidden == true then EA_Main_Frame:SetAlpha(0) return end
+	
 	local sFramePrefix = "EAFrameSpec_"
 
 	local eaf = _G[sFramePrefix..index]
@@ -677,10 +680,7 @@ function CreateFrames_CfgBtn_LoadSpellCondition(self)
 	EA_SpellCondition_Frame_SpellIcon.texture:SetAllPoints(EA_SpellCondition_Frame_SpellIcon)
 	EA_SpellCondition_Frame_SpellIcon.texture:SetTexture(SpellIconPath)
 	-----------------------------------------------------------------------
-	
 	EA_SpellCondition_Frame_SpellNameText:SetText(SpellName.."\n["..SpellID.."]")
-	
-	
 	
 	local iTextWidth = EA_SpellCondition_Frame_SpellNameText:GetTextWidth()
 	EA_SpellCondition_Frame_SpellNameText:SetWidth(iTextWidth)
@@ -1413,8 +1413,8 @@ function CreateFrames_CreateMinimapOptionFrame()
 	eaf:SetWidth(40)
 	eaf:SetHeight(40)
 	--eaf:SetPoint("TOPRIGHT",Minimap,"BOTTOMLEFT",10,-40)
-	eaf:SetPoint("CENTER", Minimap, "BOTTOMLEFT",-30,-20)
-	eaf:SetAlpha(0.7)
+	eaf:SetPoint("BOTTOMRIGHT", Minimap, "BOTTOMLEFT",10,10)
+	eaf:SetAlpha(0.5)
 	Lib_ZYF:SetBackdrop(eaf, {bgFile = "Interface/Icons/Trade_Engineering"})
 	-- if eaf.Backdrop == nil then
 		-- eaf.Backdrop =  CreateFrame("Frame",nil,eaf,"BackdropTemplate")
@@ -1431,6 +1431,8 @@ function CreateFrames_CreateMinimapOptionFrame()
 	eaf:RegisterForClicks("LeftButtonDown")
 	--註冊滑鼠右鍵拖曳事件
 	eaf:RegisterForDrag("RightButton")
+	--防止拖出螢幕外
+	eaf:SetClampedToScreen(true)
 	
 	eaf:SetScript("OnClick", function(self,button)																	
 									if not(EA_Options_Frame:IsVisible()) then			
@@ -1492,9 +1494,9 @@ function CreateFrames_CreateMinimapOptionFrame()
 								t = t.." - Same as /dump EA_Position \n"
 								
 								t = t.."\124cff00FF00"
-								t = t.."/eam MiniMap"
+								t = t.."/eam MiniMap [RESET]"
 								t = t.."\124r"
-								t = t.." - ON/OFF Show Option Button near by Minimap \n"
+								t = t.." - ON/OFF Show Option Button near by Minimap (RESET to Original location) \n"
 								
 								t = t.."\124cff00FF00"
 								t = t.."/eam UpdateInterval (0.1~1s)"
@@ -1530,7 +1532,7 @@ function CreateFrames_CreateMinimapOptionFrame()
 								
 							end	)
 	eaf:SetScript("OnLeave", function()	
-								eaf:SetAlpha(0.8)
+								eaf:SetAlpha(0.5)
 								GameTooltip:Hide()
 							end	)
 							

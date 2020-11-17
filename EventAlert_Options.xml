@@ -617,10 +617,10 @@
 						</Offset>
 					</Anchor>
 				</Anchors>
-				<NormalTexture file="Interface\AddOns\EventAlertMod\Images\UI-Panel-Backdrop.blp"/>
-				<HighlightTexture file="Interface\AddOns\EventAlertMod\Images\UI-Panel-Backdrop.blp"/>
-				<PushedTexture file="Interface\AddOns\EventAlertMod\Images\UI-Panel-Backdrop.blp"/> 
-				<DisabledTexture file="Interface\AddOns\EventAlertMod\Images\UI-Panel-Backdrop.blp"/> 
+				<!-- <NormalTexture file="Interface\AddOns\EventAlertMod\Images\UI-Panel-Backdrop.blp"/> -->
+				<!-- <HighlightTexture file="Interface\AddOns\EventAlertMod\Images\UI-Panel-Backdrop.blp"/> -->
+				<!-- <PushedTexture file="Interface\AddOns\EventAlertMod\Images\UI-Panel-Backdrop.blp"/>  -->
+				<!-- <DisabledTexture file="Interface\AddOns\EventAlertMod\Images\UI-Panel-Backdrop.blp"/>  -->
 				<Scripts>
 					<OnLeave>
 						GameTooltip:Hide()

@@ -6,7 +6,7 @@
 	<Script file="EventAlert_SpellArray.lua" />			
 	<Script file="EventAlertMod.lua" />		
 	
-	<Frame visible="true" name="EA_Main_Frame" parent="UIParent" toplevel="true" frameStrata="LOW">
+	<Frame visible="true" name="EA_Main_Frame" parent="UIParent" toplevel="true" frameStrata="LOW" enableKeyboard="true">
 		<Size>
 			<AbsDimension x="1" y="1" />
 		</Size>
@@ -16,7 +16,15 @@
 			</OnLoad>
 			<OnEvent>
 				EventAlert_OnEvent(self, event, ...)
-			</OnEvent>
+			</OnEvent>			
+			<OnKeyUp>	
+				<!-- EventAlert_OnKeyUp(self,key) -->
+				self:SetPropagateKeyboardInput(false)
+			</OnKeyUp>
+			<OnKeyDown>	
+				EventAlert_OnKeyDown(self,key)
+				self:SetPropagateKeyboardInput(true)
+			</OnKeyDown>
 		</Scripts>
 	</Frame>
 	<Frame name="EA_Version_Frame" hidden="true" parent="UIParent" movable="true" frameStrata="MEDIUM">

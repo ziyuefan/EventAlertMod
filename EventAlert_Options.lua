@@ -31,7 +31,7 @@ end
 -----------------------------------------------------
 function EventAlert_Options_Init()
 	-- Delete XML <Backdrop> label, and Batch Recreate BACKDROP frame by lua
-	local function OptionsSetBackdrop(frame) 
+	local function OptionsSetBackdrop(frame,colorRGBA,colorBorderRGBA) 
 		Lib_ZYF:SetBackdrop(frame,{
 			bgFile = "interface/dialogframe/ui-dialogbox-gold-background", 
 			edgeFile = "interface/dialogframe/ui-dialogbox-gold-border",
@@ -40,17 +40,28 @@ function EventAlert_Options_Init()
 			edgeSize = 32,
 			insets = { left = 11, right = 12, top = 11, bottom = 11,}
 			})
-		Lib_ZYF:SetBackdropColor(frame, 1, 1, 1, 2/3)
-		Lib_ZYF:SetBackdropBorderColor(EA_Options_Frame, 1, 1, 1, 1)	
+		if colorRGBA and type(colorRGBA)=="table" then
+			Lib_ZYF:SetBackdropColor(frame,	colorRGBA.red, 
+											colorRGBA.green,
+											colorRGBA.blue, 
+											colorRGBA.alpha)
+		end
+		if colorBorderRGBA and type(colorBorderRGBA)=="table" then
+			Lib_ZYF:SetBackdropColor(frame,	colorBorderRGBA.red,
+											colorBorderRGBA.green,
+											colorBorderRGBA.blue,
+											colorBorderRGBA.alpha)
+		end
+		
 	end
 	OptionsSetBackdrop(EA_Options_Frame)
-	OptionsSetBackdrop(EA_SpellCondition_Frame)
+	OptionsSetBackdrop(EA_SpellCondition_Frame,{red=0, green=0 ,blue=0 ,alpha=1})
 	OptionsSetBackdrop(EA_Class_Events_Frame)
 	OptionsSetBackdrop(EA_Other_Events_Frame)
 	OptionsSetBackdrop(EA_Target_Events_Frame)
 	OptionsSetBackdrop(EA_SCD_Events_Frame)
 	OptionsSetBackdrop(EA_Group_Events_Frame)
-	OptionsSetBackdrop(EA_GroupEventSetting_Frame)	
+	OptionsSetBackdrop(EA_GroupEventSetting_Frame,{red=0, green=0, blue=0, alpha=1})	
 	-------------------------------------------------------
 		
 	EA_Options_Frame_Header_Text:SetFontObject(EA_FONT_OBJECT)
