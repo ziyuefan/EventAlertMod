@@ -4,7 +4,7 @@
     
 CHANGELOG:     
 ---    
-https://github.com/ziyuefan/EventAlertMod/blob/SL-2020.11.01/changelog.txt
+https://github.com/ziyuefan/EventAlertMod/blob/SL-2020.11.07/changelog.txt
 
 ![EAM Main](https://truth.bahamut.com.tw/s01/202008/1982fcd16ac80aaddfeb299f57a71e94.JPG)
 
@@ -43,8 +43,9 @@ https://github.com/ziyuefan/EventAlertMod/blob/SL-2020.11.01/changelog.txt
 或者無法滿足其技能條件,則不會高亮
 但是距離不在此限
 
-> /eam MiniMap
+> /eam MiniMap [reset]
 開關型指令,用來顯示設定齒輪顯示與否
+,加上 reset 強制定位定位到小地圖左下角
 
 > /eam UpdateInterval  n
 設定更新頻率,越小越快,若有團戰無法負荷情況請加大此數值
@@ -53,5 +54,11 @@ https://github.com/ziyuefan/EventAlertMod/blob/SL-2020.11.01/changelog.txt
 > /eam IconAppenSpellTip
 開關形指令, 圖示是否在滑鼠移過時顯示法術說明
 
-> /eam NewLineByIconCount n
-技能冷卻圖示最多 n 個就跳下一行
+> /eam ShowRunesBar
+開關型指令,用來決定是否顯示死騎符文列(2020/10/18新增)
+
+> /eam BaseFontSize n
+由於字體大小不再跟隨圖示大小縮放,
+所以另提供指令更改基礎字體大小,
+計時、堆疊、名稱皆與此基礎字體大
+小做等比例縮放
