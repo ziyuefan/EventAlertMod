@@ -109,6 +109,7 @@ local EA_SPEC_expirationTime2 = 0
 --------------------------------
 local EA_FormType_FirstTimeCheck = true
 local EA_ADDONS_NAME = "EventAlertMod"
+EA_flagAllHidden = false
 --------------------------------
 -- For OnUpdate Using, only Gloabal Var.
 --------------------------------
@@ -123,38 +124,7 @@ EventAlert_TimeSinceUpdate_LifeBloom	= 0
 --------------------------------
 EventAlert_DEBUG = {}
 --------------------------------
-local EA_EventList = {
-		--["PLAYER_LOGIN"]				=nil					,
-		["ADDON_LOADED"]				= EventAlert_ADDON_LOADED,
-		["PLAYER_ENTERING_WORLD"]		= EventAlert_PLAYER_ENTERING_WORLD ,
-		["PLAYER_DEAD"]					= EventAlert_PLAYER_ENTERING_WORLD,
-		["PLAYER_ENTER_COMBAT"]			= EventAlert_PLAYER_ENTER_COMBAT,
-		["PLAYER_LEAVE_COMBAT"]			= EventAlert_PLAYER_LEAVE_COMBAT,
-		["PLAYER_REGEN_DISABLED"]		= EventAlert_PLAYER_ENTER_COMBAT,
-		["PLAYER_REGEN_ENABLED"]		= EventAlert_PLAYER_LEAVE_COMBAT,
-		["PLAYER_TALENT_UPDATE"]		= EventAlert_PLAYER_TALENT_UPDATE,
-		["PLAYER_TALENT_WIPE"]			= EventAlert_PLAYER_TALENT_WIPE,
-		["PLAYER_TARGET_CHANGED"]		= EventAlert_TARGET_CHANGED,
-		["ACTIVE_TALENT_GROUP_CHANGED"]	= EventAlert_ACTIVE_TALENT_GROUP_CHANGED,
-		["COMBAT_LOG_EVENT_UNFILTERED"]	= EventAlert_COMBAT_LOG_EVENT_UNFILTERED ,
-		--["COMBAT_TEXT_UPDATE"]			=EventAlert_COMBAT_TEXT_UPDATE,		
-		["SPELL_UPDATE_COOLDOWN"]		= EventAlert_SPELL_UPDATE_COOLDOWN,
-		["SPELL_UPDATE_CHARGES"]		= EventAlert_SPELL_UPDATE_CHARGES,
-		["SPELL_UPDATE_USABLE"]			= EventAlert_SPELL_UPDATE_USABLE,
-		["UPDATE_SHAPESHIFT_FORM"]		= EventAlert_UPDATE_SHAPESHIFT_FORM,
-		["UNIT_SPELLCAST_START"]		= EventAlert_UNIT_SPELLCAST_START,
-		["UNIT_SPELLCAST_CHANNEL_START"]= EventAlert_UNIT_SPELLCAST_CHANNEL_START,
-		["UNIT_AURA"]					= EventAlert_UNIT_AURA,		
-		--["UNIT_COMBO_POINTS"]			= EventAlert_COMBO_POINTS,
-		["UNIT_DISPLAYPOWER"]			= EventAlert_DISPLAYPOWER,
-		["UNIT_HEALTH"]					= EventAlert_UNIT_HEALTH	,
-		["UNIT_POWER_UPDATE"]			= EventAlert_UNIT_POWER_UPDATE,
-		["UNIT_POWER_FREQUENT"]			= EventAlert_UNIT_POWER_UPDATE,
-		["RUNE_TYPE_UPDATE"]			= EventAlert_UpdateRunes,
-		["RUNE_POWER_UPDATE"]			= EventAlert_UpdateRunes,
-		--["UNIT_SPELLCAST_SUCCEEDED"]	= EventAlert_UNIT_SPELLCAST_SUCCEEDED,		
-		["PLAYER_TOTEM_UPDATE"]			= EventAlert_UNIT_PLAYER_TOTEM_UPDATE,
-	}
+
 -------------------------------------------
 -- Package Animation Object for EASCDFrame
 -------------------------------------------
@@ -313,7 +283,7 @@ function EventAlert_OnLoad(self)
 		["RUNE_TYPE_UPDATE"]			= EventAlert_UpdateRunes,
 		["RUNE_POWER_UPDATE"]			= EventAlert_UpdateRunes,
 		--["UNIT_SPELLCAST_SUCCEEDED"]	= EventAlert_UNIT_SPELLCAST_SUCCEEDED,		
-		["PLAYER_TOTEM_UPDATE"]			= EventAlert_UNIT_PLAYER_TOTEM_UPDATE,
+		["PLAYER_TOTEM_UPDATE"]			= EventAlert_UNIT_PLAYER_TOTEM_UPDATE,		
 	}
 	
 	-- Lib_ZYF:SetOnUpdate(0.1, EventAlert_SpecialFrame_Update)
@@ -325,6 +295,23 @@ function EventAlert_OnEvent(self, event, ...)
 		if type(func) == "function" then 			
 			func(self,event,...)
 		end
+end
+--ESC鍵隱藏
+function EventAlert_OnKeyDown(self,key)		
+	if (EA_Config.AllowESC == true ) then
+		if (key == "ESCAPE") and (EA_flagAllHidden == true) then			
+			EA_Main_Frame:SetAlpha(1)
+			EA_flagAllHidden = false
+			-- print(EA_flagAllHidden)
+		elseif (key == "ESCAPE") and (EA_flagAllHidden == false) then
+			--若使用Hide()隱藏將導致無法接受鍵盤事件,所以只能改用調整透明度為0以保持事件偵測
+			EA_Main_Frame:SetAlpha(0)
+			EA_flagAllHidden = true
+			-- print(EA_flagAllHidden)
+		end		
+	end
+	--此行重要,防止按鍵卡在此函數,無法讓遊戲其他UI吃到按鍵
+	--self:SetPropagateKeyboardInput(true)
 end
 --------------------------------
 -- If 'OnLoad' event had loaded, then excute this 'ADDON_LOADED' event.
@@ -1347,6 +1334,9 @@ end
 --[[------------------------------------------------------------------
 --------------------------------------------------------------------]]
 function EventAlert_ScdBuffs_Update(EA_Unit, EA_SpellName, EA_spellID, EA_timestp)
+		
+		if EA_flagAllHidden == true then EA_Main_Frame:SetAlpha(0) return end
+		
 		local spellID = tonumber(EA_spellID)
 		local spellDescription = GetSpellDescription(spellID)
 		local sSpellLink = ""
@@ -1759,6 +1749,8 @@ end
 --------------------------------------------------------------------]]
 function EventAlert_PositionFrames()
 	--print(GetTime().." Enter PositionFrames")	
+	if EA_flagAllHidden == true then EA_Main_Frame:SetAlpha(0) return end
+	
 	local tonumber = tonumber
 	local type = type
 	local ipairs = ipairs
@@ -1869,6 +1861,9 @@ end
 --[[------------------------------------------------------------------
 --------------------------------------------------------------------]]
 function EventAlert_TarPositionFrames()
+
+	if EA_flagAllHidden == true then EA_Main_Frame:SetAlpha(0) return end
+
 	if (EA_Config.ShowFrame == true) then
 		EA_Main_Frame:ClearAllPoints()
 		EA_Main_Frame:SetPoint(EA_Position.Anchor, UIParent, EA_Position.relativePoint, EA_Position.xLoc, EA_Position.yLoc)
@@ -1976,6 +1971,9 @@ end
 --[[------------------------------------------------------------------
 --------------------------------------------------------------------]]
 function EventAlert_ScdPositionFrames()
+
+	if EA_flagAllHidden == true then EA_Main_Frame:SetAlpha(0) return end
+
 	local NewLineByIconCount = EA_Config.NewLineByIconCount
 	--If Player is Combating, don't show Spell Cooldown Frame.
 	if UnitAffectingCombat("player") == false then		
@@ -2176,7 +2174,7 @@ function EventAlert_SlashHandler(msg)
 		local f = EA_MinimapOption
 		if para1 and para1=="reset" then
 			f:ClearAllPoints()
-			f:SetPoint("CENTER",Minimap,"BOTTOMLEFT",-30,-20)
+			f:SetPoint("TOPRIGHT",Minimap,"BOTTOMLEFT",0,0)
 			EA_Config.OPTION_ICON = true
 			f:Show()
 		else
@@ -2674,6 +2672,9 @@ end
 -----------------------------------------------------------------
 -- Speciall Frame: UpdateComboPoint, for watching the combopoint of player
 function EventAlert_UpdateComboPoints()	
+
+	if EA_flagAllHidden == true then EA_Main_Frame:SetAlpha(0) return end
+
 	--EA_COMBO_POINTS = UnitPower("player",EA_SPELL_POWER_COMBO_POINT)
 	EA_COMBO_POINTS = UnitPower("player",Enum.PowerType.ComboPoints)
 	local iComboPoint = EA_COMBO_POINTS
@@ -2787,7 +2788,8 @@ function EventAlert_UpdateFocus()
 	end
 end
 -- Speciall Frame: Update Runes
-function EventAlert_UpdateRunes()	
+function EventAlert_UpdateRunes()		
+	
 	if (EA_playerClass ~= EA_CLASS_DK) then return end
 	if not(EA_Config.SpecPowerCheck.Runes) then return end
 	if not(EA_SpecPower.Runes.has) then return end
@@ -2893,6 +2895,9 @@ end
 -----------------------------------------------------------------
 -- Speciall Frame: UpdateSinglePower(holy power, runic power, soul shards), for watching the power of player
 function EventAlert_UpdateSinglePower(iPowerType)
+
+	if EA_flagAllHidden == true then EA_Main_Frame:SetAlpha(0) return end
+
 	local unit = "player"
 	local _, playerClass = UnitClass(unit)
 	local iUnitPower = UnitPower(unit, iPowerType)	
@@ -2902,11 +2907,14 @@ function EventAlert_UpdateSinglePower(iPowerType)
 	for i,v in ipairs(EA_XGRPALERT_POWERTYPES) do
 		if iPowerType == v.value then
 			iPowerName = v.text
-			if iPowerType == Enum.PowerType.Runes then
-				iPowerName = select(2, GetSpecializationInfo(GetSpecialization()))..iPowerName
+			if iPowerType == Enum.PowerType.Runes then				
+				local powerName = select(2, GetSpecializationInfo(GetSpecialization()))
+				iPowerName = (powerName or "")..iPowerName
 			end
+			break			
 		end
 	end
+	
 	if (EA_Config.ShowFrame == true) then
 		EA_Main_Frame:ClearAllPoints()
 		EA_Main_Frame:SetPoint(EA_Position.Anchor, UIParent, EA_Position.relativePoint, EA_Position.xLoc, EA_Position.yLoc)
@@ -4147,6 +4155,9 @@ function RemoveSingleSCDCurrentBuff(spellID)
 end
 -----------------------------------------------------------------
 function ShowAllScdCurrentBuff()
+
+	if EA_flagAllHidden == true then EA_Main_Frame:SetAlpha(0) return end
+	
 	local GetSpellInfo = GetSpellInfo
 	local GetSpellTexture = GetSpellTexture
 	local tonumber = tonumber
