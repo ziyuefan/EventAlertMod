@@ -10,72 +10,72 @@ local function CopyTable(SrcTable)
 	local pairs = pairs
 	for sKey, sValue in pairs(SrcTable) do
 		if type(sValue) == "table" then
-			TarTable[sKey] = {};
-			TarTable[sKey] = CopyTable(sValue);
+			TarTable[sKey] = {}
+			TarTable[sKey] = CopyTable(sValue)
 		else
-			TarTable[sKey] = sValue;
+			TarTable[sKey] = sValue
 		end
 	end
-	return TarTable;
+	return TarTable
 end
 
 function EventAlert_LoadClassSpellArray(ItemType)
-	--if EA_Items[EA_playerClass] == nil then EA_Items[EA_playerClass] = {} end;
-	--if EA_AltItems[EA_playerClass] == nil then EA_AltItems[EA_playerClass] = {} end;
-	--if EA_Items[EA_CLASS_OTHER] == nil then EA_Items[EA_CLASS_OTHER] = {} end;
-	--if EA_TarItems[EA_playerClass] == nil then EA_TarItems[EA_playerClass] = {} end;
-	--if EA_ScdItems[EA_playerClass] == nil then EA_ScdItems[EA_playerClass] = {} end;
-	--if EA_GrpItems[EA_playerClass] == nil then EA_GrpItems[EA_playerClass] = {} end;
+	--if EA_Items[EA_playerClass] == nil then EA_Items[EA_playerClass] = {} end
+	--if EA_AltItems[EA_playerClass] == nil then EA_AltItems[EA_playerClass] = {} end
+	--if EA_Items[EA_CLASS_OTHER] == nil then EA_Items[EA_CLASS_OTHER] = {} end
+	--if EA_TarItems[EA_playerClass] == nil then EA_TarItems[EA_playerClass] = {} end
+	--if EA_ScdItems[EA_playerClass] == nil then EA_ScdItems[EA_playerClass] = {} end
+	--if EA_GrpItems[EA_playerClass] == nil then EA_GrpItems[EA_playerClass] = {} end
 
 	if (ItemType == 1) or (ItemType == 9 and EA_Items[EA_playerClass] == nil) then
-		EA_Items[EA_playerClass] = {};
+		EA_Items[EA_playerClass] = {}
 		for i, v in pairsByKeys(EADef_Items[EA_playerClass]["ITEMS"]) do
-			i = tonumber(i);
-			if EA_Items[EA_playerClass][i] == nil then EA_Items[EA_playerClass][i] = v end;
-			if GetSpellInfo(i) == nil then EA_Items[EA_playerClass][i] = nil end;
+			i = tonumber(i)
+			if EA_Items[EA_playerClass][i] == nil then EA_Items[EA_playerClass][i] = v end
+			if GetSpellInfo(i) == nil then EA_Items[EA_playerClass][i] = nil end
 		end
 	end
 	if (ItemType == 2) or (ItemType == 9 and EA_AltItems[EA_playerClass] == nil) then
-		EA_AltItems[EA_playerClass] = {};
+		EA_AltItems[EA_playerClass] = {}
 		for i, v in pairsByKeys(EADef_Items[EA_playerClass]["ALTITEMS"]) do
-			i = tonumber(i);
-			if EA_AltItems[EA_playerClass][i] == nil then EA_AltItems[EA_playerClass][i] = v end;
-			if GetSpellInfo(i) == nil then EA_AltItems[EA_playerClass][i] = nil end;
+			i = tonumber(i)
+			if EA_AltItems[EA_playerClass][i] == nil then EA_AltItems[EA_playerClass][i] = v end
+			if GetSpellInfo(i) == nil then EA_AltItems[EA_playerClass][i] = nil end
 		end
 	end
 	if (ItemType == 3) or (ItemType == 9 and EA_Items[EA_CLASS_OTHER] == nil) then
-		EA_Items[EA_CLASS_OTHER] = {};
+		EA_Items[EA_CLASS_OTHER] = {}
 		for i, v in pairsByKeys(EADef_Items[EA_CLASS_OTHER]) do
-			i = tonumber(i);
-			if EA_Items[EA_CLASS_OTHER][i] == nil then EA_Items[EA_CLASS_OTHER][i] = v  end;
-			if GetSpellInfo(i) == nil then EA_Items[EA_CLASS_OTHER][i] = nil end;
+			i = tonumber(i)
+			if EA_Items[EA_CLASS_OTHER][i] == nil then EA_Items[EA_CLASS_OTHER][i] = v  end
+			if GetSpellInfo(i) == nil then EA_Items[EA_CLASS_OTHER][i] = nil end
 		end
 	end
 	if (ItemType == 4) or (ItemType == 9 and EA_TarItems[EA_playerClass] == nil) then
-		EA_TarItems[EA_playerClass] = {};
+		EA_TarItems[EA_playerClass] = {}
 		for i, v in pairsByKeys(EADef_Items[EA_playerClass]["TARITEMS"]) do
-			i = tonumber(i);
-			if EA_TarItems[EA_playerClass][i] == nil then EA_TarItems[EA_playerClass][i] = v end;
-			if GetSpellInfo(i) == nil then EA_TarItems[EA_playerClass][i] = nil end;
+			i = tonumber(i)
+			if EA_TarItems[EA_playerClass][i] == nil then EA_TarItems[EA_playerClass][i] = v end
+			if GetSpellInfo(i) == nil then EA_TarItems[EA_playerClass][i] = nil end
 		end
 	end
 	if (ItemType == 5) or (ItemType == 9 and EA_ScdItems[EA_playerClass] == nil) then
-		EA_ScdItems[EA_playerClass] = {};
+		EA_ScdItems[EA_playerClass] = {}
 		for i, v in pairsByKeys(EADef_Items[EA_playerClass]["SCDITEMS"]) do
-			i = tonumber(i);
-			if EA_ScdItems[EA_playerClass][i] == nil then EA_ScdItems[EA_playerClass][i] = v end;
-			if GetSpellInfo(i) == nil then EA_ScdItems[EA_playerClass][i] = nil end;
+			i = tonumber(i)
+			if EA_ScdItems[EA_playerClass][i] == nil then EA_ScdItems[EA_playerClass][i] = v end
+			if GetSpellInfo(i) == nil then EA_ScdItems[EA_playerClass][i] = nil end
 		end
 	end
 	if (ItemType == 6) or (ItemType == 9 and EA_GrpItems[EA_playerClass] == nil) then
-		EA_GrpItems[EA_playerClass] = {};
-		local iGroupCnts = 0;
-		--if (#EA_GrpItems[EA_playerClass] ~= nil) then iGroupCnts = #EA_GrpItems[EA_playerClass] end;
+		EA_GrpItems[EA_playerClass] = {}
+		local iGroupCnts = 0
+		--if (#EA_GrpItems[EA_playerClass] ~= nil) then iGroupCnts = #EA_GrpItems[EA_playerClass] end
 		for i, v in pairsByKeys(EADef_Items[EA_playerClass]["GRPITEMS"]) do
-			i = tonumber(i);
-			if EA_GrpItems[EA_playerClass][iGroupCnts+i] == nil then EA_GrpItems[EA_playerClass][iGroupCnts+i] = {} end;
-			-- EA_GrpItems[EA_playerClass][iGroupCnts+i] = v;
-			EA_GrpItems[EA_playerClass][iGroupCnts+i] = CopyTable(v);
+			i = tonumber(i)
+			if EA_GrpItems[EA_playerClass][iGroupCnts+i] == nil then EA_GrpItems[EA_playerClass][iGroupCnts+i] = {} end
+			-- EA_GrpItems[EA_playerClass][iGroupCnts+i] = v
+			EA_GrpItems[EA_playerClass][iGroupCnts+i] = CopyTable(v)
 		end
 	end
 end
@@ -83,7 +83,7 @@ end
 
 function EventAlert_LoadSpellArray()
 
-	EADef_Items = {};
+	EADef_Items = {}
 
 --------------------------------------------------------------------------------
 -- Death Knight / 死亡騎士
