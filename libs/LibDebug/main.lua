@@ -8,7 +8,7 @@
 --  (at your option) any later version.
 --
 --  LibDebug is distributed in the hope that it will be useful,
---  but WITHOUT ANY WARRANTY; without even the implied warranty of
+--  but WITHOUT ANY WARRANTY without even the implied warranty of
 --  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 --  GNU Lesser General Public License for more details.
 --
@@ -42,7 +42,7 @@ LibDebug.meta = meta
 local function GetChatFrame(chat)
 	if (chat) then
 		for i=1,NUM_CHAT_WINDOWS do
-			local _, _, _, _, _, _, shown = FCF_GetChatWindowInfo(i);
+			local _, _, _, _, _, _, shown = FCF_GetChatWindowInfo(i)
 			local frame=_G["ChatFrame" .. i]
 			if frame.name==chat and (shown or frame.isDocked) then
 				return frame
@@ -138,7 +138,7 @@ end
 -- It returns the passed paramaters or raises an error.
 local function wrap_wrapper(co, state, ...)
 	if state == false then
-		-- For some reason, the call at the bottom of the stack is not displayed here;
+		-- For some reason, the call at the bottom of the stack is not displayed here
 		-- I really don't know why.
 		_G.geterrorhandler()(coroutine_error_msg(..., co))
 		error(...)

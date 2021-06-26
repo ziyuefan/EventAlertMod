@@ -1,5 +1,5 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
-<Frame name="EA_Group_Events_Frame" toplevel="true" frameStrata="HIGH" movable="true" enableMouse="true" hidden="true" parent="EA_Options_Frame" enableKeyboard="true">
+<Frame name="EA_Group_Events_Frame" toplevel="true" frameStrata="MEDIUM" movable="true" enableMouse="true" hidden="true" parent="EA_Options_Frame" enableKeyboard="true">
 
 		<Size>
 			<AbsDimension x="325" y="470"/>
@@ -91,10 +91,10 @@
 				</Size>
 				<Scripts>
 					<OnLoad>
-						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_SELALL);
+						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_SELALL)
 					</OnLoad>
 					<OnClick>
-						CreateFrames_EventsFrame_SelAll(6, true);
+						CreateFrames_EventsFrame_SelAll(6, true)
 					</OnClick>
 				</Scripts>
 			</Button>
@@ -111,10 +111,10 @@
 				</Size>
 				<Scripts>
 					<OnLoad>
-						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_CLRALL);
+						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_CLRALL)
 					</OnLoad>
 					<OnClick>
-						CreateFrames_EventsFrame_SelAll(6, false);
+						CreateFrames_EventsFrame_SelAll(6, false)
 					</OnClick>
 				</Scripts>
 			</Button>
@@ -131,10 +131,10 @@
 				</Size>
 				<Scripts>
 					<OnLoad>
-						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_LOADDEFAULT);
+						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_LOADDEFAULT)
 					</OnLoad>
 					<OnClick>
-						CreateFrames_EventsFrame_LoadDefault(6);
+						CreateFrames_EventsFrame_LoadDefault(6)
 					</OnClick>
 				</Scripts>
 			</Button>
@@ -149,7 +149,7 @@
 						</Offset>
 					</Anchor>
 				</Anchors>
-				<FontString inherits="ChatFontNormal" />
+				<FontString inherits="GameFontNormal" />
 			</EditBox> -->
 
 			<ScrollFrame name="$parent_SpellScrollFrame" inherits="UIPanelScrollFrameTemplate">
@@ -219,13 +219,13 @@
 				</Layers>
 				<Scripts>
 					<OnEnterPressed>
-						CreateFrames_EventsFrame_AddSpell(6);
+						CreateFrames_EventsFrame_AddSpell(6)
 					</OnEnterPressed>
 					<OnEscapePressed>
-						self:ClearFocus();
+						self:ClearFocus()
 					</OnEscapePressed>
 				</Scripts>
-				<FontString inherits="ChatFontNormal" />
+				<FontString inherits="GameFontNormal" />
 			</EditBox>
 			<Button name="$parent_AddSpell" inherits="OptionsButtonTemplate" text="">
 				<Anchors>
@@ -240,10 +240,10 @@
 				</Size>
 				<Scripts>
 					<OnLoad>
-						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_ADDSPELL);
+						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_ADDSPELL)
 					</OnLoad>
 					<OnClick>
-						CreateFrames_EventsFrame_AddSpell(6);
+						CreateFrames_EventsFrame_AddSpell(6)
 					</OnClick>
 				</Scripts>
 			</Button>
@@ -260,10 +260,10 @@
 				</Size>
 				<Scripts>
 					<OnLoad>
-						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_DELSPELL);
+						_G[self:GetName().."Text"]:SetText(EX_XCLSALERT_DELSPELL)
 					</OnLoad>
 					<OnClick>
-						CreateFrames_EventsFrame_DelSpell(6);
+						CreateFrames_EventsFrame_DelSpell(6)
 					</OnClick>
 				</Scripts>
 			</Button>
@@ -271,7 +271,7 @@
 
 		<Scripts>
 			<OnLoad>
-				EA_Group_Events_Frame_SpellText:SetText(EA_XGRPALERT_GRPID);
+				EA_Group_Events_Frame_SpellText:SetText(EA_XGRPALERT_GRPID)
 			</OnLoad>
 		</Scripts>
 </Frame>

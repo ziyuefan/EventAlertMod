@@ -1,12 +1,14 @@
-﻿## Interface: 90001
+﻿## Interface: 90005
 ## Title: EventAlertMod
 ## Title-zhTW: EventAlertMod 法術監控觸發提示
 ## Title-zhCN: EventAlertMod 法术监控触发提示
-## Author: 死鬥
-## Version: 9.0.1_2020.10.04
+## Title-zhKR: EventAlertMod 맞춤법 모니터링 트리거 프롬프트
+## Author: ziyuefan(死鬥)
+## Version: 9.0.5_2021.06.26
 ## Notes: To notice or warning the specific Spells/Skills in large icon for the player. Command: /eam opt. By |cff69ccf0ACDACD@TW-REALM|r
 ## Notes-zhTW: 監控的法術觸發時, 以大型法術圖示來提示玩家, 法術設定指令:/eam opt. 指令說明:/eam help.
 ## Notes-zhCN: 监控的法术触发时, 以大型法术图示来提示玩家, 法术设定指令:/eam opt. 指令说明:/eam help.
+## Notes-zhKR: 모니터링 된 주문이 발동되면 플레이어에게 큰 주문 아이콘이 표시됩니다. 주문 설정 명령 : / eam opt. 명령 설명 : / eam help.
 ## Notes-enUS: To notice or warning the specific Spells/Skills in large icon for the player. Command: /eam opt. By |cff69ccf0ACDACD@TW-REALM|r
 ## DefaultState: Enabled
 ## LoadOnDemand: 0

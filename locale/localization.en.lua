@@ -3,181 +3,181 @@ local _
 local _G = _G
 if GetLocale() == "enUS" then
 
-EA_TTIP_DOALERTSOUND = "Play a sound when an event triggers.";
-EA_TTIP_ALERTSOUNDSELECT = "Choose which sound to play when an event triggers.";
-EA_TTIP_LOCKFRAME = "Locks the notification frame so it cannot be moved.";
-EA_TTIP_SHARESETTINGS = "All classes share the same settings for alert frame positions.";
-EA_TTIP_SHOWFRAME = "Toggle the showing/hiding of the notification frame on events.";
-EA_TTIP_SHOWNAME = "Toggle the showing/hiding of the buff's name on events.";
-EA_TTIP_SHOWFLASH = "Toggle the showing/hiding of the full screen flash on events.";
-EA_TTIP_SHOWTIMER = "Toggle the showing/hiding of the remaining buff time on events.";
-EA_TTIP_CHANGETIMER = "Changes the font and position of the remaining buff time.";
-EA_TTIP_ICONSIZE = "Change the size of the alert icon.";
--- EA_TTIP_ICONSPACE = "Change the space of alert icons.";
--- EA_TTIP_ICONDROPDOWN = "Change the direction of icons.";
-EA_TTIP_ALLOWESC = "Changes the ability to use the ESC key to close alert frames. (Note:  Requires a reload of the UI)";
-EA_TTIP_ALTALERTS = "Toggle the ability for EventAlertMod to alert on alternate non-buff events.";
+EA_TTIP_DOALERTSOUND = "Play a sound when an event triggers."
+EA_TTIP_ALERTSOUNDSELECT = "Choose which sound to play when an event triggers."
+EA_TTIP_LOCKFRAME = "Locks the notification frame so it cannot be moved."
+EA_TTIP_SHARESETTINGS = "All classes share the same settings for alert frame positions."
+EA_TTIP_SHOWFRAME = "Toggle the showing/hiding of the notification frame on events."
+EA_TTIP_SHOWNAME = "Toggle the showing/hiding of the buff's name on events."
+EA_TTIP_SHOWFLASH = "Toggle the showing/hiding of the full screen flash on events."
+EA_TTIP_SHOWTIMER = "Toggle the showing/hiding of the remaining buff time on events."
+EA_TTIP_CHANGETIMER = "Changes the font and position of the remaining buff time."
+EA_TTIP_ICONSIZE = "Change the size of the alert icon."
+-- EA_TTIP_ICONSPACE = "Change the space of alert icons."
+-- EA_TTIP_ICONDROPDOWN = "Change the direction of icons."
+EA_TTIP_ALLOWESC = "Changes the ability to use the ESC key to close alert frames. (Note:  Requires a reload of the UI)"
+EA_TTIP_ALTALERTS = "Toggle the ability for EventAlertMod to alert on alternate non-buff events."
 
-EA_TTIP_ICONXOFFSET = "Changes the horizontal spacing between notification frames.";
-EA_TTIP_ICONYOFFSET = "Changes the vertical spacing between notification frames.";
-EA_TTIP_ICONREDDEBUFF = "Changes the Icon of debuffs show in deep/light Red-color.";
-EA_TTIP_ICONGREENDEBUFF = "Changes the Icon of Target's debuffs show in deep/light Green-color.";
-EA_TTIP_ICONEXECUTION = "Changes the BOSS HP-percent for Execution Alert.";
-EA_TTIP_PLAYERLV2BOSS = "If target's level is 2 level higher than player. Treat as a BOSS execution.";
-EA_TTIP_SCD_USECOOLDOWN = "Skill Cooldown frames can use cooldown style or normal style (must reload UI to take effect).";
-EA_TTIP_TAR_NEWLINE = "Toggle the Target's debuff if show in a new line.";
-EA_TTIP_TAR_ICONXOFFSET = "Changes the horizontal spacing with the alert frame";
-EA_TTIP_TAR_ICONYOFFSET = "Changes the vertical spacing with the alert frame";
-EA_TTIP_TARGET_MYDEBUFF = "Show target's debuffs that only player casts";
-EA_TTIP_SPELLCOND_STACK = "Check/Ignore, Show the spell's alert when stack >= n (min:2).";
-EA_TTIP_SPELLCOND_SELF = "Check/Ignore, Show if the spell is cast by player.";
-EA_TTIP_SPELLCOND_OVERGROW = "Check/Ignore, Highlight the spell's alert when stack >= n (min:1).";
-EA_TTIP_SPELLCOND_REDSECTEXT = "Check/Ignore, Change the text of Seconds to red when the countdown is <= n (min:1).";
+EA_TTIP_ICONXOFFSET = "Changes the horizontal spacing between notification frames."
+EA_TTIP_ICONYOFFSET = "Changes the vertical spacing between notification frames."
+EA_TTIP_ICONREDDEBUFF = "Changes the Icon of debuffs show in deep/light Red-color."
+EA_TTIP_ICONGREENDEBUFF = "Changes the Icon of Target's debuffs show in deep/light Green-color."
+EA_TTIP_ICONEXECUTION = "Changes the BOSS HP-percent for Execution Alert."
+EA_TTIP_PLAYERLV2BOSS = "If target's level is 2 level higher than player. Treat as a BOSS execution."
+EA_TTIP_SCD_USECOOLDOWN = "Skill Cooldown frames can use cooldown style or normal style (must reload UI to take effect)."
+EA_TTIP_TAR_NEWLINE = "Toggle the Target's debuff if show in a new line."
+EA_TTIP_TAR_ICONXOFFSET = "Changes the horizontal spacing with the alert frame"
+EA_TTIP_TAR_ICONYOFFSET = "Changes the vertical spacing with the alert frame"
+EA_TTIP_TARGET_MYDEBUFF = "Show target's debuffs that only player casts"
+EA_TTIP_SPELLCOND_STACK = "Check/Ignore, Show the spell's alert when stack >= n (min:2)."
+EA_TTIP_SPELLCOND_SELF = "Check/Ignore, Show if the spell is cast by player."
+EA_TTIP_SPELLCOND_OVERGROW = "Check/Ignore, Highlight the spell's alert when stack >= n (min:1)."
+EA_TTIP_SPELLCOND_REDSECTEXT = "Check/Ignore, Change the text of Seconds to red when the countdown is <= n (min:1)."
 EA_TTIP_SPELLCOND_ORDERWTD = "Set/Ignore, Set the Order-Weight(1-20) of an icon. The bigger number, the inner position."
 
-EA_TTIP_SPECFLAG_CHECK_HOLYPOWER = "Show HolyPower in the left 1st position of Self-Buffs";
-EA_TTIP_SPECFLAG_CHECK_RUNICPOWER = "Show RunicPower in the left 1st position of Self-Buffs";
-EA_TTIP_SPECFLAG_CHECK_RUNES = "Show Runes in the top position of Self-Buffs";
-EA_TTIP_SPECFLAG_CHECK_SOULSHARDS = "Show SoulShards in the left 1st position of Self-Buffs";
-EA_TTIP_SPECFLAG_CHECK_LUNARPOWER = "Show Lunar Power in the left 1st position of Self-Buffs";
-EA_TTIP_SPECFLAG_CHECK_COMBOPOINT = "Show ComboPoint in the left 1st position of Target-DeBuffs";
+EA_TTIP_SPECFLAG_CHECK_HOLYPOWER = "Show HolyPower in the left 1st position of Self-Buffs"
+EA_TTIP_SPECFLAG_CHECK_RUNICPOWER = "Show RunicPower in the left 1st position of Self-Buffs"
+EA_TTIP_SPECFLAG_CHECK_RUNES = "Show Runes in the top position of Self-Buffs"
+EA_TTIP_SPECFLAG_CHECK_SOULSHARDS = "Show SoulShards in the left 1st position of Self-Buffs"
+EA_TTIP_SPECFLAG_CHECK_LUNARPOWER = "Show Lunar Power in the left 1st position of Self-Buffs"
+EA_TTIP_SPECFLAG_CHECK_COMBOPOINT = "Show ComboPoint in the left 1st position of Target-DeBuffs"
 EA_TTIP_SPECFLAG_CHECK_LIFEBLOOM = "Show the LifeBloom timer and stack in the left 1st position of Self-Buffs"
-EA_TTIP_SPECFLAG_CHECK_RAGE = "Show Rage in the left 1st position of Self-Buffs";					-- 支援怒氣(戰士,熊D)
-EA_TTIP_SPECFLAG_CHECK_FOCUS = "Show Focus in the left 1st position of Self-Buffs";					--  支援集中值(獵人)
-EA_TTIP_SPECFLAG_CHECK_FOCUS_PET = "Show Focus in the left 2nd position of Self-Buffs";				--  支援寵物集中值(獵人)
-EA_TTIP_SPECFLAG_CHECK_ENERGY = "Show Energy in the left 1st position of Self-Buffs";				--  支援能量(賊,貓D,武僧)
-EA_TTIP_SPECFLAG_CHECK_CHI = "Show Chi of Monk in the left 1st position of Self-Buffs";		--  支援武僧真氣
-EA_TTIP_SPECFLAG_CHECK_INSANITY = "Show Insanity in the left 1st position of Self-Buffs";			--  支援暗影瘋狂(暗牧)
-EA_TTIP_SPECFLAG_CHECK_DEMONICFURY = "Show Demonic Fury in the left 1st position of Self-Buffs";	--  支援惡魔之怒
-EA_TTIP_SPECFLAG_CHECK_BURNINGEMBERS = "Show Burning Embers in the left 1st position of Self-Buffs";--  支援燃火餘燼
-EA_TTIP_SPECFLAG_CHECK_ARCANECHARGES = "Show Arcane Charges in the left 1st position of Self-Buffs";--  Support Mage's Arcane Charges
-EA_TTIP_SPECFLAG_CHECK_MAELSTROM = "Show Maelstrom in the left 1st position of Self-Buffs";			--  Support Shaman's Maelstrom
-EA_TTIP_SPECFLAG_CHECK_FURY = "Show Fury in the left 1st position of Self-Buffs";					--  Support Demonhunter's Fury 
-EA_TTIP_SPECFLAG_CHECK_PAIN = "Show Pain in the left 1st position of Self-Buffs";					--  Support Demonhunter's Pain 
+EA_TTIP_SPECFLAG_CHECK_RAGE = "Show Rage in the left 1st position of Self-Buffs"					-- 支援怒氣(戰士,熊D)
+EA_TTIP_SPECFLAG_CHECK_FOCUS = "Show Focus in the left 1st position of Self-Buffs"					--  支援集中值(獵人)
+EA_TTIP_SPECFLAG_CHECK_FOCUS_PET = "Show Focus in the left 2nd position of Self-Buffs"				--  支援寵物集中值(獵人)
+EA_TTIP_SPECFLAG_CHECK_ENERGY = "Show Energy in the left 1st position of Self-Buffs"				--  支援能量(賊,貓D,武僧)
+EA_TTIP_SPECFLAG_CHECK_CHI = "Show Chi of Monk in the left 1st position of Self-Buffs"		--  支援武僧真氣
+EA_TTIP_SPECFLAG_CHECK_INSANITY = "Show Insanity in the left 1st position of Self-Buffs"			--  支援暗影瘋狂(暗牧)
+EA_TTIP_SPECFLAG_CHECK_DEMONICFURY = "Show Demonic Fury in the left 1st position of Self-Buffs"	--  支援惡魔之怒
+EA_TTIP_SPECFLAG_CHECK_BURNINGEMBERS = "Show Burning Embers in the left 1st position of Self-Buffs"--  支援燃火餘燼
+EA_TTIP_SPECFLAG_CHECK_ARCANECHARGES = "Show Arcane Charges in the left 1st position of Self-Buffs"--  Support Mage's Arcane Charges
+EA_TTIP_SPECFLAG_CHECK_MAELSTROM = "Show Maelstrom in the left 1st position of Self-Buffs"			--  Support Shaman's Maelstrom
+EA_TTIP_SPECFLAG_CHECK_FURY = "Show Fury in the left 1st position of Self-Buffs"					--  Support Demonhunter's Fury 
+EA_TTIP_SPECFLAG_CHECK_PAIN = "Show Pain in the left 1st position of Self-Buffs"					--  Support Demonhunter's Pain 
 
-EA_TTIP_GRPCFG_ICONALPHA = "Change the alpha value of this Icon";
-EA_TTIP_GRPCFG_TALENT = "Only active at this spec.";
-EA_TTIP_GRPCFG_HIDEONLEAVECOMBAT = "Hide when leave of combat";
-EA_TTIP_GRPCFG_HIDEONLOSTTARGET = "Hide when lost of target";
+EA_TTIP_GRPCFG_ICONALPHA = "Change the alpha value of this Icon"
+EA_TTIP_GRPCFG_TALENT = "Only active at this spec."
+EA_TTIP_GRPCFG_HIDEONLEAVECOMBAT = "Hide when leave of combat"
+EA_TTIP_GRPCFG_HIDEONLOSTTARGET = "Hide when lost of target"
 
 EA_TTIP_GRPCFG_GLOWWHENTRUE = "Glow when condition is true"
 
-EA_XOPT_ICONPOSOPT = "Icon Position Options";
-EA_XOPT_SHOW_ALTFRAME = "Show Alert Frame";
-EA_XOPT_SHOW_BUFFNAME = "Show Buff Name";
-EA_XOPT_SHOW_TIMER = "Show Timer";
-EA_XOPT_SHOW_OMNICC = "Timer inside the frame";
-EA_XOPT_SHOW_FULLFLASH = "Show Fullscreen Flash Alert";
-EA_XOPT_PLAY_SOUNDALERT = "Play Sound Alert";
-EA_XOPT_ESC_CLOSEALERT = "ESC Key Closes Alerts";
-EA_XOPT_SHOW_ALTERALERT = "Enable Alternate Alerts";
-EA_XOPT_SHOW_CHECKLISTALERT = "Enable";
-EA_XOPT_SHOW_CLASSALERT = "Show Class Alerts";
-EA_XOPT_SHOW_OTHERALERT = "Show Other Alerts";
-EA_XOPT_SHOW_TARGETALERT = "Show Target Alerts";
-EA_XOPT_SHOW_SCDALERT = "Show Cooldown Alerts";
-EA_XOPT_SHOW_GROUPALERT = "Show Group Alerts";
-EA_XOPT_OKAY = "Okay";
-EA_XOPT_SAVE = "Save";
-EA_XOPT_CANCEL = "Cancel";
-EA_XOPT_VERURLTEXT = "EAM Update Sites:";
-EA_XOPT_VERBTN1 = "Gamer";
-EA_XOPT_VERURL1 = "http://forum.gamer.com.tw/Co.php?bsn=05219&sn=5125122&subbsn=0";
-EA_XOPT_SPELLCOND_STACK = "Show spell when stacks >=";
-EA_XOPT_SPELLCOND_SELF = "Spell cast by player";
+EA_XOPT_ICONPOSOPT = "Icon Position Options"
+EA_XOPT_SHOW_ALTFRAME = "Show Alert Frame"
+EA_XOPT_SHOW_BUFFNAME = "Show Buff Name"
+EA_XOPT_SHOW_TIMER = "Show Timer"
+EA_XOPT_SHOW_OMNICC = "Timer inside the frame"
+EA_XOPT_SHOW_FULLFLASH = "Show Fullscreen Flash Alert"
+EA_XOPT_PLAY_SOUNDALERT = "Play Sound Alert"
+EA_XOPT_ESC_CLOSEALERT = "ESC Key Closes Alerts"
+EA_XOPT_SHOW_ALTERALERT = "Enable Alternate Alerts"
+EA_XOPT_SHOW_CHECKLISTALERT = "Enable"
+EA_XOPT_SHOW_CLASSALERT = "Show Class Alerts"
+EA_XOPT_SHOW_OTHERALERT = "Show Other Alerts"
+EA_XOPT_SHOW_TARGETALERT = "Show Target Alerts"
+EA_XOPT_SHOW_SCDALERT = "Show Cooldown Alerts"
+EA_XOPT_SHOW_GROUPALERT = "Show Group Alerts"
+EA_XOPT_OKAY = "Okay"
+EA_XOPT_SAVE = "Save"
+EA_XOPT_CANCEL = "Cancel"
+EA_XOPT_VERURLTEXT = "EAM Update Sites:"
+EA_XOPT_VERBTN1 = "Gamer"
+EA_XOPT_VERURL1 = "http://forum.gamer.com.tw/Co.php?bsn=05219&sn=5125122&subbsn=0"
+EA_XOPT_SPELLCOND_STACK = "Show spell when stacks >="
+EA_XOPT_SPELLCOND_SELF = "Spell cast by player"
 EA_XOPT_SPELLCOND_OVERGROW = "Highlight spell (stacks >=)"
 EA_XOPT_SPELLCOND_REDSECTEXT = "Red countdown text sec<="
 EA_XOPT_SPELLCOND_ORDERWTD   = "The Order-Weight(1-20):"
 
-EA_XICON_LOCKFRAME = "Lock Frame";
-EA_XICON_LOCKFRAMETIP = "You must unlock the alert frame in order to move it or reset it's position.";
-EA_XICON_SHARESETTING = "Share alert frame positions";
-EA_XICON_ICONSIZE = "Icon Size";
--- EA_XICON_ICONSIZE2 = "Target Icon Size";
--- EA_XICON_ICONSIZE3 = "Cooldown Icon Size";
-EA_XICON_LARGE = "Large";
-EA_XICON_SMALL = "Small";
-EA_XICON_HORSPACE = "Horizontal Spacing";
-EA_XICON_VERSPACE = "Vertical Spacing";
--- EA_XICON_ICONSPACE1 = "Self Icon Spacing";
--- EA_XICON_ICONSPACE2 = "Target Icon Spacing";
--- EA_XICON_ICONSPACE3 = "Cooldown Icon Spacing";
-EA_XICON_MORE = "More";
-EA_XICON_LESS = "Less";
-EA_XICON_REDDEBUFF = "Debuff Icon in Red";
-EA_XICON_GREENDEBUFF = "Target's Debuff Icon in Green";
-EA_XICON_DEEP = "Deep";
-EA_XICON_LIGHT = "Light";
--- EA_XICON_DIRECTION = "Direction";
--- EA_XICON_DIRUP = "UP";
--- EA_XICON_DIRDOWN = "DOWN";
--- EA_XICON_DIRLEFT = "LEFT";
--- EA_XICON_DIRRIGHT = "RIGHT";
-EA_XICON_TAR_NEWLINE = "Target's Debuff in a new line";
-EA_XICON_TAR_HORSPACE = "Horizontal Spacing w/ Alert Frame";
-EA_XICON_TAR_VERSPACE = "Vertical Spacing w/ Alert Frame";
-EA_XICON_TOGGLE_ALERTFRAME = "Adjust Alert Sample Position";
-EA_XICON_RESET_FRAMEPOS = "Reset Alert Position";
-EA_XICON_SELF_BUFF = "Self Buff";
-EA_XICON_SELF_SPBUFF = "Self Debuff(1)\nOr SpecFrame";
-EA_XICON_SELF_DEBUFF = "Self Debuff";
-EA_XICON_TARGET_BUFF = "Target Buff";
-EA_XICON_TARGET_SPBUFF = "Target Buff(1)\nOr SpecFrame";
-EA_XICON_TARGET_DEBUFF = "Target Debuff";
-EA_XICON_SCD = "Cooldown";
-EA_XICON_EXECUTION = "BOSS HP% for Execution Alert";
-EA_XICON_EXEFULL = "50%";
-EA_XICON_EXECLOSE = "Close";
-EA_TTIP_SCD_USECOOLDOWN = "Use cooldown countdown (must reload UI).";
+EA_XICON_LOCKFRAME = "Lock Frame"
+EA_XICON_LOCKFRAMETIP = "You must unlock the alert frame in order to move it or reset it's position."
+EA_XICON_SHARESETTING = "Share alert frame positions"
+EA_XICON_ICONSIZE = "Icon Size"
+-- EA_XICON_ICONSIZE2 = "Target Icon Size"
+-- EA_XICON_ICONSIZE3 = "Cooldown Icon Size"
+EA_XICON_LARGE = "Large"
+EA_XICON_SMALL = "Small"
+EA_XICON_HORSPACE = "Horizontal Spacing"
+EA_XICON_VERSPACE = "Vertical Spacing"
+-- EA_XICON_ICONSPACE1 = "Self Icon Spacing"
+-- EA_XICON_ICONSPACE2 = "Target Icon Spacing"
+-- EA_XICON_ICONSPACE3 = "Cooldown Icon Spacing"
+EA_XICON_MORE = "More"
+EA_XICON_LESS = "Less"
+EA_XICON_REDDEBUFF = "Debuff Icon in Red"
+EA_XICON_GREENDEBUFF = "Target's Debuff Icon in Green"
+EA_XICON_DEEP = "Deep"
+EA_XICON_LIGHT = "Light"
+-- EA_XICON_DIRECTION = "Direction"
+-- EA_XICON_DIRUP = "UP"
+-- EA_XICON_DIRDOWN = "DOWN"
+-- EA_XICON_DIRLEFT = "LEFT"
+-- EA_XICON_DIRRIGHT = "RIGHT"
+EA_XICON_TAR_NEWLINE = "Target's Debuff in a new line"
+EA_XICON_TAR_HORSPACE = "Horizontal Spacing w/ Alert Frame"
+EA_XICON_TAR_VERSPACE = "Vertical Spacing w/ Alert Frame"
+EA_XICON_TOGGLE_ALERTFRAME = "Adjust Alert Sample Position"
+EA_XICON_RESET_FRAMEPOS = "Reset Alert Position"
+EA_XICON_SELF_BUFF = "Self Buff"
+EA_XICON_SELF_SPBUFF = "Self Debuff(1)\nOr SpecFrame"
+EA_XICON_SELF_DEBUFF = "Self Debuff"
+EA_XICON_TARGET_BUFF = "Target Buff"
+EA_XICON_TARGET_SPBUFF = "Target Buff(1)\nOr SpecFrame"
+EA_XICON_TARGET_DEBUFF = "Target Debuff"
+EA_XICON_SCD = "Cooldown"
+EA_XICON_EXECUTION = "BOSS HP% for Execution Alert"
+EA_XICON_EXEFULL = "50%"
+EA_XICON_EXECLOSE = "Close"
+EA_TTIP_SCD_USECOOLDOWN = "Use cooldown countdown (must reload UI)."
 
-EX_XCLSALERT_SELALL = "Sel All";
-EX_XCLSALERT_CLRALL = "Clear All";
-EX_XCLSALERT_LOADDEFAULT = "Default";
-EX_XCLSALERT_REMOVEALL = "Del All";
-EX_XCLSALERT_SPELL = "SpellID:";
-EX_XCLSALERT_ADDSPELL = "Add";
-EX_XCLSALERT_DELSPELL = "Del";
-EX_XCLSALERT_HELP1 = "Spells are sorted by spell ID.";
-EX_XCLSALERT_HELP2 = "Spell IDs are listed in brackets.";
-EX_XCLSALERT_HELP3 = "To look up the spellID, copy the following:";
-EX_XCLSALERT_HELP4 = "Alternate Alert is for some spells being";
-EX_XCLSALERT_HELP5 = "actived in Combat Event and without";
-EX_XCLSALERT_HELP6 = "any buff. Ex:Warrior's Revenge...etc.";
-EX_XCLSALERT_SPELLURL = "http://www.wowhead.com/spells";
+EX_XCLSALERT_SELALL = "Sel All"
+EX_XCLSALERT_CLRALL = "Clear All"
+EX_XCLSALERT_LOADDEFAULT = "Default"
+EX_XCLSALERT_REMOVEALL = "Del All"
+EX_XCLSALERT_SPELL = "SpellID:"
+EX_XCLSALERT_ADDSPELL = "Add"
+EX_XCLSALERT_DELSPELL = "Del"
+EX_XCLSALERT_HELP1 = "Spells are sorted by spell ID."
+EX_XCLSALERT_HELP2 = "Spell IDs are listed in brackets."
+EX_XCLSALERT_HELP3 = "To look up the spellID, copy the following:"
+EX_XCLSALERT_HELP4 = "Alternate Alert is for some spells being"
+EX_XCLSALERT_HELP5 = "actived in Combat Event and without"
+EX_XCLSALERT_HELP6 = "any buff. Ex:Warrior's Revenge...etc."
+EX_XCLSALERT_SPELLURL = "http://www.wowhead.com/spells"
 
-EA_XTARALERT_TARGET_MYDEBUFF = "Debuffs only player casts";
+EA_XTARALERT_TARGET_MYDEBUFF = "Debuffs only player casts"
 
-EA_XGRPALERT_ICONALPHA = "Icon Alpha";
-EA_XGRPALERT_GRPID = "GroupID:";
-EA_XGRPALERT_TALENT1 = "1st SPEC";
-EA_XGRPALERT_TALENT2 = "2nd SPEC";
-EA_XGRPALERT_TALENT2 = "3rd SPEC";
-EA_XGRPALERT_TALENT2 = "4th SPEC";
+EA_XGRPALERT_ICONALPHA = "Icon Alpha"
+EA_XGRPALERT_GRPID = "GroupID:"
+EA_XGRPALERT_TALENT1 = "1st SPEC"
+EA_XGRPALERT_TALENT2 = "2nd SPEC"
+EA_XGRPALERT_TALENT2 = "3rd SPEC"
+EA_XGRPALERT_TALENT2 = "4th SPEC"
 EA_XGRPALERT_HIDEONLEAVECOMBAT = "Hide NoCombat"
 EA_XGRPALERT_HIDEONLOSTTARGET = "Hide NoTarget"
 
 EA_XGRPALERT_GLOWWHENTRUE = "Glow Icon"
 
-EA_XGRPALERT_TALENTS = "All Talent";
-EA_XGRPALERT_NEWSPELLBTN = "Add Spell";
-EA_XGRPALERT_NEWCHECKBTN = "Add Check";
-EA_XGRPALERT_NEWSUBCHECKBTN = "Add SubCheck";
-EA_XGRPALERT_SPELLNAME = "Spell Name:";
-EA_XGRPALERT_SPELLICON = "Spell Icon:";
-EA_XGRPALERT_TITLECHECK = "Check:";
-EA_XGRPALERT_TITLESUBCHECK = "SubCheck:";
-EA_XGRPALERT_TITLEORDERUP = "Order Up";
-EA_XGRPALERT_TITLEORDERDOWN = "Order Down";
+EA_XGRPALERT_TALENTS = "All Talent"
+EA_XGRPALERT_NEWSPELLBTN = "Add Spell"
+EA_XGRPALERT_NEWCHECKBTN = "Add Check"
+EA_XGRPALERT_NEWSUBCHECKBTN = "Add SubCheck"
+EA_XGRPALERT_SPELLNAME = "Spell Name:"
+EA_XGRPALERT_SPELLICON = "Spell Icon:"
+EA_XGRPALERT_TITLECHECK = "Check:"
+EA_XGRPALERT_TITLESUBCHECK = "SubCheck:"
+EA_XGRPALERT_TITLEORDERUP = "Order Up"
+EA_XGRPALERT_TITLEORDERDOWN = "Order Down"
 EA_XGRPALERT_LOGICS = {
 	[1]={text="And", value=1},
-	[2]={text="Or", value=0}, };
-EA_XGRPALERT_EVENTTYPE = "EventType:";
+	[2]={text="Or", value=0}, }
+EA_XGRPALERT_EVENTTYPE = "EventType:"
 EA_XGRPALERT_EVENTTYPES = {
 	[1]={text="Unit Power Changes", value="UNIT_POWER_UPDATE"},
 	[2]={text="Unit Health Changes", value="UNIT_HEALTH"},
 	[3]={text="Unit Aura Changes", value="UNIT_AURA"},
-	[4]={text="Combo Point Changes", value="UNIT_COMBO_POINTS"}, };
-EA_XGRPALERT_UNITTYPE = "UnitType:";
+	[4]={text="Combo Point Changes", value="UNIT_COMBO_POINTS"}, }
+EA_XGRPALERT_UNITTYPE = "UnitType:"
 EA_XGRPALERT_UNITTYPES = {
 	[1]={text="Player", value="player"},
 	[2]={text="Target", value="target"},
@@ -200,34 +200,34 @@ EA_XGRPALERT_UNITTYPES = {
 	[19]={text="Raid 7", value="raid7"},
 	[20]={text="Raid 8", value="raid8"},
 	[21]={text="Raid 9", value="raid9"},
-};
+}
 
-EA_XGRPALERT_CHECKCD = "Check CD:";
+EA_XGRPALERT_CHECKCD = "Check CD:"
 
-EA_XGRPALERT_HEALTH = "Health:";
+EA_XGRPALERT_HEALTH = "Health:"
 
 EA_XGRPALERT_COMPARETYPES = {
 	[1]={text="Value", value=1},
 	[2]={text="Percent", value=2},
-};
-EA_XGRPALERT_CHECKAURA = "Aura:";
+}
+EA_XGRPALERT_CHECKAURA = "Aura:"
 EA_XGRPALERT_CHECKAURAS = {
 	[1]={text="Exists", value=1},
 	[2]={text="Not Exists", value=2},
-};
-EA_XGRPALERT_AURATIME = "Time:";
-EA_XGRPALERT_AURASTACK = "Stack:";
-EA_XGRPALERT_CASTBYPLAYER = "Cast by player";
-EA_XGRPALERT_COMBOPOINT = "ComboPoint:";
+}
+EA_XGRPALERT_AURATIME = "Time:"
+EA_XGRPALERT_AURASTACK = "Stack:"
+EA_XGRPALERT_CASTBYPLAYER = "Cast by player"
+EA_XGRPALERT_COMBOPOINT = "ComboPoint:"
 
-EA_XLOOKUP_START1 = "Lookup SpellName";
-EA_XLOOKUP_START2 = "Full Match";
-EA_XLOOKUP_RESULT1 = "Lookup Result";
-EA_XLOOKUP_RESULT2 = "Matchs";
-EA_XLOAD_LOAD = "\124cffFFFF00EventAlertMod\124r:Specific events alert is loaded. Ver:\124cff00FFFF";
+EA_XLOOKUP_START1 = "Lookup SpellName"
+EA_XLOOKUP_START2 = "Full Match"
+EA_XLOOKUP_RESULT1 = "Lookup Result"
+EA_XLOOKUP_RESULT2 = "Matchs"
+EA_XLOAD_LOAD = "\124cffFFFF00EventAlertMod\124r:Specific events alert is loaded. Ver:\124cff00FFFF"
 
 EA_XLOAD_FIRST_LOAD = "\124cffFF0000EventAlertMod first load detected. Load the default settings.\124r\n\n"..
-"Use \124cffFFFF00/eam opt\124r to set all settings for your using.\n\n";
+"Use \124cffFFFF00/eam opt\124r to set all settings for your using.\n\n"
 
 EA_XLOAD_NEWVERSION_LOAD = "Use \124cffFFFF00/eam help\124r to read the command usages.\n\n\n"..
 "\124cff00FFFF- Update New Features -\124r\n\n"..
@@ -244,20 +244,20 @@ EA_XLOAD_NEWVERSION_LOAD = "Use \124cffFFFF00/eam help\124r to read the command 
 	"You can toggle this on or off in the Icon Position Setting.\n\n"..
 "4.Colours: The debuffs of self/target will display in red/green color. "..
 	"Player can change it dynamically in [/eam opt].\n\n"..
-""; -- END OF NEWVERSION
+"" -- END OF NEWVERSION
 
-EA_XCMD_VER = " \124cff00FFFFBy Whitep@TW-REALM\124r version: ";
-EA_XCMD_DEBUG = " debug mode: ";
-EA_XCMD_SELFLIST = " Show player Buff/Debuff: ";
-EA_XCMD_TARGETLIST = " Show target Debuff: ";
-EA_XCMD_CASTSPELL = " Show SpellId casts: ";
-EA_XCMD_AUTOADD_SELFLIST = " Auto add all player's Buff/Debuff: ";
-EA_XCMD_ENVADD_SELFLIST = " Auto add all player's Buff/Debuff (non-raid): ";
-EA_XCMD_DEBUG_P0 = "Alert Spell List";
-EA_XCMD_DEBUG_P1 = "Spell";
-EA_XCMD_DEBUG_P2 = "Spell-ID";
-EA_XCMD_DEBUG_P3 = "Stack";
-EA_XCMD_DEBUG_P4 = "Duration";
+EA_XCMD_VER = " \124cff00FFFFBy Whitep@TW-REALM\124r version: "
+EA_XCMD_DEBUG = " debug mode: "
+EA_XCMD_SELFLIST = " Show player Buff/Debuff: "
+EA_XCMD_TARGETLIST = " Show target Debuff: "
+EA_XCMD_CASTSPELL = " Show SpellId casts: "
+EA_XCMD_AUTOADD_SELFLIST = " Auto add all player's Buff/Debuff: "
+EA_XCMD_ENVADD_SELFLIST = " Auto add all player's Buff/Debuff (non-raid): "
+EA_XCMD_DEBUG_P0 = "Alert Spell List"
+EA_XCMD_DEBUG_P1 = "Spell"
+EA_XCMD_DEBUG_P2 = "Spell-ID"
+EA_XCMD_DEBUG_P3 = "Stack"
+EA_XCMD_DEBUG_P4 = "Duration"
 
 
 EA_XCMD_CMDHELP = {
@@ -299,43 +299,43 @@ EA_XCMD_CMDHELP = {
 }
 
 EA_XSPECINFO_MANA = "Mana"
-EA_XSPECINFO_COMBOPOINT = "Combo Point";
-EA_XSPECINFO_RUNICPOWER	= "Runic Power";
-EA_XSPECINFO_RUNES	= "Runes";
-EA_XSPECINFO_SOULSHARDS	= "Soul Shards";
-EA_XSPECINFO_LUNARPOWER	= "Lunar Power";		--7.0  support Lunar Power of Balance Druid.
-EA_XSPECINFO_HOLYPOWER	= "Holy Power";
-EA_XSPECINFO_INSANITY= "Insanity";				--7.0  support Insanity of Shadow PRIEST.
-EA_XSPECINFO_ENERGY= "Energy";
-EA_XSPECINFO_RAGE= "Rage";
-EA_XSPECINFO_FOCUS= "Focus";
-EA_XSPECINFO_FOCUS_PET= "Pet Focus";
-EA_XSPECINFO_CHI= "Chi";						--5.1   support Chi of Monk.
-EA_XSPECINFO_ARCANE_CHARGES= "Arcane Charges";		--7.0   support Arcane Charges of Arcane Mage.
-EA_XSPECINFO_MAELSTROM= "Maelstrom";				--7.0   support Maelstrom of Shaman.
-EA_XSPECINFO_FURY= "Fury";							--7.0   support Fury of Demonhunter
-EA_XSPECINFO_PAIN= "Pain";							--7.0   support Pain of Demonhunter
+EA_XSPECINFO_COMBOPOINT = "Combo Point"
+EA_XSPECINFO_RUNICPOWER	= "Runic Power"
+EA_XSPECINFO_RUNES	= "Runes"
+EA_XSPECINFO_SOULSHARDS	= "Soul Shards"
+EA_XSPECINFO_LUNARPOWER	= "Lunar Power"		--7.0  support Lunar Power of Balance Druid.
+EA_XSPECINFO_HOLYPOWER	= "Holy Power"
+EA_XSPECINFO_INSANITY= "Insanity"				--7.0  support Insanity of Shadow PRIEST.
+EA_XSPECINFO_ENERGY= "Energy"
+EA_XSPECINFO_RAGE= "Rage"
+EA_XSPECINFO_FOCUS= "Focus"
+EA_XSPECINFO_FOCUS_PET= "Pet Focus"
+EA_XSPECINFO_CHI= "Chi"						--5.1   support Chi of Monk.
+EA_XSPECINFO_ARCANE_CHARGES= "Arcane Charges"		--7.0   support Arcane Charges of Arcane Mage.
+EA_XSPECINFO_MAELSTROM= "Maelstrom"				--7.0   support Maelstrom of Shaman.
+EA_XSPECINFO_FURY= "Fury"							--7.0   support Fury of Demonhunter
+EA_XSPECINFO_PAIN= "Pain(9.0 remove)"							--7.0   support Pain of Demonhunter
 
-EA_XOPT_SPECFLAG_MANA = EA_XSPECINFO_MANA;
-EA_XOPT_SPECFLAG_HOLYPOWER = EA_XSPECINFO_HOLYPOWER;
-EA_XOPT_SPECFLAG_RUNICPOWER = EA_XSPECINFO_RUNICPOWER;
-EA_XOPT_SPECFLAG_RUNES = EA_XSPECINFO_RUNES;
-EA_XOPT_SPECFLAG_SOULSHARDS = EA_XSPECINFO_SOULSHARDS;
-EA_XOPT_SPECFLAG_LUNARPOWER = EA_XSPECINFO_LUNARPOWER;
-EA_XOPT_SPECFLAG_COMBOPOINT = EA_XSPECINFO_COMBOPOINT;
-EA_XOPT_SPECFLAG_LIFEBLOOM = "LifeBloom";
-EA_XOPT_SPECFLAG_INSANITY = EA_XSPECINFO_INSANITY;									
-EA_XOPT_SPECFLAG_RAGE = EA_XSPECINFO_RAGE;
-EA_XOPT_SPECFLAG_ENERGY = EA_XSPECINFO_ENERGY;
-EA_XOPT_SPECFLAG_FOCUS = EA_XSPECINFO_FOCUS;
-EA_XOPT_SPECFLAG_FOCUS_PET = EA_XSPECINFO_FOCUS_PET;
-EA_XOPT_SPECFLAG_CHI = EA_XSPECINFO_CHI;		
-EA_XOPT_SPECFLAG_ARCANECHARGES = EA_XSPECINFO_ARCANECHARGES;
-EA_XOPT_SPECFLAG_MAELSTROM = EA_XSPECINFO_MAELSTROM;
-EA_XOPT_SPECFLAG_FURY = EA_XSPECINFO_FURY;
-EA_XOPT_SPECFLAG_PAIN = EA_XSPECINFO_PAIN;
+EA_XOPT_SPECFLAG_MANA = EA_XSPECINFO_MANA
+EA_XOPT_SPECFLAG_HOLYPOWER = EA_XSPECINFO_HOLYPOWER
+EA_XOPT_SPECFLAG_RUNICPOWER = EA_XSPECINFO_RUNICPOWER
+EA_XOPT_SPECFLAG_RUNES = EA_XSPECINFO_RUNES
+EA_XOPT_SPECFLAG_SOULSHARDS = EA_XSPECINFO_SOULSHARDS
+EA_XOPT_SPECFLAG_LUNARPOWER = EA_XSPECINFO_LUNARPOWER
+EA_XOPT_SPECFLAG_COMBOPOINT = EA_XSPECINFO_COMBOPOINT
+EA_XOPT_SPECFLAG_LIFEBLOOM = "LifeBloom"
+EA_XOPT_SPECFLAG_INSANITY = EA_XSPECINFO_INSANITY									
+EA_XOPT_SPECFLAG_RAGE = EA_XSPECINFO_RAGE
+EA_XOPT_SPECFLAG_ENERGY = EA_XSPECINFO_ENERGY
+EA_XOPT_SPECFLAG_FOCUS = EA_XSPECINFO_FOCUS
+EA_XOPT_SPECFLAG_FOCUS_PET = EA_XSPECINFO_FOCUS_PET
+EA_XOPT_SPECFLAG_CHI = EA_XSPECINFO_CHI		
+EA_XOPT_SPECFLAG_ARCANECHARGES = EA_XSPECINFO_ARCANECHARGES
+EA_XOPT_SPECFLAG_MAELSTROM = EA_XSPECINFO_MAELSTROM
+EA_XOPT_SPECFLAG_FURY = EA_XSPECINFO_FURY
+EA_XOPT_SPECFLAG_PAIN = EA_XSPECINFO_PAIN
 
-EA_XGRPALERT_POWERTYPE = "PowerType:";
+EA_XGRPALERT_POWERTYPE = "PowerType:"
 EA_XGRPALERT_POWERTYPES = {
 	[1]={text=EA_XSPECINFO_MANA, value=EA_SPELL_POWER_MANA},
 	[2]={text=EA_XSPECINFO_RAGE, value=EA_SPELL_POWER_RAGE},
@@ -353,6 +353,6 @@ EA_XGRPALERT_POWERTYPES = {
 	[14]={text=EA_XSPECINFO_MAELSTROM, value=EA_SPELL_POWER_MAELSTROM},
 	[15]={text=EA_XSPECINFO_FURY, value=EA_SPELL_POWER_FURY},
 	[16]={text=EA_XSPECINFO_PAIN, value=EA_SPELL_POWER_PAIN},	
-};
+}
 
 end		-- End Of If
